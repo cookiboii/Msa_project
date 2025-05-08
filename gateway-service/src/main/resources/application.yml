@@ -1,0 +1,25 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          "[/**]":
+            allowed-origins:
+              - "http://localhost:5173"
+            allowed-methods:
+              - GET
+              - POST
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowed-headers:
+              - Content-Type
+              - Authorization
+              - X-Requested-With
+            allow-credentials: true
+

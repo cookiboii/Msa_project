@@ -1,7 +1,7 @@
 package com.playdata.postservice.common.configs;
 
-import com.playdata.userservice.common.auth.JwtAuthFilter;
-import com.playdata.userservice.common.exception.CustomAuthenticationEntryPoint;
+import com.playdata.postservice.common.auth.JwtAuthFilter;
+import com.playdata.postservice.common.exception.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

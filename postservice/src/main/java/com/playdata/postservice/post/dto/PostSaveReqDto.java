@@ -3,8 +3,10 @@ package com.playdata.postservice.post.dto;
 
 import com.playdata.postservice.post.entity.Post;
 import com.playdata.postservice.post.entity.PostStatus;
+import lombok.Getter;
 
-public class postSaveReqDto {
+@Getter
+public class PostSaveReqDto {
 
     private Long productId;
     private String title;

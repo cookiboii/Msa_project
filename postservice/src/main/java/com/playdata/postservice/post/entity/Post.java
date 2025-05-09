@@ -1,12 +1,10 @@
 package com.playdata.postservice.post.entity;
 
 
+import com.playdata.postservice.post.dto.PostResDto;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
+import com.playdata.postservice.common.entity.BaseTimeEntity;
 
 @Getter
 @ToString
@@ -15,7 +13,8 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Setter
-public class Post {
+@Table(name="tbl_post")
+public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +33,15 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private PostStatus status;
 
-    @CreationTimestamp
-    private LocalDateTime createTime;
 
-    @UpdateTimestamp
-    private LocalDateTime updateTime;
-
+    public PostResDto fromEntity() {
+        return PostResDto.builder()
+                .title(title)
+                .content(content)
+                .status(status)
+                .userId(userId)
+                .productId(productId)
+                .build();
+    }
 
 }

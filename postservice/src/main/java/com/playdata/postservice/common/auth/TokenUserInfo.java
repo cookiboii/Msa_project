@@ -1,6 +1,6 @@
 package com.playdata.postservice.common.auth;
 
-import com.playdata.userservice.user.entity.Role;
+import com.playdata.postservice.common.entity.Role;
 import lombok.*;
 
 @Setter

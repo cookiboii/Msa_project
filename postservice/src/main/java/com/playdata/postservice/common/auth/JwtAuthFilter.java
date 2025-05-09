@@ -1,8 +1,6 @@
 package com.playdata.postservice.common.auth;
 
-import com.playdata.userservice.common.auth.JwtTokenProvider;
-import com.playdata.userservice.common.auth.TokenUserInfo;
-import com.playdata.userservice.user.entity.Role;
+import com.playdata.postservice.common.entity.Role;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

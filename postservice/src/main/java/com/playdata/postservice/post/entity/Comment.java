@@ -3,10 +3,8 @@ package com.playdata.postservice.post.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import com.playdata.postservice.common.entity.BaseTimeEntity;
 
-import java.time.LocalDateTime;
 
 @Getter
 @ToString
@@ -15,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Setter
-public class Comment {
+public class Comment extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +28,5 @@ public class Comment {
 
     private String content;
 
-    @CreationTimestamp
-    private LocalDateTime createTime;
-
-    @UpdateTimestamp
-    private LocalDateTime updateTime;
 
 }

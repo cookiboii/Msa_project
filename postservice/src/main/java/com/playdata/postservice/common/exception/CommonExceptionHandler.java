@@ -1,6 +1,6 @@
 package com.playdata.postservice.common.exception;
 
-import com.playdata.userservice.common.dto.CommonErrorDTO;
+import com.playdata.postservice.common.dto.CommonErrorDto;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ public class CommonExceptionHandler {
     public ResponseEntity<?> illegalHandler(IllegalArgumentException e) {
         e.printStackTrace();
 
-        CommonErrorDTO errorDTO = new CommonErrorDTO(HttpStatus.BAD_REQUEST, e.getMessage());
+        CommonErrorDto errorDTO = new CommonErrorDto(HttpStatus.BAD_REQUEST, e.getMessage());
 
         return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
 
@@ -33,7 +33,7 @@ public class CommonExceptionHandler {
     public ResponseEntity<?> entityNotFoundHandler(EntityNotFoundException e) {
         e.printStackTrace();
 
-        CommonErrorDTO errorDTO = new CommonErrorDTO(HttpStatus.NOT_FOUND, e.getMessage());
+        CommonErrorDto errorDTO = new CommonErrorDto(HttpStatus.NOT_FOUND, e.getMessage());
 
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 
@@ -44,7 +44,7 @@ public class CommonExceptionHandler {
     public ResponseEntity<?> authDeniedHandler(AccessDeniedException e) {
         e.printStackTrace();
 
-        CommonErrorDTO errorDTO = new CommonErrorDTO(HttpStatus.FORBIDDEN, e.getMessage());
+        CommonErrorDto errorDTO = new CommonErrorDto(HttpStatus.FORBIDDEN, e.getMessage());
 
         return new ResponseEntity<>(errorDTO, HttpStatus.FORBIDDEN);
     }
@@ -55,7 +55,7 @@ public class CommonExceptionHandler {
     public ResponseEntity<?> exceptionHandler(Exception e) {
         e.printStackTrace();
 
-        CommonErrorDTO errorDTO = new CommonErrorDTO(HttpStatus.INTERNAL_SERVER_ERROR
+        CommonErrorDto errorDTO = new CommonErrorDto(HttpStatus.INTERNAL_SERVER_ERROR
                 , "서버 에러");
 
         return new ResponseEntity<>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR); // 500 에러

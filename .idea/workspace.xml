@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="post-service 초기 커밋" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="post-service 초기 수정 커밋">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/CommentResDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/ProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/CourseServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/UserServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/UserServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/TokenUserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/TokenUserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/configs/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/exception/CommonExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/exception/CommonExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/UserResDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/UserResDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/postSaveReqDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/PostSaveReqDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +69,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -78,33 +99,50 @@
     <option name="flattenModules" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/Msa_project/postservice/src/main/java/com/playdata/postservice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build gateway-service.executor": "Run",
+    "Gradle.discovery-service 빌드.executor": "Run",
+    "Gradle.gateway-service 빌드.executor": "Run",
+    "Gradle.postservice 빌드.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
+    "Spring Boot.PostserviceApplication.executor": "Run",
+    "git-widget-placeholder": "feature/my-work",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/Desktop/Msa_project/postservice/src/main/java/com/playdata/postservice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.playdata.postservice.post.dto" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\Desktop\Msa_project\postservice\src\main\java\com\playdata\postservice" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.playdata.postservice.common.entity" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -117,7 +155,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
+  <component name="RunManager" selected="Spring Boot.PostserviceApplication">
     <configuration name="CourseServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="course-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.courseservice.CourseServiceApplication" />
@@ -194,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746754405700</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="post-service 초기 수정 커밋">
+      <option name="closed" value="true" />
+      <created>1746755246564</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746755246564</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +259,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="post-service 초기 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="post-service 초기 커밋" />
+    <MESSAGE value="post-service 초기 수정 커밋" />
+    <option name="LAST_COMMIT_MESSAGE" value="post-service 초기 수정 커밋" />
   </component>
 </project>

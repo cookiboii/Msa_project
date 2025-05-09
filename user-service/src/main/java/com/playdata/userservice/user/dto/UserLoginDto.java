@@ -10,8 +10,8 @@ import lombok.*;
 @AllArgsConstructor
 public class UserLoginDto {
 
-  String  Email;
-  String password;
+private   String  Email;
+private   String password;
 
 
 }

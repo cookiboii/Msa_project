@@ -1,11 +1,13 @@
 package com.playdata.userservice.user.service;
 
+import com.playdata.userservice.user.dto.UserLoginDto;
 import com.playdata.userservice.user.dto.UserPasswordUpdateDto;
 import com.playdata.userservice.user.dto.UserSaveDto;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.annotation.Bean;
@@ -48,9 +50,9 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)   //읽기 전용 트랜잭션
-   public User search (String email) {  // 이메일 찾기
-        User user= userRepository.findByemail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
+   public User search (String username) {  //  이름으로 이메일 찾기
+        User user= userRepository.findByemail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
 
  return user;
@@ -68,10 +70,21 @@ public class UserService {
 
    }
 
-   @Transactional
+
     public void deleteUser (Long id) {   //회원탈퇴
-         User user = userRepository.deleteUserById(id);
+       userRepository.deleteUserById(id);
    }
 
+    @Transactional
+    public User Login (UserLoginDto userLoginDto) {
+        User user = userRepository.findByemail(userLoginDto.getEmail() ).orElseThrow(() -> new EntityNotFoundException("User not found!"));
+
+        if (!passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("비밀번호 틀렸습니다.");
+        }
+
+        return user;
+
+     }
 
 }

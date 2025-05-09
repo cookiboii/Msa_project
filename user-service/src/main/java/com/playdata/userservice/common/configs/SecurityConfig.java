@@ -43,7 +43,7 @@ public class SecurityConfig {
 //
                     .requestMatchers(
 
-                            "/user/create").permitAll()
+                            "/user/**").permitAll()
                     .anyRequest().authenticated();
         });
 

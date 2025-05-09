@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: gateway-service
+
   cloud:
     gateway:
       globalcors:
@@ -23,3 +24,39 @@ spring:
               - X-Requested-With
             allow-credentials: true
 
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: course-service
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/course-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/course-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: post-service
+          uri: lb://POST-SERVICE
+          predicates:
+            - Path=/post-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/post-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter

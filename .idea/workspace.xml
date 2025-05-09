@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="post-service 초기 수정 커밋">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/CommentResDto.java" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/ProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/CourseServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/UserServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/client/UserServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/TokenUserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/auth/TokenUserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/exception/CommonExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/exception/CommonExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/entity/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/entity/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/UserResDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/UserResDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/postSaveReqDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/dto/PostSaveReqDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/entity/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/repository/PostRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746755246564</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음">
+      <option name="closed" value="true" />
+      <created>1746773287547</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746773287547</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +255,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="post-service 초기 커밋" />
     <MESSAGE value="post-service 초기 수정 커밋" />
-    <option name="LAST_COMMIT_MESSAGE" value="post-service 초기 수정 커밋" />
+    <MESSAGE value="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음" />
+    <option name="LAST_COMMIT_MESSAGE" value="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음" />
   </component>
 </project>

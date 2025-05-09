@@ -161,4 +161,14 @@ public class PostService {
         });
 
     }
+
+    public List<PostResDto> getAllPostOfCourse(Long courseId) {
+
+        List<Post> foundPosts = postRepository.findByProductId(courseId);
+
+        List<PostResDto> list = foundPosts.stream().map(Post::fromEntity).toList();
+
+        return list;
+
+    }
 }

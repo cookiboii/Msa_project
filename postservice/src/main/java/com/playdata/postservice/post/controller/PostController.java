@@ -117,6 +117,15 @@ public class PostController {
         return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
+    // 강의 클릭 시, 하단의 질문 렌더링을 위한 메소드
+    @GetMapping("/list")
+    public ResponseEntity<?> getPostsByCourse(@RequestParam("id") Long courseId){
+
+        List<PostResDto> posts = postService.getAllPostOfCourse(courseId);
+        CommonResDto resDto = new CommonResDto(HttpStatus.OK,
+                "해당 강의의 모든 질문 찾음!", posts);
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
+    }
 
     // 게시물 삭제 로직 (회원용)
     @DeleteMapping("/delete")

@@ -5,13 +5,12 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserLoginDto {
+public class UserPasswordUpdateDto {
 
-  String  Email;
-  String password;
-
-
+    private Long Id;
+    private String Password;
 }

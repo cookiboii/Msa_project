@@ -1,5 +1,6 @@
 package com.playdata.userservice.user.service;
 
+import com.playdata.userservice.user.dto.UserPasswordUpdateDto;
 import com.playdata.userservice.user.dto.UserSaveDto;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
@@ -7,6 +8,7 @@ import com.playdata.userservice.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,35 +21,57 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
       private final UserRepository userRepository;
+
+
     private final PasswordEncoder passwordEncoder;
 
 
      @Transactional
-    public User Save(UserSaveDto userSaveDto) {   //회원가입
+    public User Save(UserSaveDto userSaveDto) {
+         String email = userSaveDto.getEmail();//회원가입
         String username = userSaveDto.getUsername();
+
+         // 이메일 중복 체크
+         if (userRepository.existsByEmail(email)) {
+             throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
+         }
         String password = userSaveDto.getPassword();
         String encodedPassword = passwordEncoder.encode(password);
         userSaveDto.setPassword(encodedPassword);
         userSaveDto.setUsername(username);
         userSaveDto.setEmail(userSaveDto.getEmail());
-        return userRepository.save(userSaveDto.toEntity());
+
+        User save = userRepository.save(userSaveDto.toEntity());
+
+
+         return save;
     }
 
     @Transactional(readOnly = true)   //읽기 전용 트랜잭션
-   public User search (String username) {
-        User user= userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+   public User search (String email) {  // 이메일 찾기
+        User user= userRepository.findByemail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
 
 
  return user;
    }
 
-   public User updateUser (UserSaveDto userSaveDto) {
+   @Transactional
+   public User updatePassword (UserPasswordUpdateDto updateDto) {
+         //비밀번호변경
+       User user  = userRepository.findById(updateDto.getId()).orElseThrow(() -> new UsernameNotFoundException("User not found: " + updateDto.getId()));
+       String encodedPassword = passwordEncoder.encode(updateDto.getPassword());
+       updateDto.setPassword(encodedPassword);
 
 
+         return user;
 
    }
 
+   @Transactional
+    public void deleteUser (Long id) {   //회원탈퇴
+         User user = userRepository.deleteUserById(id);
+   }
 
 
 }

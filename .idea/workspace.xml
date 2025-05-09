@@ -4,18 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/auth/JwtAuthFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserLoginDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserSaveDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/bootstrap.yml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="&#10;엔티티 설게완료">
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/auth/JwtTokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/auth/TokenUserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/configs/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/dto/CommonErrorDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/dto/CommonResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/entity/BaseTimeEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/exception/CommonExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/exception/CustomAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserPasswordUpdateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/auth/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/auth/JwtAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserLoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserLoginDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/bootstrap.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,9 +119,10 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "Spring Boot.DiscoveryServiceApplication.executor": "Run",
-    "Spring Boot.GatewayServiceApplication.executor": "Debug",
-    "Spring Boot.UserServiceApplication.executor": "Debug",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
+    "Spring Boot.UserServiceApplication.executor": "Run",
     "git-widget-placeholder": "feature/userservice",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -122,6 +132,11 @@
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="ReactorSettings">
@@ -203,11 +218,25 @@
       <workItem from="1746749459059" duration="299000" />
       <workItem from="1746750382774" duration="2227000" />
       <workItem from="1746752783471" duration="688000" />
-      <workItem from="1746753875120" duration="10997000" />
+      <workItem from="1746753875120" duration="19648000" />
     </task>
+    <task id="LOCAL-00001" summary="&#10;엔티티 설게완료">
+      <option name="closed" value="true" />
+      <created>1746767203323</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746767203323</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="환경설정 수정" />
+    <MESSAGE value="&#10;엔티티 설게완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;엔티티 설게완료" />
   </component>
 </project>

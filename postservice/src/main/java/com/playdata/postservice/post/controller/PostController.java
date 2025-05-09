@@ -12,6 +12,7 @@ import com.playdata.postservice.post.entity.Post;
 import com.playdata.postservice.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,7 +29,7 @@ public class PostController {
 
     private final PostService postService;
 
-    // 질문 생성
+    // 질문 생성, 확인 완료
     @PostMapping("/create")
     public ResponseEntity<?> createPost(@AuthenticationPrincipal TokenUserInfo userInfo,
             @RequestBody PostSaveReqDto dto) {
@@ -42,7 +43,8 @@ public class PostController {
         return new ResponseEntity<>(resDto, HttpStatus.CREATED);
     }
 
-    // 답변 생성
+    // 답변 생성, 확인 완료
+    // 다만 추후에 다른 서비스와의 통신 과정을 확인해야함.
     @PostMapping("/comment/create")
     public ResponseEntity<?> createCommnet(@AuthenticationPrincipal TokenUserInfo userInfo,
                         @RequestBody CommentSaveReqDto dto) {
@@ -60,7 +62,7 @@ public class PostController {
         return new ResponseEntity<>(resDto, HttpStatus.CREATED);
     }
 
-    // 답변 삭제(회원일 때)
+    // 답변 삭제(회원일 때), 확인완료
     @DeleteMapping("/comment/delete")
     public ResponseEntity<?> deleteComment(@AuthenticationPrincipal TokenUserInfo userInfo,
                                            @RequestParam("id") Long commentId){
@@ -82,7 +84,7 @@ public class PostController {
 
     }
     
-    // 답변 삭제(관리자용)
+    // 답변 삭제(관리자용), 확인 완료
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/comment/deleteAdmin")
     public ResponseEntity<?> deleteCommentAdmin(@RequestParam("id") Long commentId){
@@ -105,7 +107,7 @@ public class PostController {
 
     }
 
-    // 마이페이지에서 본인의 질문 조회
+    // 마이페이지에서 본인의 질문 조회, 확인 완료
     @GetMapping("/myquestions")
     public ResponseEntity<?> getMyQuestions(@AuthenticationPrincipal TokenUserInfo userInfo){
 
@@ -117,9 +119,10 @@ public class PostController {
         return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
-    // 강의 클릭 시, 하단의 질문 렌더링을 위한 메소드
+    // 강의 클릭 시, 하단의 질문 리스트 렌더링을 위한 메소드
     @GetMapping("/list")
-    public ResponseEntity<?> getPostsByCourse(@RequestParam("id") Long courseId){
+    public ResponseEntity<?> getPostsByCourse(@RequestParam("id") Long courseId,
+                                              Pageable pageable){
 
         List<PostResDto> posts = postService.getAllPostOfCourse(courseId);
         CommonResDto resDto = new CommonResDto(HttpStatus.OK,
@@ -127,7 +130,7 @@ public class PostController {
         return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
-    // 게시물 삭제 로직 (회원용)
+    // 게시물 삭제 로직 (회원용), 확인 완료
     @DeleteMapping("/delete")
     public ResponseEntity<?> deletePostUser(@AuthenticationPrincipal TokenUserInfo userInfo,
                                             @RequestParam("id") Long postId){
@@ -144,7 +147,7 @@ public class PostController {
         return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
-    // 게시물 삭제 (관리자용)
+    // 게시물 삭제 (관리자용), 확인 완료
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteadmin")
     public ResponseEntity<?> deletePostAdmin(@RequestParam("id") Long postId){
@@ -154,7 +157,7 @@ public class PostController {
     }
 
 
-    // 회원 탈퇴 시 해당 회원의 모든 게시물과 댓글을 삭제하는 로직
+    // 회원 탈퇴 시 해당 회원의 모든 게시물과 댓글을 삭제하는 로직 -> 확인완료
     @DeleteMapping("/deleteuser")
     public ResponseEntity<?> deletePostUser(@RequestParam("id") Long userId){
 

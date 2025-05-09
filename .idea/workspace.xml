@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="post-service 구현중">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/entity/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/common/entity/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/java/com/playdata/postservice/post/service/PostService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746773287547</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="post-service 구현중">
+      <option name="closed" value="true" />
+      <created>1746778391187</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746778391187</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +261,7 @@
     <MESSAGE value="post-service 초기 커밋" />
     <MESSAGE value="post-service 초기 수정 커밋" />
     <MESSAGE value="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음" />
-    <option name="LAST_COMMIT_MESSAGE" value="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음" />
+    <MESSAGE value="post-service 구현중" />
+    <option name="LAST_COMMIT_MESSAGE" value="post-service 구현중" />
   </component>
 </project>

@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-
 @RequiredArgsConstructor
 public class UserService {
 
@@ -63,16 +62,16 @@ public class UserService {
          //비밀번호변경
        User user  = userRepository.findById(updateDto.getId()).orElseThrow(() -> new UsernameNotFoundException("User not found: " + updateDto.getId()));
        String encodedPassword = passwordEncoder.encode(updateDto.getPassword());
-       updateDto.setPassword(encodedPassword);
+       user.changePassword(encodedPassword);
 
 
          return user;
 
    }
 
-
+   @Transactional
     public void deleteUser (Long id) {   //회원탈퇴
-       userRepository.deleteUserById(id);
+       userRepository.deleteById(id);
    }
 
     @Transactional

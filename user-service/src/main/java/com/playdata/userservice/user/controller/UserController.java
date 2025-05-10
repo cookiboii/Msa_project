@@ -44,13 +44,8 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
          userService.deleteUser(id);
    }
-   @GetMapping("/username")   //이메일로 이름찾기
-    public ResponseEntity<?> getUsers(UserSaveDto userSaveDto) {
-     User user  =  userService.search(userSaveDto.getUsername());
 
-     return new ResponseEntity<>(user, HttpStatus.OK);
-   }
-    @PutMapping("/password")
+    @PostMapping("/password")
     public ResponseEntity<?> saveUser(@RequestBody UserPasswordUpdateDto updateDto) {
         User user = userService.updatePassword(updateDto);
 

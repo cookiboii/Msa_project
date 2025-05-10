@@ -1,6 +1,7 @@
 package com.playdata.userservice.user.dto;
 
 
+import com.playdata.userservice.user.entity.Role;
 import lombok.*;
 
 @Getter
@@ -12,5 +13,7 @@ import lombok.*;
 public class UserPasswordUpdateDto {
 
     private Long Id;
+    private String email;
     private String Password;
+    private Role Role;
 }

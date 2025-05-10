@@ -14,12 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Builder
 public class UserSaveDto {
 
-
+     @NotNull(message = "공백안됩니다 ")
    private String username;
 
-   @NotNull
+   @NotNull(message = "공백안됩니다")
    private String password;
-   @NotNull
+   @NotNull(message = "공백안됩니다 ")
    private String email;
 
    public User toEntity() {

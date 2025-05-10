@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -70,6 +67,15 @@ public class OrderingController {
     }
 
      */
+
+    // 주문 상태를 취소로 변경하는 요청
+    @PatchMapping("/cancel/{id}")
+    public ResponseEntity<?> cancelOrder(@PathVariable long id) {
+        Ordering ordering = orderingService.cancelOrder(id);
+        CommonResDto resDto
+                = new CommonResDto(HttpStatus.OK, "주문 취소 완료", ordering.getId());
+        return ResponseEntity.ok().body(resDto);
+    }
 
 
 }

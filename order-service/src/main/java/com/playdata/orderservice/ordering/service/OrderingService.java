@@ -6,8 +6,10 @@ import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
 import com.playdata.orderservice.ordering.dto.OrderingSaveReqDto;
 import com.playdata.orderservice.ordering.dto.UserResDto;
+import com.playdata.orderservice.ordering.entity.OrderStatus;
 import com.playdata.orderservice.ordering.entity.Ordering;
 import com.playdata.orderservice.ordering.repository.OrderingRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -90,5 +94,15 @@ public class OrderingService {
         return orderings;  // 생성된 주문 목록 반환
     }
 
+    public Ordering cancelOrder(long id) {
+        Ordering ordering = orderingRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("주문 없음")
+        );
+        // 주문 entity의 status를 CANCELED로 변경
+//        List<OrderDetail> orderDetailList = ordering.getOrderDetails();
 
+        ordering.updateStatus(OrderStatus.CANCELED);
+//        orderingRepository.save(ordering);
+        return ordering;
+    }
 }

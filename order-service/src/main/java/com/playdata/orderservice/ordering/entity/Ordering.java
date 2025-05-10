@@ -6,7 +6,8 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -16,6 +17,7 @@ public class Ordering {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성
+    @Column(name = "order_id")
     private Long id;
 
     @JoinColumn
@@ -27,10 +29,12 @@ public class Ordering {
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private OrderStatus status = OrderStatus.ORDERED;
+    private OrderStatus orderStatus = OrderStatus.ORDERED;
 
     private LocalDate orderDate;
 
-
+    public void updateStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
 }

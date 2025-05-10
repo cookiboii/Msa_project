@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig" migrateDefaultValues="false" reUseTableSchema="true">
+    <option name="migrateDefaultValues" value="false" />
+    <option name="reLastEntityCreationPackage" value="order-service/src/main/java/com/playdata/orderservice" />
+    <option name="reverseEngineeringLastDbConnectionId" value="2bbb1a5c-6c1e-404f-9455-7eeaa8991a28" />
+  </component>
+</project>

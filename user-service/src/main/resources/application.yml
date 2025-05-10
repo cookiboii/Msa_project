@@ -5,7 +5,9 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:mysql://localhost:3306/spring_db
+    url: jdbc:mysql://localhost:3306/msaproject?serverTimezone=Asia/Seoul
+    # 위에는 지우고 실행하시면 됩니다.
+    #url: jdbc:mysql://localhost:3306/spring_db
     username: spring
     password: spring
     driver-class-name: com.mysql.cj.jdbc.Driver

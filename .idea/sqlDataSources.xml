@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="794a3ef9-5524-4f10-9341-76098a7eaad7" name="spring_db">
+      <data-sources db="75c92ddf-57a9-4537-9b95-fef937a03406" />
+    </mapping>
+    <mapping uuid="26c10b6c-0f7e-4a33-a63a-64cb8807c64e" name="@localhost Mapping">
+      <data-sources db="d7220980-dbeb-4b39-86c3-f2e88f02f6ee" />
+    </mapping>
+  </component>
+</project>

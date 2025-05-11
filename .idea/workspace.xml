@@ -4,26 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/client/ProductServiceClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/client/UserServiceClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/auth/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/configs/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/dto/CommonErrorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/dto/CommonResDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/OrderingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/OrderingSaveReqDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/ProductResDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/UserResDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/entity/OrderStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/entity/Ordering.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/repository/OrderingRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/resources/bootstrap.yml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 구매 취소 기능 추가">
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/OrderingListResDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/OrderServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/OrderServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/OrderingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/OrderingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/repository/OrderingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/repository/OrderingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,18 +68,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "vbnmopas"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;vbnmopas&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/cookiboii/Msa_project.git",
-    "accountId": "ce047064-951f-49a2-b7d9-7e0066664a20"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cookiboii/Msa_project.git&quot;,
+    &quot;accountId&quot;: &quot;ce047064-951f-49a2-b7d9-7e0066664a20&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -103,48 +89,48 @@
     <option name="flattenModules" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.Build gateway-service.executor": "Run",
-    "Gradle.OrderServiceApplicationTests.executor": "Run",
-    "Gradle.discovery-service 빌드.executor": "Run",
-    "Gradle.gateway-service 빌드.executor": "Run",
-    "Gradle.order-service 빌드.executor": "Run",
-    "Gradle.user-service 빌드.executor": "Run",
-    "Gradle.소스 다운로드.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
-    "Spring Boot.GatewayServiceApplication.executor": "Run",
-    "Spring Boot.OrderServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "git-widget-placeholder": "feature/orderservice",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/playdata/Msa_project/order-service/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OrderServiceApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.discovery-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.gateway-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.order-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.user-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DiscoveryServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/orderservice&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/playdata/Msa_project/order-service/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -267,7 +253,25 @@
       <workItem from="1746749459059" duration="299000" />
       <workItem from="1746750382774" duration="2227000" />
       <workItem from="1746752783471" duration="688000" />
+      <workItem from="1746869124850" duration="9515000" />
     </task>
+    <task id="LOCAL-00001" summary="강의 구매 기능 추가">
+      <option name="closed" value="true" />
+      <created>1746874114389</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746874114389</updated>
+    </task>
+    <task id="LOCAL-00002" summary="강의 구매 취소 기능 추가">
+      <option name="closed" value="true" />
+      <created>1746875553601</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746875553601</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,5 +287,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="강의 구매 기능 추가" />
+    <MESSAGE value="강의 구매 취소 기능 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="강의 구매 취소 기능 추가" />
   </component>
 </project>

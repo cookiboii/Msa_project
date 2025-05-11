@@ -4,7 +4,9 @@ import com.playdata.orderservice.client.UserServiceClient;
 import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
+import com.playdata.orderservice.ordering.dto.OrderingListResDto;
 import com.playdata.orderservice.ordering.dto.OrderingSaveReqDto;
+import com.playdata.orderservice.ordering.dto.ProductResDto;
 import com.playdata.orderservice.ordering.dto.UserResDto;
 import com.playdata.orderservice.ordering.entity.OrderStatus;
 import com.playdata.orderservice.ordering.entity.Ordering;
@@ -105,4 +107,29 @@ public class OrderingService {
 //        orderingRepository.save(ordering);
         return ordering;
     }
+
+    public List<OrderingListResDto> myOrder(final TokenUserInfo userInfo) {
+        String email = userInfo.getEmail();
+
+        // UserResDto 객체를 직접 생성 (임시)
+        UserResDto userDto = UserResDto.builder()
+                .email(email)
+                .role(Role.USER)
+                .id(2L)
+                .name("김춘식")
+                .build();
+
+
+        // userId로 주문 내역 가져오기
+        List<Ordering> orderingList
+                = orderingRepository.findByUserId(userDto.getId());
+
+
+
+        return orderingList.stream()
+                .map(OrderingListResDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
 }

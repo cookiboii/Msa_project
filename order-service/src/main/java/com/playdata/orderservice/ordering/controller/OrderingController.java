@@ -4,6 +4,7 @@ import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
 import com.playdata.orderservice.common.dto.CreateOrderRequest;
+import com.playdata.orderservice.ordering.dto.OrderingListResDto;
 import com.playdata.orderservice.ordering.dto.OrderingSaveReqDto;
 import com.playdata.orderservice.ordering.entity.Ordering;
 import com.playdata.orderservice.ordering.service.OrderingService;
@@ -75,6 +76,20 @@ public class OrderingController {
         CommonResDto resDto
                 = new CommonResDto(HttpStatus.OK, "주문 취소 완료", ordering.getId());
         return ResponseEntity.ok().body(resDto);
+    }
+
+    // 내 주문 조회 요청
+    @GetMapping("/my-order")
+    public ResponseEntity<?> myOrder(@RequestParam String email) {
+        TokenUserInfo userInfo = TokenUserInfo.builder()
+                .email(email)
+                .role(Role.USER)
+                .build();
+
+        List<OrderingListResDto> dtos = orderingService.myOrder(userInfo);
+        CommonResDto<List<OrderingListResDto>> resDto =
+                new CommonResDto<>(HttpStatus.OK, "정상 조회 완료", dtos);
+        return ResponseEntity.ok(resDto);
     }
 
 

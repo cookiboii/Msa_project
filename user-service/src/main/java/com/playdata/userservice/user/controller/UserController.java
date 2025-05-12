@@ -38,6 +38,7 @@ public class UserController {
                  "User Created", save.getUsername());
 
          return new ResponseEntity<>(resDto, HttpStatus.CREATED);
+
      }
     @PostMapping("/login")
     public ResponseEntity<?> Login(@RequestBody  UserLoginDto  userLoginDto) {

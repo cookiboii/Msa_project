@@ -16,6 +16,9 @@ public interface UserServiceClient {
     @GetMapping("/user/findByEmail")
     CommonResDto<UserResDto> findByEmail(@RequestParam String email);
 
+    @GetMapping("/user/findById")
+    CommonResDto<UserResDto> findById(@RequestParam Long userId);
+
 }
 
 

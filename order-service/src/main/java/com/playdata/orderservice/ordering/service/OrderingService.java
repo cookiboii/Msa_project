@@ -74,7 +74,7 @@ public class OrderingService {
     public List<OrderingListResDto> myOrder(final TokenUserInfo userInfo) {
         String email = userInfo.getEmail();
 
-         // 이메일로는 주문 회원 정보를 알 수가 없음. (id로 되어 있으니까)
+        // 이메일로는 주문 회원 정보를 알 수가 없음. (id로 되어 있으니까)
         CommonResDto<UserResDto> byEmail
                 = userServiceClient.findByEmail(email);
         UserResDto userDto = byEmail.getResult();
@@ -142,13 +142,28 @@ public class OrderingService {
         Map<Long, ProdDetailResDto> productMap = dtoList.stream()
                 .collect(Collectors.toMap(ProdDetailResDto::getProductId, dto -> dto));
 
+        // user-service에게 요청 (userId로 userEmail)
+        /*
+        CommonResDto<List<ProductResDto>> products
+                = userServiceClient.get(productIds);
+        List<ProductResDto> dtoList = products.getResult();
+
+
+        Map<Long, String> productIdToNameMap = dtoList.stream()
+                .collect(Collectors.toMap(
+                        dto -> dto.getId(), // key
+                        dto -> dto.getName() // value
+                ));
+
+         */
+
         return orderList.stream()
                 .map(ordering -> {
                     ProdDetailResDto product = productMap.get(ordering.getProductId());
 
                     return OrderingListResDto.builder()
                             .id(ordering.getId())
-//                            .userEmail(userDto.getEmail())
+                            .userId(ordering.getUserId())
                             .productId(ordering.getProductId())
                             .productName(product != null ? product.getProductName() : "Unknown")
                             .orderStatus(ordering.getOrderStatus())

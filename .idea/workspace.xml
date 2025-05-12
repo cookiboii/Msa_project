@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="클라이언트 추가">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="UserController.java 컨트롤러 부분 &lt;?&gt; 타입을 &lt;T&gt; 타입으로 개선">
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/client/CourseServiceClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/client/dto/CourseResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/client/dto/OrderStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/client/dto/OrderingListResDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d7220980-dbeb-4b39-86c3-f2e88f02f6ee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d7220980-dbeb-4b39-86c3-f2e88f02f6ee.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/UserServiceApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,10 +60,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -136,6 +143,9 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.playdata.userservice.client.dto" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -153,31 +163,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.UserServiceTest.save">
-    <configuration name="UserServiceTest.save" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/user-service" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.playdata.userservice.user.service.UserServiceTest.save&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
     <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -227,7 +213,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.UserServiceTest.save" />
       <item itemvalue="HTTP Request.generated-requests | #1" />
       <item itemvalue="HTTP Request.generated-requests | #2" />
       <item itemvalue="Spring Boot.CourseServiceApplication" />
@@ -239,7 +224,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.UserServiceTest.save" />
         <item itemvalue="HTTP Request.generated-requests | #2" />
         <item itemvalue="HTTP Request.generated-requests | #1" />
       </list>
@@ -274,7 +258,7 @@
       <workItem from="1746883714621" duration="678000" />
       <workItem from="1746967237657" duration="9000" />
       <workItem from="1747008210095" duration="11927000" />
-      <workItem from="1747020344968" duration="944000" />
+      <workItem from="1747020344968" duration="11640000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;엔티티 설게완료">
       <option name="closed" value="true" />
@@ -316,11 +300,30 @@
       <option name="project" value="LOCAL" />
       <updated>1747020367864</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="UserController.java 컨트롤러 부분 &lt;?&gt; 타입을 &lt;T&gt; 타입으로 개선">
+      <option name="closed" value="true" />
+      <created>1747021472930</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747021472930</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="환경설정 수정" />
@@ -331,6 +334,7 @@
     <MESSAGE value="비밀번호 수정 구현완료" />
     <MESSAGE value="마이페이지 jwt토큰 삽입완료" />
     <MESSAGE value="클라이언트 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="클라이언트 추가" />
+    <MESSAGE value="UserController.java 컨트롤러 부분 &lt;?&gt; 타입을 &lt;T&gt; 타입으로 개선" />
+    <option name="LAST_COMMIT_MESSAGE" value="UserController.java 컨트롤러 부분 &lt;?&gt; 타입을 &lt;T&gt; 타입으로 개선" />
   </component>
 </project>

@@ -4,11 +4,13 @@ import com.springstudy.courseservice.dto.CourseRequest;
 import com.springstudy.courseservice.dto.CourseResponse;
 import com.springstudy.courseservice.entity.Course;
 import com.springstudy.courseservice.repository.CourseRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -115,6 +117,5 @@ public class CourseService {
 
         courseRepository.delete(course);
     }
-
 
 }

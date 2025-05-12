@@ -4,6 +4,7 @@ import com.playdata.userservice.common.auth.JwtTokenProvider;
 import com.playdata.userservice.common.dto.CommonResDto;
 import com.playdata.userservice.user.dto.UserLoginDto;
 import com.playdata.userservice.user.dto.UserPasswordUpdateDto;
+import com.playdata.userservice.user.dto.UserResDto;
 import com.playdata.userservice.user.dto.UserSaveDto;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.service.UserService;
@@ -50,5 +51,20 @@ public class UserController {
         User user = userService.updatePassword(updateDto);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/findByEmail")
+    public CommonResDto findByEmail(@RequestParam String email) {
+        User foundUser = userService.findUserIdByEmail(email);
+
+        UserResDto build = UserResDto.builder()
+                .email(foundUser.getEmail())
+                .id(foundUser.getId())
+                .name(foundUser.getUsername())
+                .role(foundUser.getRole())
+                .build();
+
+        CommonResDto resDto = new CommonResDto(HttpStatus.OK, "유저 찾음", build);
+        return resDto;
     }
 }

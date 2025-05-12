@@ -38,7 +38,7 @@ public class PostController {
 
         PostResDto postDto = post.fromEntity();
 
-        CommonResDto resDto = new CommonResDto(HttpStatus.CREATED, "질문 등록 성공", post.getId());
+        CommonResDto resDto = new CommonResDto(HttpStatus.CREATED, "질문 등록 성공", postDto);
 
         return new ResponseEntity<>(resDto, HttpStatus.CREATED);
     }
@@ -57,7 +57,7 @@ public class PostController {
                 .userId(comment.getUserId())
                 .build();
 
-        CommonResDto resDto = new CommonResDto(HttpStatus.CREATED, "답변 등록 성공", comment.getId());
+        CommonResDto resDto = new CommonResDto(HttpStatus.CREATED, "답변 등록 성공", commentResDto);
 
         return new ResponseEntity<>(resDto, HttpStatus.CREATED);
     }

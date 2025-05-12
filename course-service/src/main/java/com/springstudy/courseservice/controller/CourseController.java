@@ -1,9 +1,12 @@
 package com.springstudy.courseservice.controller;
 
+import com.springstudy.courseservice.common.dto.CommonResDto;
 import com.springstudy.courseservice.dto.CourseRequest;
+import com.springstudy.courseservice.dto.CourseResDto;
 import com.springstudy.courseservice.dto.CourseResponse;
 import com.springstudy.courseservice.service.CourseService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,4 +77,23 @@ public class CourseController {
         return ResponseEntity.noContent().build();
     }
 
+
+    // 댓글 작성 시 강사 userId 조회를 위한 메소드입니다.
+    @GetMapping("/find/userid")
+    public CommonResDto<?> getuserIdByCourseId(@RequestParam Long courseId) {
+        CourseResponse foundCourse = courseService.getCourseById(courseId);
+
+        CourseResDto build = CourseResDto.builder()
+                .productId(foundCourse.getProductId())
+                .productName(foundCourse.getProductName())
+                .price(foundCourse.getPrice())
+                .description(foundCourse.getDescription())
+                .userId(foundCourse.getUserId())
+                .category(foundCourse.getCategory())
+                .active(foundCourse.isActive())
+                .build();
+
+        return new CommonResDto(HttpStatus.OK,"해당 강의 찾음" ,build);
+
+    }
 }

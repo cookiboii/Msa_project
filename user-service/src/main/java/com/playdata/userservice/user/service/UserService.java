@@ -10,7 +10,6 @@ import com.playdata.userservice.user.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -86,4 +85,10 @@ public class UserService {
 
      }
 
+    public User findUserIdByEmail(String email) {
+
+        User foundUser = userRepository.findByemail(email).orElseThrow(() -> new EntityNotFoundException("User not found!"));
+
+        return foundUser;
+    }
 }

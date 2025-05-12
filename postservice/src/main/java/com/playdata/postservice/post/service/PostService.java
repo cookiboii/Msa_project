@@ -7,6 +7,7 @@ import com.playdata.postservice.common.dto.CommonResDto;
 import com.playdata.postservice.post.dto.*;
 import com.playdata.postservice.post.entity.Comment;
 import com.playdata.postservice.post.entity.Post;
+import com.playdata.postservice.post.entity.PostStatus;
 import com.playdata.postservice.post.repository.CommentRepository;
 import com.playdata.postservice.post.repository.PostRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -53,7 +54,6 @@ public class PostService {
 
         // 해당 강사가 답변을 달았을 때, 질문의 답변 상태를 변경시키기 위한 로직
         // user-service와 product-service가 연동되면 구현할 것.
-        /*
         CommonResDto<CourseResDto> resDto = courseServiceClient.getIdByCourseId(productId);
         CourseResDto result = resDto.getResult();
         Long teacherId = result.getUserId();
@@ -61,7 +61,6 @@ public class PostService {
             post.setStatus(PostStatus.ANSWERED);
             postRepository.save(post);
         }
-        */
 
         Comment newComment = Comment.builder()
                 .userId(userId)

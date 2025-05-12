@@ -1,6 +1,5 @@
 package com.playdata.postservice.post.dto;
 
-import com.playdata.postservice.common.entity.Address;
 import com.playdata.postservice.common.entity.Role;
 import lombok.*;
 
@@ -16,6 +15,5 @@ public class UserResDto {
     private Long id;
     private String name;
     private Role role;
-    private Address address;
 
 }

@@ -1,6 +1,6 @@
-package com.playdata.postservice.post.dto;
+package com.playdata.userservice.user.dto;
 
-import com.playdata.postservice.common.entity.Role;
+import com.playdata.userservice.user.entity.Role;
 import lombok.*;
 
 @Getter

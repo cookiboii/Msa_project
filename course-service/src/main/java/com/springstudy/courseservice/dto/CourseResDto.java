@@ -1,10 +1,12 @@
-package com.playdata.postservice.post.dto;
+package com.springstudy.courseservice.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class CourseResDto {
 
     private Long productId;

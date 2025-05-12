@@ -36,6 +36,7 @@ public class Post extends BaseTimeEntity {
 
     public PostResDto fromEntity() {
         return PostResDto.builder()
+                .id(id)
                 .title(title)
                 .content(content)
                 .status(status)

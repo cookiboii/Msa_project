@@ -3,3 +3,4 @@ spring:
     config:
       url: http://localhost:8888
       profile: default
+

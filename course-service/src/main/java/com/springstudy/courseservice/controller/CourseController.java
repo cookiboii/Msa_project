@@ -2,6 +2,7 @@ package com.springstudy.courseservice.controller;
 
 import com.springstudy.courseservice.common.dto.CommonResDto;
 import com.springstudy.courseservice.dto.CourseRequest;
+import com.springstudy.courseservice.dto.CourseResDto;
 import com.springstudy.courseservice.dto.CourseResponse;
 import com.springstudy.courseservice.entity.Course;
 import com.springstudy.courseservice.service.CourseService;
@@ -40,7 +41,7 @@ public class CourseController {
 
     // 페이징 조회
     @GetMapping("/page/{page}")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
+    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@PathVariable int page, @RequestParam int size) {
         return ResponseEntity.ok(courseService.getCoursesByPage(page, size));
     }
 
@@ -95,4 +96,23 @@ public class CourseController {
         return ResponseEntity.ok(resDto);
     }
 
+
+    // 댓글 작성 시 강사 userId 조회를 위한 메소드입니다.
+    @GetMapping("/find/userid")
+    public CommonResDto<?> getuserIdByCourseId(@RequestParam Long courseId) {
+        CourseResponse foundCourse = courseService.getCourseById(courseId);
+
+        CourseResDto build = CourseResDto.builder()
+                .productId(foundCourse.getProductId())
+                .productName(foundCourse.getProductName())
+                .price(foundCourse.getPrice())
+                .description(foundCourse.getDescription())
+                .userId(foundCourse.getUserId())
+                .category(foundCourse.getCategory())
+                .active(foundCourse.isActive())
+                .build();
+
+        return new CommonResDto(HttpStatus.OK,"해당 강의 찾음" ,build);
+
+    }
 }

@@ -2,8 +2,10 @@ package com.playdata.userservice.user.controller;
 
 import com.playdata.userservice.common.auth.JwtTokenProvider;
 import com.playdata.userservice.common.dto.CommonResDto;
+import com.playdata.userservice.user.dto.*;
 import com.playdata.userservice.user.dto.UserLoginDto;
 import com.playdata.userservice.user.dto.UserPasswordUpdateDto;
+import com.playdata.userservice.user.dto.UserResDto;
 import com.playdata.userservice.user.dto.UserSaveDto;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.service.UserService;
@@ -12,6 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -37,7 +42,15 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> Login(@RequestBody  UserLoginDto  userLoginDto) {
             User user = userService.Login(userLoginDto);
-       return new ResponseEntity<>(user, HttpStatus.OK);
+        String token
+                = jwtTokenProvider.createToken(user.getEmail(), user.getRole().toString());
+        Map<String ,Object> loginInfo = new HashMap<>();
+        loginInfo.put("token",token);
+        loginInfo.put("id",user.getId());
+        loginInfo.put("role", user.getRole().toString());
+
+       CommonResDto resDto = new CommonResDto(HttpStatus.OK,"Login Success",loginInfo);
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
 
     }
    @DeleteMapping("/{id}")   //회원 탈퇴
@@ -51,4 +64,27 @@ public class UserController {
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @GetMapping("/findByEmail")
+    public CommonResDto findByEmail(@RequestParam String email) {
+        User foundUser = userService.findUserIdByEmail(email);
+
+        UserResDto build = UserResDto.builder()
+                .email(foundUser.getEmail())
+                .id(foundUser.getId())
+                .name(foundUser.getUsername())
+                .role(foundUser.getRole())
+                .build();
+
+        CommonResDto resDto = new CommonResDto(HttpStatus.OK, "유저 찾음", build);
+        return resDto;
+    }
+
+      @GetMapping("/userInfo")
+      public ResponseEntity<UserInfoResponseDto> userInfo(@RequestParam UserInfoDto userInfoDto){
+
+             UserInfoResponseDto userInfoResponseDto = userService.userInfo(userInfoDto);
+          return ResponseEntity.ok(userInfoResponseDto);
+      }
+
 }

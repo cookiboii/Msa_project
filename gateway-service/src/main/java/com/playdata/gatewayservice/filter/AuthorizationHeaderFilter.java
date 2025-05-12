@@ -2,8 +2,8 @@ package com.playdata.gatewayservice.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -23,11 +23,11 @@ import java.util.List;
 @Slf4j
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
 
-    /*@Value("${jwt.secretKey}")*/
+    @Value("${jwt.secretKey}")
     private String secretKey;
 
     private final List<String> allowUrl = Arrays.asList(
-            "/user/create", "/user/login" ,"/user/id","/user/password"
+            "/user/create", "/user/login" ,"/user/id","/user/password","user/info"
     );
 
     @Override
@@ -42,7 +42,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
                     .anyMatch(url -> antPathMatcher.match(url, path));
             log.info("isAllowed:{}", isAllowed);
 
-            if (isAllowed || path.startsWith("/")) {
+            if (isAllowed || path.startsWith("/actuator")) {
                 // 허용 url이 맞다면 그냥 통과~
                 log.info("gateway filter 통과!");
                 return chain.filter(exchange);

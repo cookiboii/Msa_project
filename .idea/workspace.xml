@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중">
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/dto/CommonResDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/CourseResponse.java" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/dto/CourseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/dto/CourseResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/service/CourseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/client/ProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/client/ProductServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/ProdDetailResDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/ProdDetailResDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
@@ -273,7 +266,7 @@
       <workItem from="1746750382774" duration="2227000" />
       <workItem from="1746752783471" duration="688000" />
       <workItem from="1746869124850" duration="9515000" />
-      <workItem from="1747008025846" duration="8428000" />
+      <workItem from="1747008025846" duration="9356000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -299,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747009289221</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현">
+      <option name="closed" value="true" />
+      <created>1747016867590</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747016867590</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,6 +321,7 @@
     <MESSAGE value="강의 구매 기능 추가" />
     <MESSAGE value="강의 구매 취소 기능 추가" />
     <MESSAGE value="관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중" />
-    <option name="LAST_COMMIT_MESSAGE" value="관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중" />
+    <MESSAGE value="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현" />
   </component>
 </project>

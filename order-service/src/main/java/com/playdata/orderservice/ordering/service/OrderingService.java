@@ -87,6 +87,7 @@ public class OrderingService {
             return orderings;  // 생성된 주문 목록 반환
         }
     */
+
     public Ordering cancelOrder(long id) {
         Ordering ordering = orderingRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("주문 없음")
@@ -156,20 +157,36 @@ public class OrderingService {
     public List<OrderingListResDto> findAllOrders() {
         List<Ordering> orderList = orderingRepository.findAll();
 
+        List<Long> productIds = orderList.stream()
+                .map(Ordering::getProductId)
+                .distinct()
+                .toList();
+
+        log.info("productIds는 : {}", productIds);
+
+        // 외부 서비스에서 한번에 강의 정보 목록 가져오기
+        CommonResDto<List<ProdDetailResDto>> courseRes = productServiceClient.getProducts(productIds);
+        List<ProdDetailResDto> dtoList = courseRes.getResult();
+
+        log.info("dtolist는 : {}", dtoList);
+
+        // dtoList → Map<productId, ProdDetailResDto>
+        Map<Long, ProdDetailResDto> productMap = dtoList.stream()
+                .collect(Collectors.toMap(ProdDetailResDto::getProductId, dto -> dto));
+
         return orderList.stream()
                 .map(ordering -> {
-                    // 외부 서비스(course-service)에서 강의 정보 가져오기
-                    CommonResDto<ProdDetailResDto> course = productServiceClient.findById(ordering.getProductId());
+                    ProdDetailResDto product = productMap.get(ordering.getProductId());
 
                     return OrderingListResDto.builder()
                             .id(ordering.getId())
-//                        .userEmail(userDto.getEmail())
+//                            .userEmail(userDto.getEmail())
                             .productId(ordering.getProductId())
-                            .productName(course.getResult().getProductName())
+                            .productName(product != null ? product.getProductName() : "Unknown")
                             .orderStatus(ordering.getOrderStatus())
                             .orderDate(ordering.getOrderDate())
-                            .category(course.getResult().getCategory())
-                            .filePath(course.getResult().getFilePath())
+                            .category(product != null ? product.getCategory() : null)
+                            .filePath(product != null ? product.getFilePath() : null)
                             .build();
                 })
                 .collect(Collectors.toList());

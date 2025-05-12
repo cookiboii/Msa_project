@@ -6,7 +6,10 @@ server:
 spring:
 
   datasource:
-    url: jdbc:mysql://localhost:3306/lectureservice?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/msaproject?serverTimezone=Asia/Seoul
+    # 확인을 위해 url을 각자 로컬에 맞게 작성하였습니다.
+    # 혹시 푸시받으시면 위에는 지우시면 됩니다.
+    #url: jdbc:mysql://localhost:3306/lectureservice?serverTimezone=Asia/Seoul
     username: spring
     password: spring
     driver-class-name: com.mysql.cj.jdbc.Driver

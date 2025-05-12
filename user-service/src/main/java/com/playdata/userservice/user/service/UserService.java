@@ -67,7 +67,7 @@ public class UserService {
    }
 
     @Transactional
-    public User Login (UserLoginDto userLoginDto) {
+    public User Login (UserLoginDto userLoginDto) {   //로그인
         User user = userRepository.findByemail(userLoginDto.getEmail() ).orElseThrow(() -> new EntityNotFoundException("User not found!"));
 
         if (!passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword())) {
@@ -77,7 +77,8 @@ public class UserService {
         return user;
 
      }
-     @Transactional
+     @Transactional(readOnly = true)
+       //유저 정보
      public UserInfoResponseDto userInfo(UserInfoDto userInfoDto){
          User user = userRepository.findByemail(userInfoDto.getEmail()).orElseThrow(()->new EntityNotFoundException("조회불가"));
 

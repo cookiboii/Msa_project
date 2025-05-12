@@ -21,6 +21,8 @@ public class OrderingListResDto {
     private Long productId;
     private String productName;
     private LocalDate orderDate;
+    private String category;
+    private String filePath;
 
     // Entity → DTO 변환
     public static OrderingListResDto fromEntity(Ordering ordering) {

@@ -1,13 +1,11 @@
 package com.playdata.orderservice.ordering.service;
 
+import com.playdata.orderservice.client.ProductServiceClient;
 import com.playdata.orderservice.client.UserServiceClient;
 import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
-import com.playdata.orderservice.ordering.dto.OrderingListResDto;
-import com.playdata.orderservice.ordering.dto.OrderingSaveReqDto;
-import com.playdata.orderservice.ordering.dto.ProductResDto;
-import com.playdata.orderservice.ordering.dto.UserResDto;
+import com.playdata.orderservice.ordering.dto.*;
 import com.playdata.orderservice.ordering.entity.OrderStatus;
 import com.playdata.orderservice.ordering.entity.Ordering;
 import com.playdata.orderservice.ordering.repository.OrderingRepository;
@@ -20,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,29 +30,24 @@ public class OrderingService {
 
     //feign client
     private final UserServiceClient userServiceClient;
+    private final ProductServiceClient productServiceClient;
 
-    /*
+
     public List<Ordering> createOrder(TokenUserInfo userInfo, List<OrderingSaveReqDto> dtoList) {
 
-        UserResDto userResDto;  //id, name, email, role
-        Ordering ordering = new Ordering();
+        // 실제 USER-SERVICE에서 사용자 정보 요청
+        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
+
+
+        log.info("구매요청고객정보: userInfo: {}, dtoList: {}", userInfo, dtoList);
+
         List<Ordering> orderings = new ArrayList<>();
-
-        log.info("구매요청고객정보: userInfo: {}, dtoList: {}", userInfo, dtoList);  //email, role
-
-        //order객체 생성을 위한 고객 정보 얻어오기 -> user-service
-        CommonResDto<UserResDto> byEmail
-                = userServiceClient.findByEmail(userInfo.getEmail());
-
-        userResDto = byEmail.getResult();
-        log.info("user-service로부터 전달받은 결과: {}", userResDto);
-
-        // Ordering(주문) 객체 생성
         for (OrderingSaveReqDto orderingSaveReqDto : dtoList) {
-
-            ordering = Ordering.builder()
+            Ordering ordering = Ordering.builder()
                     .userId(userResDto.getId())
-                    .productId(orderingSaveReqDto.getProductId())  //리스트에 productId가 들어있음. ex)1,2
+                    .userEmail(userResDto.getEmail())
+                    .productId(orderingSaveReqDto.getProductId())
+                    .orderDate(LocalDate.now())
                     .build();
 
             orderings.add(ordering);
@@ -63,39 +55,37 @@ public class OrderingService {
         }
 
         return orderings;
-
-
     }
-     */
 
-    public List<Ordering> createOrder(TokenUserInfo userInfo, List<OrderingSaveReqDto> dtoList) {
+    /*
+        public List<Ordering> createOrder(TokenUserInfo userInfo, List<OrderingSaveReqDto> dtoList) {
 
-        // UserResDto 객체를 직접 생성 (USER-SERVICE를 호출하지 않음)
-        UserResDto userResDto = new UserResDto();
-        userResDto.setId(1L);  // 임시 값 (실제 사용자 ID)
-        userResDto.setName("김춘식");  // 임시 값 (실제 사용자 이름)
-        userResDto.setEmail(userInfo.getEmail());  // 요청으로 받은 이메일
-        userResDto.setRole(Role.USER);  // 임시 값 (사용자 역할)
+            // UserResDto 객체를 직접 생성 (USER-SERVICE를 호출하지 않음)
+            UserResDto userResDto = new UserResDto();
+            userResDto.setId(1L);  // 임시 값 (실제 사용자 ID)
+            userResDto.setName("김춘식");  // 임시 값 (실제 사용자 이름)
+            userResDto.setEmail(userInfo.getEmail());  // 요청으로 받은 이메일
+            userResDto.setRole(Role.USER);  // 임시 값 (사용자 역할)
 
-        log.info("구매요청고객정보: userInfo: {}, dtoList: {}", userInfo, dtoList);
+            log.info("구매요청고객정보: userInfo: {}, dtoList: {}", userInfo, dtoList);
 
-        // 주문 정보 생성
-        List<Ordering> orderings = new ArrayList<>();
-        for (OrderingSaveReqDto orderingSaveReqDto : dtoList) {
-            Ordering ordering = Ordering.builder()
-                    .userId(userResDto.getId())  // UserResDto의 ID 사용
-                    .userEmail(userInfo.getEmail())
-                    .productId(orderingSaveReqDto.getProductId())  // 각 dto에서 상품 ID 사용
-                    .orderDate(LocalDate.now())
-                    .build();
+            // 주문 정보 생성
+            List<Ordering> orderings = new ArrayList<>();
+            for (OrderingSaveReqDto orderingSaveReqDto : dtoList) {
+                Ordering ordering = Ordering.builder()
+                        .userId(userResDto.getId())  // UserResDto의 ID 사용
+                        .userEmail(userInfo.getEmail())
+                        .productId(orderingSaveReqDto.getProductId())  // 각 dto에서 상품 ID 사용
+                        .orderDate(LocalDate.now())
+                        .build();
 
-            orderings.add(ordering);
-            orderingRepository.save(ordering);  // 주문 데이터 저장
+                orderings.add(ordering);
+                orderingRepository.save(ordering);  // 주문 데이터 저장
+            }
+
+            return orderings;  // 생성된 주문 목록 반환
         }
-
-        return orderings;  // 생성된 주문 목록 반환
-    }
-
+    */
     public Ordering cancelOrder(long id) {
         Ordering ordering = orderingRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("주문 없음")
@@ -119,15 +109,45 @@ public class OrderingService {
                 .name("김춘식")
                 .build();
 
+         // 실제 USER-SERVICE에서 사용자 정보 요청
+        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
+
 
         // userId로 주문 내역 가져오기
         List<Ordering> orderingList
                 = orderingRepository.findByUserId(userDto.getId());
 
 
-
         return orderingList.stream()
-                .map(OrderingListResDto::fromEntity)
+            .map(ordering -> {
+                // 외부 서비스(course-service)에서 강의 정보 가져오기
+                CommonResDto<ProdDetailResDto> course = productServiceClient.findById(ordering.getProductId());
+
+                return OrderingListResDto.builder()
+                        .id(ordering.getId())
+                        .userEmail(userDto.getEmail())
+                        .productId(ordering.getProductId())
+                        .productName(course.getResult().getProdName())
+                        .orderStatus(ordering.getOrderStatus())
+                        .orderDate(ordering.getOrderDate())
+                        .category(course.getResult().getCategory())
+                        .filePath(course.getResult().getFilePath())
+                        .build();
+            })
+            .collect(Collectors.toList());
+
+    }
+
+    public List<OrderingListResDto> findAllOrders() {
+        List<Ordering> orderList = orderingRepository.findAll();
+
+        return orderList.stream()
+                .map(order -> OrderingListResDto.builder()
+                        .id(order.getId())
+                        .userEmail(order.getUserEmail())
+                        .productId(order.getProductId())
+                        .orderDate(order.getOrderDate())
+                        .build())
                 .collect(Collectors.toList());
     }
 

@@ -3,6 +3,7 @@ package com.playdata.orderservice.common.configs;
 import com.playdata.orderservice.common.auth.JwtAuthFilter;
 import com.playdata.orderservice.common.exception.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
+import org.apache.juli.logging.Log;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -44,10 +45,13 @@ public class SecurityConfig {
                             "/user/refresh",
                             "/user/findByEmail",
                             "/user/health-check",
-                            "/actuator/**",
-                            "/order/**").permitAll()
+                            "/actuator/**"
+//                            "/order/**"
+                    )
+                    .permitAll()
                     .anyRequest().authenticated();
         });
+
 
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

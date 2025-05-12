@@ -19,8 +19,8 @@ public interface ProductServiceClient {
     @PostMapping("/courses/products")
     CommonResDto<List<ProdDetailResDto>> getProducts(@RequestBody List<Long> productIds);
 
-    @PostMapping("/courses/info/{id}")
-    CommonResDto<List<ProdDetailResDto>> findById(@RequestBody List<Long> productIds);
+//    @PostMapping("/courses/info/{id}")
+//    CommonResDto<List<ProdDetailResDto>> findById(@RequestBody List<Long> productIds);
 
     @PutMapping("/courses/cancel")
     ResponseEntity<?> cancelProduct(@RequestBody Map<Long, Integer> map);

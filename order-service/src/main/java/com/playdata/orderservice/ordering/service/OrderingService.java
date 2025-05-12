@@ -58,35 +58,6 @@ public class OrderingService {
         return orderings;
     }
 
-    /*
-        public List<Ordering> createOrder(TokenUserInfo userInfo, List<OrderingSaveReqDto> dtoList) {
-
-            // UserResDto 객체를 직접 생성 (USER-SERVICE를 호출하지 않음)
-            UserResDto userResDto = new UserResDto();
-            userResDto.setId(1L);  // 임시 값 (실제 사용자 ID)
-            userResDto.setName("김춘식");  // 임시 값 (실제 사용자 이름)
-            userResDto.setEmail(userInfo.getEmail());  // 요청으로 받은 이메일
-            userResDto.setRole(Role.USER);  // 임시 값 (사용자 역할)
-
-            log.info("구매요청고객정보: userInfo: {}, dtoList: {}", userInfo, dtoList);
-
-            // 주문 정보 생성
-            List<Ordering> orderings = new ArrayList<>();
-            for (OrderingSaveReqDto orderingSaveReqDto : dtoList) {
-                Ordering ordering = Ordering.builder()
-                        .userId(userResDto.getId())  // UserResDto의 ID 사용
-                        .userEmail(userInfo.getEmail())
-                        .productId(orderingSaveReqDto.getProductId())  // 각 dto에서 상품 ID 사용
-                        .orderDate(LocalDate.now())
-                        .build();
-
-                orderings.add(ordering);
-                orderingRepository.save(ordering);  // 주문 데이터 저장
-            }
-
-            return orderings;  // 생성된 주문 목록 반환
-        }
-    */
 
     public Ordering cancelOrder(long id) {
         Ordering ordering = orderingRepository.findById(id).orElseThrow(
@@ -103,13 +74,10 @@ public class OrderingService {
     public List<OrderingListResDto> myOrder(final TokenUserInfo userInfo) {
         String email = userInfo.getEmail();
 
-        // UserResDto 객체를 직접 생성 (임시)
-        UserResDto userDto = UserResDto.builder()
-                .email(email)
-                .role(Role.USER)
-                .id(2L)
-                .name("김춘식")
-                .build();
+         // 이메일로는 주문 회원 정보를 알 수가 없음. (id로 되어 있으니까)
+        CommonResDto<UserResDto> byEmail
+                = userServiceClient.findByEmail(email);
+        UserResDto userDto = byEmail.getResult();
 
         // 실제 USER-SERVICE에서 사용자 정보 요청
 //        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();

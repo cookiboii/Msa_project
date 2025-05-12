@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-243.26053.27">
+  <component name="dataSourceStorageLocal" created-in="IU-251.23774.435">
     <data-source name="@localhost" uuid="6eee3030-df54-4671-bece-20f490837682">
-      <database-info product="MySQL" version="8.0.42" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.42" exact-driver-version="8.2">
+      <database-info product="MySQL" version="5.5.5-10.4.24-MariaDB" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MARIADB" exact-version="10.4.24" exact-driver-version="8.2">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
         <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
@@ -14,10 +14,17 @@
         <introspection-scope>
           <node kind="schema">
             <name qname="@" />
-            <name qname="orderservice" />
+            <name qname="lectureservice" />
           </node>
         </introspection-scope>
       </schema-mapping>
+      <load-sources>user_and_system_sources</load-sources>
+    </data-source>
+    <data-source name="@localhost [2]" uuid="28ade96d-49c0-4d0f-b9b7-a1a3ef9383b1">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
+      <secret-storage>master_key</secret-storage>
+      <schema-mapping />
+      <load-sources>user_and_system_sources</load-sources>
     </data-source>
   </component>
 </project>

@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="비밀번호 수정 구현완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserPasswordUpdateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserPasswordUpdateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserSaveDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserSaveDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/bootstrap.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,11 +193,11 @@
       <item itemvalue="HTTP Request.generated-requests | #1" />
       <item itemvalue="HTTP Request.generated-requests | #2" />
       <item itemvalue="Spring Boot.CourseServiceApplication" />
-      <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
       <item itemvalue="Spring Boot.GatewayServiceApplication" />
       <item itemvalue="Spring Boot.OrderServiceApplication" />
       <item itemvalue="Spring Boot.PostserviceApplication" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -233,7 +230,11 @@
       <workItem from="1746752783471" duration="688000" />
       <workItem from="1746753875120" duration="24639000" />
       <workItem from="1746797986917" duration="7061000" />
-      <workItem from="1746851237594" duration="12561000" />
+      <workItem from="1746851237594" duration="19955000" />
+      <workItem from="1746876127532" duration="3000" />
+      <workItem from="1746883714621" duration="678000" />
+      <workItem from="1746967237657" duration="9000" />
+      <workItem from="1747008210095" duration="8010000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;엔티티 설게완료">
       <option name="closed" value="true" />
@@ -259,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746806669714</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="비밀번호 수정 구현완료">
+      <option name="closed" value="true" />
+      <created>1746865830543</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746865830543</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

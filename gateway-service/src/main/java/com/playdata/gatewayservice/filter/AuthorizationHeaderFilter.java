@@ -2,8 +2,8 @@ package com.playdata.gatewayservice.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -23,11 +23,11 @@ import java.util.List;
 @Slf4j
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
 
-    /*@Value("${jwt.secretKey}")*/
+    @Value("${jwt.secretKey}")
     private String secretKey;
 
     private final List<String> allowUrl = Arrays.asList(
-            "/user/create", "/user/login" ,"/user/id","/user/password"
+            "/user/create", "/user/login" ,"/user/id","/user/password","user/info"
     );
 
     @Override

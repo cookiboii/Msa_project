@@ -32,5 +32,5 @@ public class User {
         this.password = newPassword;
     }
     //이렇게 구현한 이유는 세터는 필요할떄 꺼내는쓰는게 좋다
-    //@Setter
+
 }

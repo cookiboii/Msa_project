@@ -31,7 +31,7 @@ spring:
             - Path=/user-service/**
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/user-service/(?<segment>.*), /${segment}
             - AuthorizationHeaderFilter
 
         - id: order-service
@@ -40,7 +40,7 @@ spring:
             - Path=/order-service/**
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/order-service/(?<segment>.*), /${segment}
             - AuthorizationHeaderFilter
 
         - id: course-service
@@ -49,7 +49,7 @@ spring:
             - Path=/course-service/**
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/course-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/course-service/(?<segment>.*), /${segment}
             - AuthorizationHeaderFilter
 
         - id: post-service
@@ -58,5 +58,11 @@ spring:
             - Path=/post-service/**
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/post-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/post-service/(?<segment>.*), /${segment}
             - AuthorizationHeaderFilter
+
+jwt:
+  secretKey: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFx8wzt8PaigtMXpJHdIl6p4ILsLDasA==
+  expiration: 60
+  secretKeyRt: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFx8wzt8PaigtMXpJHdIl6p4ILsLDasA==
+  expirationRt: 120

@@ -16,4 +16,15 @@ public class CourseResponse {
     private String category;
     private boolean active;
     private String filePath;
+
+    @Override
+    public String toString() {
+        return "CourseResponse{" +
+                "productId=" + productId +
+                ", prodName='" + productName + '\'' +
+                ", category='" + category + '\'' +
+                ", filePath='" + filePath + '\'' +
+                '}';
+    }
+
 }

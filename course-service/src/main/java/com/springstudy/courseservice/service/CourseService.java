@@ -86,7 +86,7 @@ public class CourseService {
                 .build();
     }
 
-    
+
     // 강의 수정
     public CourseResponse updateCourse(Long productId, CourseRequest request, Long userId) {
         Course course = courseRepository.findById(productId)
@@ -117,5 +117,14 @@ public class CourseService {
 
         courseRepository.delete(course);
     }
+
+    public List<CourseResponse> getCourseById(List<Long> ids) {
+        return ids.stream()
+                .map(id -> courseRepository.findById(id)
+                        .map(this::toResponse)
+                        .orElseThrow(() -> new IllegalArgumentException("Course not found: " + id)))
+                .collect(Collectors.toList());
+    }
+
 
 }

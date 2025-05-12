@@ -1,14 +1,13 @@
 package com.playdata.userservice.user.service;
 
-import com.playdata.userservice.user.dto.UserLoginDto;
-import com.playdata.userservice.user.dto.UserPasswordUpdateDto;
-import com.playdata.userservice.user.dto.UserSaveDto;
+import com.playdata.userservice.user.dto.*;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,16 +29,17 @@ public class UserService {
     public User Save(UserSaveDto userSaveDto) {
          String email = userSaveDto.getEmail();//회원가입
         String username = userSaveDto.getUsername();
-
+         String password = userSaveDto.getPassword();
+         String encodedPassword = passwordEncoder.encode(password);
          // 이메일 중복 체크
          if (userRepository.existsByEmail(email)) {
              throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
          }
-        String password = userSaveDto.getPassword();
-        String encodedPassword = passwordEncoder.encode(password);
+
+
         userSaveDto.setPassword(encodedPassword);
         userSaveDto.setUsername(username);
-        userSaveDto.setEmail(userSaveDto.getEmail());
+        userSaveDto.setEmail(email);
 
         User save = userRepository.save(userSaveDto.toEntity());
 
@@ -47,14 +47,7 @@ public class UserService {
          return save;
     }
 
-    @Transactional(readOnly = true)   //읽기 전용 트랜잭션
-   public User search (String username) {  //  이름으로 이메일 찾기
-        User user= userRepository.findByemail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-
- return user;
-   }
 
    @Transactional
    public User updatePassword (UserPasswordUpdateDto updateDto) {
@@ -84,6 +77,19 @@ public class UserService {
         return user;
 
      }
+     @Transactional
+     public UserInfoResponseDto userInfo(UserInfoDto userInfoDto){
+         User user = userRepository.findByemail(userInfoDto.getEmail()).orElseThrow(()->new EntityNotFoundException("조회불가"));
+
+         return new UserInfoResponseDto(
+                 user.getEmail(),
+                 user.getPassword(),
+                 user.getRole()
+
+         );
+     }
+
+
 
     public User findUserIdByEmail(String email) {
 

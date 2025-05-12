@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -109,32 +110,46 @@ public class OrderingService {
                 .name("김춘식")
                 .build();
 
-         // 실제 USER-SERVICE에서 사용자 정보 요청
-        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
+        // 실제 USER-SERVICE에서 사용자 정보 요청
+//        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
 
-
-        // userId로 주문 내역 가져오기
         List<Ordering> orderingList
                 = orderingRepository.findByUserId(userDto.getId());
 
+        List<Long> productIds = orderingList.stream()
+                .map(Ordering::getProductId)
+                .distinct()
+                .collect(Collectors.toList());
+
+        log.info("productIds는 : {}", productIds);
+
+        // 외부 서비스에서 한번에 강의 정보 목록 가져오기
+        CommonResDto<List<ProdDetailResDto>> courseRes = productServiceClient.getProducts(productIds);
+        List<ProdDetailResDto> dtoList = courseRes.getResult();
+
+        log.info("dtolist는 : {}", dtoList);
+
+        // dtoList → Map<productId, ProdDetailResDto>
+        Map<Long, ProdDetailResDto> productMap = dtoList.stream()
+                .collect(Collectors.toMap(ProdDetailResDto::getProductId, dto -> dto));
 
         return orderingList.stream()
-            .map(ordering -> {
-                // 외부 서비스(course-service)에서 강의 정보 가져오기
-                CommonResDto<ProdDetailResDto> course = productServiceClient.findById(ordering.getProductId());
+                .map(ordering -> {
+                    ProdDetailResDto product = productMap.get(ordering.getProductId());
 
-                return OrderingListResDto.builder()
-                        .id(ordering.getId())
-                        .userEmail(userDto.getEmail())
-                        .productId(ordering.getProductId())
-                        .productName(course.getResult().getProdName())
-                        .orderStatus(ordering.getOrderStatus())
-                        .orderDate(ordering.getOrderDate())
-                        .category(course.getResult().getCategory())
-                        .filePath(course.getResult().getFilePath())
-                        .build();
-            })
-            .collect(Collectors.toList());
+                    return OrderingListResDto.builder()
+                            .id(ordering.getId())
+                            .userEmail(userDto.getEmail())
+                            .productId(ordering.getProductId())
+                            .productName(product != null ? product.getProductName() : "Unknown")
+                            .orderStatus(ordering.getOrderStatus())
+                            .orderDate(ordering.getOrderDate())
+                            .category(product != null ? product.getCategory() : null)
+                            .filePath(product != null ? product.getFilePath() : null)
+                            .build();
+                })
+                .collect(Collectors.toList());
+
 
     }
 
@@ -142,14 +157,22 @@ public class OrderingService {
         List<Ordering> orderList = orderingRepository.findAll();
 
         return orderList.stream()
-                .map(order -> OrderingListResDto.builder()
-                        .id(order.getId())
-                        .userEmail(order.getUserEmail())
-                        .productId(order.getProductId())
-                        .orderDate(order.getOrderDate())
-                        .build())
+                .map(ordering -> {
+                    // 외부 서비스(course-service)에서 강의 정보 가져오기
+                    CommonResDto<ProdDetailResDto> course = productServiceClient.findById(ordering.getProductId());
+
+                    return OrderingListResDto.builder()
+                            .id(ordering.getId())
+//                        .userEmail(userDto.getEmail())
+                            .productId(ordering.getProductId())
+                            .productName(course.getResult().getProductName())
+                            .orderStatus(ordering.getOrderStatus())
+                            .orderDate(ordering.getOrderDate())
+                            .category(course.getResult().getCategory())
+                            .filePath(course.getResult().getFilePath())
+                            .build();
+                })
                 .collect(Collectors.toList());
     }
-
 
 }

@@ -2,19 +2,18 @@ package com.playdata.orderservice.ordering.dto;
 
 import lombok.*;
 
-@Getter @Setter
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
 @Builder
-public class ProdDetailResDto {
+public class CourseResponse {
     private Long productId;
     private String productName;
-    private String prodDesc;
-    private String prodPrice;
+    private String description;
+    private int price;
+    private Long userId;
     private String category;
+    private boolean active;
     private String filePath;
-    //active, userid
-
-
 }

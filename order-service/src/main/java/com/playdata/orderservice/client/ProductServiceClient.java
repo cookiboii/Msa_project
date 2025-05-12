@@ -13,13 +13,16 @@ import java.util.Map;
 @FeignClient(name = "course-service")
 public interface ProductServiceClient {
 
-    @GetMapping("/courses/info/{prodId}")
-    CommonResDto<ProdDetailResDto> findById(@PathVariable Long prodId);
+    @GetMapping("/courses/info/{id}")
+    CommonResDto<ProdDetailResDto> findById(@PathVariable Long id);
 
-    @PostMapping("/course/products")
-    CommonResDto<List<ProductResDto>> getProducts(@RequestBody List<Long> productIds);
+    @PostMapping("/courses/products")
+    CommonResDto<List<ProdDetailResDto>> getProducts(@RequestBody List<Long> productIds);
 
-    @PutMapping("/course/cancel")
+    @PostMapping("/courses/info/{id}")
+    CommonResDto<List<ProdDetailResDto>> findById(@RequestBody List<Long> productIds);
+
+    @PutMapping("/courses/cancel")
     ResponseEntity<?> cancelProduct(@RequestBody Map<Long, Integer> map);
 }
 

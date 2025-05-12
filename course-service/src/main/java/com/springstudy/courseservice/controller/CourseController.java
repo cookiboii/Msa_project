@@ -1,14 +1,20 @@
 package com.springstudy.courseservice.controller;
 
+import com.springstudy.courseservice.common.dto.CommonResDto;
 import com.springstudy.courseservice.dto.CourseRequest;
 import com.springstudy.courseservice.dto.CourseResponse;
+import com.springstudy.courseservice.entity.Course;
 import com.springstudy.courseservice.service.CourseService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.juli.logging.Log;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/courses")
 public class CourseController {
@@ -22,7 +28,7 @@ public class CourseController {
     // 강의 등록 (강사용)
     @PostMapping("/create")
     public ResponseEntity<CourseResponse> createCourse(@RequestBody CourseRequest request,
-                                                         @RequestHeader("userId") Long userId) {
+                                                       @RequestHeader("userId") Long userId) {
         return ResponseEntity.ok(courseService.createCourse(request, userId));
     }
 
@@ -72,6 +78,21 @@ public class CourseController {
                                              @RequestHeader("userId") Long userId) {
         courseService.deleteCourse(id, userId);
         return ResponseEntity.noContent().build();
+    }
+
+    // 한 사용자의 모든 주문 내역 안에 있는 상품 정보를 리턴하는 메서드
+    @PostMapping("/products")
+    public ResponseEntity<?> getProducts(@RequestBody List<Long> productIds) {
+        List<CourseResponse> productDtos = courseService.getCourseById(productIds);
+
+        log.info(productDtos.toString());
+
+        // CommonResDto로 감싸서 반환
+        CommonResDto<List<CourseResponse>> resDto = new CommonResDto<>(HttpStatus.OK, "조회 완료", productDtos);
+
+        log.info(resDto.toString());
+
+        return ResponseEntity.ok(resDto);
     }
 
 }

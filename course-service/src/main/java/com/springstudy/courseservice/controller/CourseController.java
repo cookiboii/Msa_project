@@ -40,14 +40,14 @@ public class CourseController {
 
 
     // 강의 목록
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<List<CourseResponse>> getAllCourses() {
         return ResponseEntity.ok(courseService.getAllCourses());
     }
 
     // 페이징 조회
-    @GetMapping("/page/{page}")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@PathVariable int page, @RequestParam int size) {
+    @GetMapping("/list/")
+    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
         return ResponseEntity.ok(courseService.getCoursesByPage(page, size));
     }
 

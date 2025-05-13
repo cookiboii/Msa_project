@@ -33,8 +33,9 @@ public class CourseController {
     }
 
     // 페이징 조회
-    @GetMapping("/page/{page}")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@PathVariable int page, @RequestParam int size) {
+    @GetMapping("/list")
+    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(
+            @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "12") int size) {
         return ResponseEntity.ok(courseService.getCoursesByPage(page, size));
     }
 

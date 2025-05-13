@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.springframework.http.HttpStatus.*;
+
 @RestController
 @RequestMapping("/user")
 @Slf4j
@@ -30,17 +32,17 @@ public class UserController {
          this.jwtTokenProvider = jwtTokenProvider;
      }
      @PostMapping("/create")
-     public ResponseEntity<?>   userSignIn(@Valid @RequestBody UserSaveDto userSaveDto) {
+     public ResponseEntity<CommonResDto>   userSignIn( @RequestBody UserSaveDto userSaveDto) {
 
          User save = userService.Save(userSaveDto);
          CommonResDto resDto
-                 = new CommonResDto(HttpStatus.CREATED,
+                 = new CommonResDto(CREATED,
                  "User Created", save.getUsername());
 
-         return new ResponseEntity<>(resDto, HttpStatus.CREATED);
+         return new ResponseEntity<>(resDto, CREATED);
      }
     @PostMapping("/login")
-    public ResponseEntity<?> Login(@RequestBody  UserLoginDto  userLoginDto) {
+    public ResponseEntity<CommonResDto> Login(@RequestBody  UserLoginDto  userLoginDto) {
             User user = userService.Login(userLoginDto);
         String token
                 = jwtTokenProvider.createToken(user.getEmail(), user.getRole().toString());
@@ -49,20 +51,20 @@ public class UserController {
         loginInfo.put("id",user.getId());
         loginInfo.put("role", user.getRole().toString());
 
-       CommonResDto resDto = new CommonResDto(HttpStatus.OK,"Login Success",loginInfo);
-        return new ResponseEntity<>(resDto, HttpStatus.OK);
+       CommonResDto resDto = new CommonResDto(OK,"Login Success",loginInfo);
+        return new ResponseEntity<>(resDto, OK);
 
     }
-   @DeleteMapping("/{id}")   //회원 탈퇴
+/*   @DeleteMapping("/{id}")   //회원 탈퇴
     public void deleteUser(@PathVariable Long id) {
          userService.deleteUser(id);
-   }
+   }*/
 
-    @PostMapping("/password")
-    public ResponseEntity<?> saveUser(@RequestBody UserPasswordUpdateDto updateDto) {
+    @PutMapping("/password")
+    public ResponseEntity<CommonResDto> saveUser(@RequestBody UserPasswordUpdateDto updateDto) {
         User user = userService.updatePassword(updateDto);
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        CommonResDto resDto = new CommonResDto(HttpStatus.OK, "Password", user.getUsername());
+        return new ResponseEntity<CommonResDto>(OK);
     }
 
     @GetMapping("/findByEmail")

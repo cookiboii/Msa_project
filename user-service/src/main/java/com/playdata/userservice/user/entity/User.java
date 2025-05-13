@@ -26,7 +26,8 @@ public class User {
 
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    @Builder.Default
+    private Role role = Role.USER;
 
     public void changePassword(String newPassword) {
         this.password = newPassword;

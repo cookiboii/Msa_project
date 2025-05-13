@@ -1,6 +1,7 @@
 package com.playdata.userservice.user.service;
 
 import com.playdata.userservice.user.dto.*;
+import com.playdata.userservice.user.entity.Role;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
@@ -30,6 +31,7 @@ public class UserService {
          String email = userSaveDto.getEmail();//회원가입
         String username = userSaveDto.getUsername();
          String password = userSaveDto.getPassword();
+
          String encodedPassword = passwordEncoder.encode(password);
          // 이메일 중복 체크
          if (userRepository.existsByEmail(email)) {
@@ -40,7 +42,7 @@ public class UserService {
         userSaveDto.setPassword(encodedPassword);
         userSaveDto.setUsername(username);
         userSaveDto.setEmail(email);
-
+        
         User save = userRepository.save(userSaveDto.toEntity());
 
 
@@ -67,7 +69,7 @@ public class UserService {
    }
 
     @Transactional
-    public User Login (UserLoginDto userLoginDto) {
+    public User Login (UserLoginDto userLoginDto) {   //로그인
         User user = userRepository.findByemail(userLoginDto.getEmail() ).orElseThrow(() -> new EntityNotFoundException("User not found!"));
 
         if (!passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword())) {
@@ -77,7 +79,8 @@ public class UserService {
         return user;
 
      }
-     @Transactional
+     @Transactional(readOnly = true)
+       //유저 정보
      public UserInfoResponseDto userInfo(UserInfoDto userInfoDto){
          User user = userRepository.findByemail(userInfoDto.getEmail()).orElseThrow(()->new EntityNotFoundException("조회불가"));
 

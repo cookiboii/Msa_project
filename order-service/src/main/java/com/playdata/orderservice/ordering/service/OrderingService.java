@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -165,12 +162,20 @@ public class OrderingService {
     }
 
     // 나의 강의 주문 내역 리턴
-    public List<OrderingListResDto> myCourseOrder(final Long userId) {
+    public List<OrderingListResDto> myCourseOrder(final TokenUserInfo userInfo) {
+         String email = userInfo.getEmail();
 
-        System.out.println("userId = " + userId);
+        // 이메일로는 주문 회원 정보를 알 수가 없음. (id로 되어 있으니까)
+        CommonResDto<UserResDto> byEmail
+                = userServiceClient.findByEmail(email);
+        UserResDto userDto = byEmail.getResult();
+
+        System.out.println("userId = " + userDto.getId());
+        Map<String, Long> request = new HashMap<>();
+        request.put("userId", userDto.getId());
 
         // 강사가 등록한 강의 목록 조회
-        CommonResDto<List<ProdDetailResDto>> courseRes = productServiceClient.getProductsByUserId(userId);
+        CommonResDto<List<ProdDetailResDto>> courseRes = productServiceClient.getProductsByUserId(request);
         List<ProdDetailResDto> myCourses = courseRes.getResult();
 
         List<Long> myProductIds = myCourses.stream()

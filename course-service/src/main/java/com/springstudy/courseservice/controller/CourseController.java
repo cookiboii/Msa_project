@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -102,7 +103,9 @@ public class CourseController {
 
     // 강사의 본인 강의 정보 리턴하는 메서드
     @PostMapping("/findCourses")
-    public ResponseEntity<?> getProductsByUserId(@RequestParam Long userId) {
+    public ResponseEntity<?> getProductsByUserId(@RequestBody Map<String, Long> user) {
+        Long userId = user.get("userId");
+        System.out.println("userId = " + userId);
         List<Course> courseList = courseRepository.findByUserId(userId);
 
         // id만 뽑아서 List<Long>으로 변환

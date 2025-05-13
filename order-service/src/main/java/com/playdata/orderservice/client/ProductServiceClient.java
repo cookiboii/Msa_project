@@ -23,7 +23,7 @@ public interface ProductServiceClient {
     ResponseEntity<?> cancelProduct(@RequestBody Map<Long, Integer> map);
 
     @PostMapping("/courses/findCourses")
-    CommonResDto<List<ProdDetailResDto>> getProductsByUserId(@RequestParam Long userId);
+    CommonResDto<List<ProdDetailResDto>> getProductsByUserId(@RequestBody Map<String, Long> userId);
 }
 
 

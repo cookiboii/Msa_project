@@ -68,13 +68,13 @@ public class OrderingController {
 
 
     // 강사용 본인 강의 주문 내역 조회
-    @GetMapping("/my-course-order/{userId}")
-    public ResponseEntity<?> getAllOrders(@AuthenticationPrincipal TokenUserInfo userInfo, @PathVariable("userId") Long userId){
+    @GetMapping("/my-course-order")
+    public ResponseEntity<?> getAllOrders(@AuthenticationPrincipal TokenUserInfo userInfo){
 
 //        if (!userInfo.getRole().equals(Role.ADMIN)) {
 //            throw new AccessDeniedException("관리자만 접근 가능합니다.");
 //        }
-        List<OrderingListResDto> dtos = orderingService.myCourseOrder(userId);
+        List<OrderingListResDto> dtos = orderingService.myCourseOrder(userInfo);
         CommonResDto<List<OrderingListResDto>> resDto =
                 new CommonResDto<>(HttpStatus.OK, "전체 주문 내역 조회 완료", dtos);
         return ResponseEntity.ok(resDto);

@@ -65,11 +65,13 @@ public class UserController {
     }
 
     @GetMapping("/userinfo")
-    public ResponseEntity<?> getUserInfo() {
-        // userInfo에서 사용자 email을 꺼내서 사용자 정보 조회
-        UserInfoDto userDto = userService.myInfo();
+    public ResponseEntity<?> getUserInfo(@AuthenticationPrincipal TokenUserInfo userInfo ) {
+        // userInfo에서 사용자 email을 꺼내서 사용자 정보
+        String email = userInfo.getEmail();
         CommonResDto resDto
-                = new CommonResDto(HttpStatus.OK, "myInfo 조회 성공", userDto);
+                = new CommonResDto(HttpStatus.OK, "myInfo 조회 성공", email );
+
+
         return new ResponseEntity<>(resDto , HttpStatus.OK);
     }
 

@@ -1,7 +1,9 @@
 package com.playdata.userservice.user.entity;
 
 
+import com.playdata.userservice.common.entity.BaseTimeEntity;
 import com.playdata.userservice.user.dto.UserInfoDto;
+import com.playdata.userservice.user.dto.UserSaveDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,17 +38,7 @@ public class User {
 
 
 
-    public UserInfoDto fromEntity() {
 
-        return UserInfoDto.builder()
-                         .username(username)
-                        .email(email)
-                      .role(role)
-
-                 .build();
-
-
-    }
     //이렇게 구현한 이유는 세터는 필요할떄 꺼내는쓰는게 좋다
 
 }

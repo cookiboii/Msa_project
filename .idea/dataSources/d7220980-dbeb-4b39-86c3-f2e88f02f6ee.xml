@@ -1314,7 +1314,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="341" parent="305" name="id">
-      <AutoIncrement>5</AutoIncrement>
+      <AutoIncrement>18</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>bigint|0s</StoredType>
@@ -1335,12 +1335,20 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>5</Position>
       <StoredType>enum(&apos;ADMIN&apos;, &apos;USER&apos;)|0e</StoredType>
     </column>
-    <index id="346" parent="305" name="PRIMARY">
+    <column id="346" parent="305" name="create_time">
+      <Position>6</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <column id="347" parent="305" name="update_time">
+      <Position>7</Position>
+      <StoredType>datetime(6)|0s</StoredType>
+    </column>
+    <index id="348" parent="305" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="347" parent="305" name="PRIMARY">
+    <key id="349" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

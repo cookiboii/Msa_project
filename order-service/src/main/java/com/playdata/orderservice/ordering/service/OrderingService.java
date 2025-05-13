@@ -107,13 +107,15 @@ public class OrderingService {
 
                     return OrderingListResDto.builder()
                             .id(ordering.getId())
-                            .userEmail(userDto.getEmail())
+                            .userEmail(email)
+                            .userId(userDto.getId())
                             .productId(ordering.getProductId())
                             .productName(product != null ? product.getProductName() : "Unknown")
                             .orderStatus(ordering.getOrderStatus())
                             .orderDate(ordering.getOrderDate())
                             .category(product != null ? product.getCategory() : null)
                             .filePath(product != null ? product.getFilePath() : null)
+                            .active(product != null ? product.isActive() : null)
                             .build();
                 })
                 .collect(Collectors.toList());
@@ -150,20 +152,22 @@ public class OrderingService {
                     return OrderingListResDto.builder()
                             .id(ordering.getId())
                             .userId(ordering.getUserId())
+                            .userEmail(ordering.getUserEmail())
                             .productId(ordering.getProductId())
                             .productName(product != null ? product.getProductName() : "Unknown")
                             .orderStatus(ordering.getOrderStatus())
                             .orderDate(ordering.getOrderDate())
                             .category(product != null ? product.getCategory() : null)
                             .filePath(product != null ? product.getFilePath() : null)
+                            .active(product != null ? product.isActive() : null)
                             .build();
                 })
                 .collect(Collectors.toList());
     }
 
-    // 나의 강의 주문 내역 리턴
+    // 강사의 본인 강의 주문 내역 리턴
     public List<OrderingListResDto> myCourseOrder(final TokenUserInfo userInfo) {
-         String email = userInfo.getEmail();
+        String email = userInfo.getEmail();
 
         // 이메일로는 주문 회원 정보를 알 수가 없음. (id로 되어 있으니까)
         CommonResDto<UserResDto> byEmail
@@ -200,15 +204,35 @@ public class OrderingService {
 
                     return OrderingListResDto.builder()
                             .id(ordering.getId())
-//                            .userEmail("unknown")
+                            .userEmail(ordering.getUserEmail())
+                            .userId(ordering.getUserId())
                             .productId(ordering.getProductId())
                             .productName(course != null ? course.getProductName() : "Unknown")
                             .orderStatus(ordering.getOrderStatus())
                             .orderDate(ordering.getOrderDate())
                             .category(course != null ? course.getCategory() : null)
                             .filePath(course != null ? course.getFilePath() : null)
+                            .active(course != null ? course.isActive() : null)
                             .build();
                 })
+                .collect(Collectors.toList());
+    }
+
+    // 수강 가능한 강의 목록 리턴
+    public List<OrderingListResDto> myDashboard(final TokenUserInfo userInfo) {
+        // 전체 주문 목록을 먼저 가져옴
+        List<OrderingListResDto> allOrders = myOrder(userInfo);
+
+        log.info("allOrders : {}", allOrders);
+
+        // 그 중에서 주문 상태가 ORDERED이고, active가 true인 주문만 필터링
+        return allOrders.stream()
+                .peek(order -> System.out.println("필터 통과전 orderId: " + order.getId()))
+                .filter(order ->
+                        order.getOrderStatus() == OrderStatus.ORDERED &&
+                                order.isActive()
+                )
+                .peek(order -> System.out.println("필터 통과한 orderId: " + order.getId()))
                 .collect(Collectors.toList());
     }
 

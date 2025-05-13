@@ -56,7 +56,7 @@ public class OrderingController {
     }
 
 
-    // 내 주문만 볼 수 있는 MyOrders
+    // 내 주문 내역 볼 수 있는 MyOrders
     @GetMapping("/my-order")
     public ResponseEntity<?> myOrder(
             @AuthenticationPrincipal TokenUserInfo userInfo) {
@@ -66,10 +66,20 @@ public class OrderingController {
         return ResponseEntity.ok(resDto);
     }
 
+    // 내가 학습 가능한 강의 조회
+    @GetMapping("/dashboard")
+    public ResponseEntity<?> myDashboard(
+            @AuthenticationPrincipal TokenUserInfo userInfo) {
+        List<OrderingListResDto> dtos = orderingService.myDashboard(userInfo);
+        CommonResDto<List<OrderingListResDto>> resDto =
+                new CommonResDto<>(HttpStatus.OK, "정상 조회 완료", dtos);
+        return ResponseEntity.ok(resDto);
+    }
+
 
     // 강사용 본인 강의 주문 내역 조회
     @GetMapping("/my-course-order")
-    public ResponseEntity<?> getAllOrders(@AuthenticationPrincipal TokenUserInfo userInfo){
+    public ResponseEntity<?> getAllOrders(@AuthenticationPrincipal TokenUserInfo userInfo) {
 
 //        if (!userInfo.getRole().equals(Role.ADMIN)) {
 //            throw new AccessDeniedException("관리자만 접근 가능합니다.");

@@ -24,5 +24,6 @@ public class OrderingListResDto {
     private LocalDate orderDate;
     private String category;
     private String filePath;
+    private boolean active;
 
 }

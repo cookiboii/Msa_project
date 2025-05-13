@@ -14,6 +14,8 @@ public class ProdDetailResDto {
     private String prodPrice;
     private String category;
     private String filePath;
+    private boolean active;
+    private Long userId;
     //active, userid
 
 

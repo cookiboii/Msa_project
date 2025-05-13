@@ -58,11 +58,13 @@ public class CourseService {
     }
 
     // 카테고리별 조회
-    public List<CourseResponse> getCoursesByCategory(String category) {
-        return courseRepository.findByCategory(category)
-                .stream()
-                .map(this::toResponse)
-                .collect(Collectors.toList());
+    public Page<CourseResponse> getCoursesByCategory(String category, int page) {
+        // pageSize는 임의로 40으로 고정 하였습니다.
+        final int pageSize = 40;
+        PageRequest pageRequest = PageRequest.of(page, pageSize);
+        Page<Course> coursePage = courseRepository.findByCategory(category, pageRequest);
+
+        return coursePage.map(this::toResponse);
     }
 
     // 제목 검색

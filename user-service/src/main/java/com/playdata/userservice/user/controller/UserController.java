@@ -28,7 +28,7 @@ public class UserController {
          this.jwtTokenProvider = jwtTokenProvider;
      }
      @PostMapping("/create")
-     public ResponseEntity<CommonResDto>   userSignIn(@Valid @RequestBody UserSaveDto userSaveDto) {
+     public ResponseEntity<CommonResDto>   userSignIn( @RequestBody UserSaveDto userSaveDto) {
 
          User save = userService.Save(userSaveDto);
          CommonResDto resDto
@@ -51,10 +51,10 @@ public class UserController {
         return new ResponseEntity<>(resDto, OK);
 
     }
-   @DeleteMapping("/{id}")   //회원 탈퇴
+/*   @DeleteMapping("/{id}")   //회원 탈퇴
     public void deleteUser(@PathVariable Long id) {
          userService.deleteUser(id);
-   }
+   }*/
 
     @PutMapping("/password")
     public ResponseEntity<CommonResDto> saveUser(@RequestBody UserPasswordUpdateDto updateDto) {

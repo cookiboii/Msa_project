@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="권한 처리수정">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="권한 처리수정완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserInfoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserInfoResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/dto/UserInfoResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,8 +61,8 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -255,7 +259,7 @@
       <workItem from="1747008210095" duration="11927000" />
       <workItem from="1747020344968" duration="16930000" />
       <workItem from="1747058826376" duration="786000" />
-      <workItem from="1747096815281" duration="6621000" />
+      <workItem from="1747096815281" duration="18501000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;엔티티 설게완료">
       <option name="closed" value="true" />
@@ -321,7 +325,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747101901473</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="권한 처리수정완료">
+      <option name="closed" value="true" />
+      <created>1747103692059</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747103692059</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,6 +362,7 @@
     <MESSAGE value="UserController.java 컨트롤러 부분 &lt;?&gt; 타입을 &lt;T&gt; 타입으로 개선" />
     <MESSAGE value="fiegnclient 구현완료" />
     <MESSAGE value="권한 처리수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="권한 처리수정" />
+    <MESSAGE value="권한 처리수정완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="권한 처리수정완료" />
   </component>
 </project>

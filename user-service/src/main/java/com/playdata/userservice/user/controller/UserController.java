@@ -1,14 +1,15 @@
 package com.playdata.userservice.user.controller;
 
 import com.playdata.userservice.common.auth.JwtTokenProvider;
+import com.playdata.userservice.common.auth.TokenUserInfo;
 import com.playdata.userservice.common.dto.CommonResDto;
 import com.playdata.userservice.user.dto.*;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.service.UserService;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -63,11 +64,13 @@ public class UserController {
         return new ResponseEntity<CommonResDto>(OK);
     }
 
-      @GetMapping("/userInfo")
-      public ResponseEntity<UserInfoResponseDto> userInfo(@RequestParam UserInfoDto userInfoDto){
-
-             UserInfoResponseDto userInfoResponseDto = userService.userInfo(userInfoDto);
-          return ResponseEntity.ok(userInfoResponseDto);
-      }
+    @GetMapping("/userinfo")
+    public ResponseEntity<?> getUserInfo() {
+        // userInfo에서 사용자 email을 꺼내서 사용자 정보 조회
+        UserInfoDto userDto = userService.myInfo();
+        CommonResDto resDto
+                = new CommonResDto(HttpStatus.OK, "myInfo 조회 성공", userDto);
+        return new ResponseEntity<>(resDto , HttpStatus.OK);
+    }
 
 }

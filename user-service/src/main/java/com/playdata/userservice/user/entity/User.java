@@ -1,6 +1,7 @@
 package com.playdata.userservice.user.entity;
 
 
+import com.playdata.userservice.user.dto.UserInfoDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,6 +32,20 @@ public class User {
 
     public void changePassword(String newPassword) {
         this.password = newPassword;
+    }
+
+
+
+    public UserInfoDto fromEntity() {
+
+        return UserInfoDto.builder()
+                         .username(username)
+                        .email(email)
+                      .role(role)
+
+                 .build();
+
+
     }
     //이렇게 구현한 이유는 세터는 필요할떄 꺼내는쓰는게 좋다
 

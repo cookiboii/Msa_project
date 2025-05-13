@@ -71,9 +71,8 @@ public class CourseService {
         return coursePage.map(this::toResponse);
     }
 
-    public Page<CourseResponse> getCoursesByCategory(String category, int page) {
-        final int pageSize = 40;
-        PageRequest pageRequest = PageRequest.of(page, pageSize);
+    public Page<CourseResponse> getCoursesByCategory(String category, int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
         return byCategory.map(this::toResponse);
     }

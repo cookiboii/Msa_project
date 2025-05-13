@@ -82,11 +82,11 @@ public class UserController {
         return resDto;
     }
 
-      @GetMapping("/userInfo")
+      /*@GetMapping("/userInfo")
       public ResponseEntity<UserInfoResponseDto> userInfo(@RequestParam UserInfoDto userInfoDto){
 
              UserInfoResponseDto userInfoResponseDto = userService.userInfo(userInfoDto);
           return ResponseEntity.ok(userInfoResponseDto);
-      }
+      }*/
 
 }

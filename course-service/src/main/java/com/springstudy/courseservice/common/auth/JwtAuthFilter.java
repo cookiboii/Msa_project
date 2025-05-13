@@ -28,8 +28,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         // 게이트웨이가 토큰 내에 클레임을 헤더에 담아서 보내준다.
-        String userEmail = request.getHeader("user-email");
-        String userRole = request.getHeader("user-role");
+        String userEmail = request.getHeader("X-User-Email");
+        String userRole = request.getHeader("X-User-Role");
         log.info("userEmail:{} userRole:{}", userEmail, userRole);
 
         if (userEmail != null && userRole != null) {

@@ -73,17 +73,17 @@ public class CourseController {
 
     // 강의 수정
     @PutMapping("/edit/{id}")
-    public ResponseEntity<CourseResponse> updateCourse(@PathVariable Long id,
+    public ResponseEntity<?> updateCourse(@PathVariable Long id,
                                                        @RequestBody CourseRequest request,
-                                                       @RequestHeader("userId") Long userId) {
-        return ResponseEntity.ok(courseService.updateCourse(id, request, userId));
+                                                       @AuthenticationPrincipal TokenUserInfo userInfo) {
+        return ResponseEntity.ok(courseService.updateCourse(id, request, userInfo));
     }
 
     // 강의 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Long id,
-                                             @RequestHeader("userId") Long userId) {
-        courseService.deleteCourse(id, userId);
+    public ResponseEntity<?> deleteCourse(@PathVariable Long id,
+                                             @AuthenticationPrincipal TokenUserInfo userInfo) {
+        courseService.deleteCourse(id, userInfo);
         return ResponseEntity.noContent().build();
     }
 

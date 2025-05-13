@@ -118,8 +118,7 @@ public class PostController {
 
     // 강의 클릭 시, 하단의 질문 리스트 렌더링을 위한 메소드
     @GetMapping("/list")
-    public ResponseEntity<?> getPostsByCourse(@RequestParam("id") Long courseId,
-                                              Pageable pageable){
+    public ResponseEntity<?> getPostsByCourse(@RequestParam("id") Long courseId){
 
         List<PostCoLengthDto> posts = postService.getAllPostOfCourse(courseId);
         CommonResDto resDto = new CommonResDto(HttpStatus.OK,

@@ -1,20 +1,24 @@
-package com.springstudy.courseservice.dto;
+package com.playdata.userservice.client.dto;
 
-import lombok.Builder;
+import com.playdata.userservice.user.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CourseResDto {
-
     private Long productId;
     private String productName;
     private String description;
     private int price;
-    private Long userId;
+
     private String category;
     private boolean active;
+    private String filePath;
+
 
 }

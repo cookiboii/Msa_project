@@ -1,17 +1,17 @@
 package com.springstudy.courseservice.controller;
 
+import com.springstudy.courseservice.common.auth.TokenUserInfo;
 import com.springstudy.courseservice.common.dto.CommonResDto;
 import com.springstudy.courseservice.dto.CourseRequest;
-import com.springstudy.courseservice.dto.CourseResDto;
 import com.springstudy.courseservice.dto.CourseResponse;
 import com.springstudy.courseservice.entity.Course;
 import com.springstudy.courseservice.repository.CourseRepository;
 import com.springstudy.courseservice.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.juli.logging.Log;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,27 +33,35 @@ public class CourseController {
 
     // 강의 등록 (강사용)
     @PostMapping("/create")
-    public ResponseEntity<CourseResponse> createCourse(@RequestBody CourseRequest request,
-                                                       @RequestHeader("userId") Long userId) {
-        return ResponseEntity.ok(courseService.createCourse(request, userId));
+    public ResponseEntity<?> createCourse(@AuthenticationPrincipal TokenUserInfo userInfo,
+                                          @RequestBody List<CourseRequest> dtoList) {
+
+        List<Course> course = courseService.createCourse(userInfo, dtoList);
+
+        CommonResDto resDto = new CommonResDto<>(HttpStatus.CREATED, "정상 등록 완료", course);
+        return new ResponseEntity<>(resDto, HttpStatus.CREATED);
     }
 
-    // 강의 목록
-    @GetMapping("/list")
+
+
+    // 강의 목록(기본 페이지)
+    @GetMapping("/all")
     public ResponseEntity<List<CourseResponse>> getAllCourses() {
         return ResponseEntity.ok(courseService.getAllCourses());
     }
 
     // 페이징 조회
-    @GetMapping("/page/{page}")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@PathVariable int page, @RequestParam int size) {
+    @GetMapping("/list")
+    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
         return ResponseEntity.ok(courseService.getCoursesByPage(page, size));
     }
 
+
     // 카테고리별 조회
     @GetMapping("/category/{category}")
-    public ResponseEntity<List<CourseResponse>> getCoursesByCategory(@PathVariable String category) {
-        return ResponseEntity.ok(courseService.getCoursesByCategory(category));
+    public ResponseEntity<Page<CourseResponse>> getCoursesByCategory(@PathVariable String category,
+    @RequestParam("page") int page, @RequestParam("size") int size) {
+        return ResponseEntity.ok(courseService.getCoursesByCategory(category, page, size));
     }
 
     // 검색
@@ -72,17 +80,17 @@ public class CourseController {
 
     // 강의 수정
     @PutMapping("/edit/{id}")
-    public ResponseEntity<CourseResponse> updateCourse(@PathVariable Long id,
+    public ResponseEntity<?> updateCourse(@PathVariable Long id,
                                                        @RequestBody CourseRequest request,
-                                                       @RequestHeader("userId") Long userId) {
-        return ResponseEntity.ok(courseService.updateCourse(id, request, userId));
+                                                       @AuthenticationPrincipal TokenUserInfo userInfo) {
+        return ResponseEntity.ok(courseService.updateCourse(id, request, userInfo));
     }
 
     // 강의 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Long id,
-                                             @RequestHeader("userId") Long userId) {
-        courseService.deleteCourse(id, userId);
+    public ResponseEntity<?> deleteCourse(@PathVariable Long id,
+                                             @AuthenticationPrincipal TokenUserInfo userInfo) {
+        courseService.deleteCourse(id, userInfo);
         return ResponseEntity.noContent().build();
     }
 
@@ -133,7 +141,7 @@ public class CourseController {
     public CommonResDto<?> getuserIdByCourseId(@RequestParam Long courseId) {
         CourseResponse foundCourse = courseService.getCourseById(courseId);
 
-        CourseResDto build = CourseResDto.builder()
+        CourseResponse build = CourseResponse.builder()
                 .productId(foundCourse.getProductId())
                 .productName(foundCourse.getProductName())
                 .price(foundCourse.getPrice())

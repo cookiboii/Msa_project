@@ -161,13 +161,53 @@ public class PostService {
 
     }
 
-    public List<PostResDto> getAllPostOfCourse(Long courseId) {
+    public List<PostCoLengthDto> getAllPostOfCourse(Long courseId) {
 
         List<Post> foundPosts = postRepository.findByProductId(courseId);
 
-        List<PostResDto> list = foundPosts.stream().map(Post::fromEntity).toList();
+        List<PostCoLengthDto> list = foundPosts.stream().map((post) -> {
+            int size = commentRepository.findByPostId(post.getId()).size();
+            PostCoLengthDto dto = new PostCoLengthDto();
+            PostCoLengthDto dto1 = dto.onlyAddLength(post, size);
+            return dto1;
+        }).toList();
+
+        return list;
+    }
+
+    public List<CommentResDto> findCommentByPostId(Long postId) {
+
+        List<Comment> foundComments = commentRepository.findByPostId(postId);
+
+        List<CommentResDto> list = foundComments.stream().map((comment -> {
+            return CommentResDto.builder()
+                    .commentId(comment.getId())
+                    .content(comment.getContent())
+                    .userId(comment.getUserId())
+                    .postId(comment.getPost().getId())
+                    .build();
+        })).toList();
 
         return list;
 
+    }
+
+    public PostResDto modifyPost(PostModiReqDto reqDto, TokenUserInfo userInfo) {
+
+        Long requestUserId = getUserId(userInfo);
+        Post foundPost = postRepository.findById(reqDto.getPostId()).orElseThrow(() -> {
+            return new EntityNotFoundException("없는 강의입니다.");
+        });
+
+        if(foundPost.getUserId() != requestUserId){
+            return null;
+        }
+        foundPost.setTitle(reqDto.getTitle());
+        foundPost.setContent(reqDto.getContent());
+
+        Post save = postRepository.save(foundPost);
+
+        PostResDto resDto = save.fromEntity();
+        return resDto;
     }
 }

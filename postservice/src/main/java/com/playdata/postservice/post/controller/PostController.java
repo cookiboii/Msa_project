@@ -3,10 +3,7 @@ package com.playdata.postservice.post.controller;
 import com.playdata.postservice.common.auth.TokenUserInfo;
 import com.playdata.postservice.common.dto.CommonErrorDto;
 import com.playdata.postservice.common.dto.CommonResDto;
-import com.playdata.postservice.post.dto.CommentResDto;
-import com.playdata.postservice.post.dto.CommentSaveReqDto;
-import com.playdata.postservice.post.dto.PostResDto;
-import com.playdata.postservice.post.dto.PostSaveReqDto;
+import com.playdata.postservice.post.dto.*;
 import com.playdata.postservice.post.entity.Comment;
 import com.playdata.postservice.post.entity.Post;
 import com.playdata.postservice.post.service.PostService;
@@ -52,6 +49,7 @@ public class PostController {
         Comment comment = postService.createComment(dto, userInfo);
 
         CommentResDto commentResDto = CommentResDto.builder()
+                .commentId(comment.getId())
                 .content(comment.getContent())
                 .postId(comment.getPost().getId())
                 .userId(comment.getUserId())
@@ -75,11 +73,10 @@ public class PostController {
             return new ResponseEntity<>(resDto, HttpStatus.OK);
         }
         else{
-
             resDto.setResult(false);
-            resDto.setStatusCode(HttpStatus.BAD_REQUEST.value());
+            resDto.setStatusCode(HttpStatus.UNAUTHORIZED.value());
             resDto.setStatusMessage("댓글이 삭제되지 않음. 비정상적.id가 다른듯. (회원용)");
-            return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(resDto, HttpStatus.UNAUTHORIZED);
         }
 
     }
@@ -124,7 +121,7 @@ public class PostController {
     public ResponseEntity<?> getPostsByCourse(@RequestParam("id") Long courseId,
                                               Pageable pageable){
 
-        List<PostResDto> posts = postService.getAllPostOfCourse(courseId);
+        List<PostCoLengthDto> posts = postService.getAllPostOfCourse(courseId);
         CommonResDto resDto = new CommonResDto(HttpStatus.OK,
                 "해당 강의의 모든 질문 찾음!", posts);
         return new ResponseEntity<>(resDto, HttpStatus.OK);
@@ -166,5 +163,30 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/comment/find")
+    public ResponseEntity<?> getPostsComment(@RequestParam("id") Long postId){
+
+        List<CommentResDto> commentByPostId = postService.findCommentByPostId(postId);
+
+        CommonResDto resDto =
+                new CommonResDto(HttpStatus.OK, "해당 질문의 모든 답변 찾음.", commentByPostId);
+
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/modify")
+    public ResponseEntity<?> modifyPost(@AuthenticationPrincipal TokenUserInfo userInfo,
+                                        @RequestBody PostModiReqDto reqDto){
+
+        PostResDto resDto = postService.modifyPost(reqDto, userInfo);
+        if(resDto == null){
+            return new ResponseEntity(false, HttpStatus.NOT_MODIFIED);
+        }
+        CommonResDto dto = new CommonResDto(HttpStatus.OK, "해당" + reqDto.getPostId() + "post가 잘 수정됨", resDto);
+
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+
+    }
 
 }

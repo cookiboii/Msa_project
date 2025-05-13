@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="UserInfoDto.java 추가 수정">
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/client/OrderingServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d7220980-dbeb-4b39-86c3-f2e88f02f6ee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d7220980-dbeb-4b39-86c3-f2e88f02f6ee.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/auth/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/common/auth/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/client/CourseServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/playdata/userservice/client/CourseServiceClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +59,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -146,6 +147,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.playdata.userservice.client" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.playdata.userservice.user.service" />
     </key>
@@ -160,7 +164,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+  <component name="RunManager" selected="Spring Boot.DiscoveryServiceApplication">
     <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -234,6 +238,9 @@
       </set>
     </attachedChunks>
   </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="" />
@@ -258,6 +265,7 @@
       <workItem from="1747020344968" duration="16930000" />
       <workItem from="1747058826376" duration="786000" />
       <workItem from="1747096815281" duration="24942000" />
+      <workItem from="1747155523670" duration="1061000" />
     </task>
     <task id="LOCAL-00001" summary="&#10;엔티티 설게완료">
       <option name="closed" value="true" />

@@ -67,14 +67,14 @@ public class OrderingController {
     }
 
 
-    // 관리자용 전체 주문 내역 조회
-    @GetMapping("/admin/all-orders")
-    public ResponseEntity<?> getAllOrders(@AuthenticationPrincipal TokenUserInfo userInfo) throws AccessDeniedException {
+    // 강사용 본인 강의 주문 내역 조회
+    @GetMapping("/my-course-order/{userId}")
+    public ResponseEntity<?> getAllOrders(@AuthenticationPrincipal TokenUserInfo userInfo, @PathVariable("userId") Long userId){
 
-        if (!userInfo.getRole().equals(Role.ADMIN)) {
-            throw new AccessDeniedException("관리자만 접근 가능합니다.");
-        }
-        List<OrderingListResDto> dtos = orderingService.findAllOrders();
+//        if (!userInfo.getRole().equals(Role.ADMIN)) {
+//            throw new AccessDeniedException("관리자만 접근 가능합니다.");
+//        }
+        List<OrderingListResDto> dtos = orderingService.myCourseOrder(userId);
         CommonResDto<List<OrderingListResDto>> resDto =
                 new CommonResDto<>(HttpStatus.OK, "전체 주문 내역 조회 완료", dtos);
         return ResponseEntity.ok(resDto);

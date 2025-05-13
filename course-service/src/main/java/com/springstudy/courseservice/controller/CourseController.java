@@ -5,6 +5,7 @@ import com.springstudy.courseservice.dto.CourseRequest;
 import com.springstudy.courseservice.dto.CourseResDto;
 import com.springstudy.courseservice.dto.CourseResponse;
 import com.springstudy.courseservice.entity.Course;
+import com.springstudy.courseservice.repository.CourseRepository;
 import com.springstudy.courseservice.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.juli.logging.Log;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -21,9 +23,11 @@ import java.util.List;
 public class CourseController {
 
     private final CourseService courseService;
+    private final CourseRepository courseRepository;
 
-    public CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService, CourseRepository courseRepository) {
         this.courseService = courseService;
+        this.courseRepository = courseRepository;
     }
 
     // 강의 등록 (강사용)
@@ -94,6 +98,30 @@ public class CourseController {
         log.info(resDto.toString());
 
         return ResponseEntity.ok(resDto);
+    }
+
+    // 강사의 본인 강의 정보 리턴하는 메서드
+    @PostMapping("/findCourses")
+    public ResponseEntity<?> getProductsByUserId(@RequestParam Long userId) {
+        List<Course> courseList = courseRepository.findByUserId(userId);
+
+        // id만 뽑아서 List<Long>으로 변환
+        List<Long> productIds = courseList.stream()
+                .map(Course::getProductId)
+                .collect(Collectors.toList());
+        System.out.println("productIds = " + productIds);
+
+        List<CourseResponse> productDtos = courseService.getCourseById(productIds);
+
+        log.info(productDtos.toString());
+
+        // CommonResDto로 감싸서 반환
+        CommonResDto<List<CourseResponse>> resDto = new CommonResDto<>(HttpStatus.OK, "조회 완료", productDtos);
+
+        log.info(resDto.toString());
+
+        return ResponseEntity.ok(resDto);
+
     }
 
 

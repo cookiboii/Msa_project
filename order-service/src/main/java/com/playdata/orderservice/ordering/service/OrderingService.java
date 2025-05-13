@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class OrderingService {
     private final UserServiceClient userServiceClient;
     private final ProductServiceClient productServiceClient;
 
-
+    // 주문 생성
     public List<Ordering> createOrder(TokenUserInfo userInfo, List<OrderingSaveReqDto> dtoList) {
 
         // 실제 USER-SERVICE에서 사용자 정보 요청
@@ -58,7 +59,7 @@ public class OrderingService {
         return orderings;
     }
 
-
+    // 주문 취소
     public Ordering cancelOrder(long id) {
         Ordering ordering = orderingRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("주문 없음")
@@ -71,6 +72,7 @@ public class OrderingService {
         return ordering;
     }
 
+    // 나의 주문 정보 리턴
     public List<OrderingListResDto> myOrder(final TokenUserInfo userInfo) {
         String email = userInfo.getEmail();
 
@@ -122,6 +124,7 @@ public class OrderingService {
 
     }
 
+    // 모든 주문 정보 리턴
     public List<OrderingListResDto> findAllOrders() {
         List<Ordering> orderList = orderingRepository.findAll();
 
@@ -142,20 +145,6 @@ public class OrderingService {
         Map<Long, ProdDetailResDto> productMap = dtoList.stream()
                 .collect(Collectors.toMap(ProdDetailResDto::getProductId, dto -> dto));
 
-        // user-service에게 요청 (userId로 userEmail)
-        /*
-        CommonResDto<List<ProductResDto>> products
-                = userServiceClient.get(productIds);
-        List<ProductResDto> dtoList = products.getResult();
-
-
-        Map<Long, String> productIdToNameMap = dtoList.stream()
-                .collect(Collectors.toMap(
-                        dto -> dto.getId(), // key
-                        dto -> dto.getName() // value
-                ));
-
-         */
 
         return orderList.stream()
                 .map(ordering -> {
@@ -174,5 +163,49 @@ public class OrderingService {
                 })
                 .collect(Collectors.toList());
     }
+
+    // 나의 강의 주문 내역 리턴
+    public List<OrderingListResDto> myCourseOrder(final Long userId) {
+
+        System.out.println("userId = " + userId);
+
+        // 강사가 등록한 강의 목록 조회
+        CommonResDto<List<ProdDetailResDto>> courseRes = productServiceClient.getProductsByUserId(userId);
+        List<ProdDetailResDto> myCourses = courseRes.getResult();
+
+        List<Long> myProductIds = myCourses.stream()
+                .map(ProdDetailResDto::getProductId)
+                .collect(Collectors.toList());
+
+        if (myProductIds.isEmpty()) {
+            return Collections.emptyList(); // 강사가 등록한 강의가 없다면 빈 리스트 반환
+        }
+
+        // Ordering 테이블에서 강사의 강의에 대한 주문 정보들 조회
+        List<Ordering> orderingList = orderingRepository.findByProductIdIn(myProductIds);
+
+        // 4. productId -> ProdDetailResDto 매핑
+        Map<Long, ProdDetailResDto> courseMap = myCourses.stream()
+                .collect(Collectors.toMap(ProdDetailResDto::getProductId, c -> c));
+
+        // DTO 리턴
+        return orderingList.stream()
+                .map(ordering -> {
+                    ProdDetailResDto course = courseMap.get(ordering.getProductId());
+
+                    return OrderingListResDto.builder()
+                            .id(ordering.getId())
+//                            .userEmail("unknown")
+                            .productId(ordering.getProductId())
+                            .productName(course != null ? course.getProductName() : "Unknown")
+                            .orderStatus(ordering.getOrderStatus())
+                            .orderDate(ordering.getOrderDate())
+                            .category(course != null ? course.getCategory() : null)
+                            .filePath(course != null ? course.getFilePath() : null)
+                            .build();
+                })
+                .collect(Collectors.toList());
+    }
+
 
 }

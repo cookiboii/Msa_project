@@ -9,4 +9,7 @@ public interface OrderingRepository extends JpaRepository<Ordering, Long> {
 
     List<Ordering> findByUserId(Long userId);
 
+    // 주문 테이블에서 여러 productId에 대한 주문 내역 찾기
+    List<Ordering> findByProductIdIn(List<Long> productIds);
+
 }

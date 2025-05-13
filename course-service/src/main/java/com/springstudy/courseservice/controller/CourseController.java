@@ -39,8 +39,8 @@ public class CourseController {
 
 
 
-    // 강의 목록
-    @GetMapping("/list")
+    // 강의 목록(기본 페이지)
+    @GetMapping("/")
     public ResponseEntity<List<CourseResponse>> getAllCourses() {
         return ResponseEntity.ok(courseService.getAllCourses());
     }

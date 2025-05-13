@@ -1,40 +1,55 @@
 package com.springstudy.courseservice.service;
 
+import com.springstudy.courseservice.client.UserServiceClient;
+import com.springstudy.courseservice.common.auth.TokenUserInfo;
 import com.springstudy.courseservice.dto.CourseRequest;
 import com.springstudy.courseservice.dto.CourseResponse;
+import com.springstudy.courseservice.dto.UserResDto;
 import com.springstudy.courseservice.entity.Course;
+import com.springstudy.courseservice.common.exception.CourseNotFoundException;
+import com.springstudy.courseservice.common.exception.UnauthorizedCourseAccessException;
 import com.springstudy.courseservice.repository.CourseRepository;
-import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
+@Transactional
 public class CourseService {
 
     private final CourseRepository courseRepository;
+    private final UserServiceClient userServiceClient;
 
-    public CourseService(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
-    }
+    public List<Course> createCourse(TokenUserInfo userInfo, List<CourseRequest> dtoList) {
+        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
 
-    public CourseResponse createCourse(CourseRequest request, Long userId) {
-        Course course = Course.builder()
-                .productName(request.getProductName())
-                .description(request.getDescription())
-                .price(request.getPrice())
-                .userId(userId)
-                .category(request.getCategory())
-                .active(true)
-                .filePath(request.getFilePath())
-                .build();
+        List<Course> courses = new ArrayList<>();
+        for (CourseRequest courseRequest : dtoList) {
+            Course course = Course.builder()
+                    .productName(courseRequest.getProductName())
+                    .description(courseRequest.getDescription())
+                    .price(courseRequest.getPrice())
+                    .userId(userResDto.getId())
+                    .category(courseRequest.getCategory())
+                    .active(true)
+                    .filePath(courseRequest.getFilePath())
+                    .build();
 
-        Course saved = courseRepository.save(course);
-        return toResponse(saved);
+            courses.add(course);
+            courseRepository.save(course);
+            log.info("Course created: {}", course.getProductName());
+        }
+
+        return courses;
     }
 
     public List<CourseResponse> getAllCourses() {
@@ -46,32 +61,66 @@ public class CourseService {
 
     public CourseResponse getCourseById(Long id) {
         Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Course not found"));
+                .orElseThrow(() -> new CourseNotFoundException(id));
         return toResponse(course);
     }
 
-    // 페이징 조회
     public Page<CourseResponse> getCoursesByPage(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> coursePage = courseRepository.findAll(pageRequest);
         return coursePage.map(this::toResponse);
     }
 
-    // 카테고리별 조회
-    public Page<CourseResponse> getCoursesByCategory(String category, int page) {
-        // pageSize는 임의로 40으로 고정 하였습니다.
-        final int pageSize = 40;
-        PageRequest pageRequest = PageRequest.of(page, pageSize);
-        Page<Course> coursePage = courseRepository.findByCategory(category, pageRequest);
-
-        return coursePage.map(this::toResponse);
+    public List<CourseResponse> getCoursesByCategory(String category) {
+        return courseRepository.findByCategory(category)
+                .stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
     }
 
-    // 제목 검색
     public List<CourseResponse> searchCourses(String keyword) {
         return courseRepository.findByProductNameContaining(keyword)
                 .stream()
                 .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
+
+    public CourseResponse updateCourse(Long productId, CourseRequest request, Long userId) {
+        Course course = courseRepository.findById(productId)
+                .orElseThrow(() -> new CourseNotFoundException(productId));
+
+        if (!course.getUserId().equals(userId)) {
+            throw new UnauthorizedCourseAccessException("해당 강의의 수정 권한이 없습니다!");
+        }
+
+        course.setProductName(request.getProductName());
+        course.setDescription(request.getDescription());
+        course.setPrice(request.getPrice());
+        course.setCategory(request.getCategory());
+        course.setFilePath(request.getFilePath());
+
+        Course updated = courseRepository.save(course);
+        log.info("Course updated: {}", updated.getProductName());
+        return toResponse(updated);
+    }
+
+    public void deleteCourse(Long productId, Long userId) {
+        Course course = courseRepository.findById(productId)
+                .orElseThrow(() -> new CourseNotFoundException(productId));
+
+        if (!course.getUserId().equals(userId)) {
+            throw new UnauthorizedCourseAccessException("해당 강의의 삭제 권한이 없습니다!");
+        }
+
+        courseRepository.delete(course);
+        log.info("Course deleted: {}", productId);
+    }
+
+    public List<CourseResponse> getCourseById(List<Long> ids) {
+        return ids.stream()
+                .map(id -> courseRepository.findById(id)
+                        .map(this::toResponse)
+                        .orElseThrow(() -> new CourseNotFoundException(id)))
                 .collect(Collectors.toList());
     }
 
@@ -87,46 +136,4 @@ public class CourseService {
                 .filePath(course.getFilePath())
                 .build();
     }
-
-
-    // 강의 수정
-    public CourseResponse updateCourse(Long productId, CourseRequest request, Long userId) {
-        Course course = courseRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("찾으시는 강의가 없습니다!"));
-
-        if (!course.getUserId().equals(userId)) {
-            throw new SecurityException("해당 강의의 수정 권한이 없습니다!");
-        }
-
-        course.setProductName(request.getProductName());
-        course.setDescription(request.getDescription());
-        course.setPrice(request.getPrice());
-        course.setCategory(request.getCategory());
-        course.setFilePath(request.getFilePath());
-
-        Course updated = courseRepository.save(course);
-        return toResponse(updated);
-    }
-
-    // 강의 삭제
-    public void deleteCourse(Long productId, Long userId) {
-        Course course = courseRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("찾으시는 강의가 없습니다!"));
-
-        if (!course.getUserId().equals(userId)) {
-            throw new SecurityException("해당 강의의 삭제 권한이 없습니다!");
-        }
-
-        courseRepository.delete(course);
-    }
-
-    public List<CourseResponse> getCourseById(List<Long> ids) {
-        return ids.stream()
-                .map(id -> courseRepository.findById(id)
-                        .map(this::toResponse)
-                        .orElseThrow(() -> new IllegalArgumentException("Course not found: " + id)))
-                .collect(Collectors.toList());
-    }
-
-
 }

@@ -84,11 +84,13 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
-    public CourseResponse updateCourse(Long productId, CourseRequest request, Long userId) {
+    public CourseResponse updateCourse(Long productId, CourseRequest request, TokenUserInfo userInfo) {
+        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
+
         Course course = courseRepository.findById(productId)
                 .orElseThrow(() -> new CourseNotFoundException(productId));
 
-        if (!course.getUserId().equals(userId)) {
+        if (!course.getUserId().equals(userResDto.getId())) {
             throw new UnauthorizedCourseAccessException("해당 강의의 수정 권한이 없습니다!");
         }
 
@@ -103,11 +105,13 @@ public class CourseService {
         return toResponse(updated);
     }
 
-    public void deleteCourse(Long productId, Long userId) {
+    public void deleteCourse(Long productId, TokenUserInfo userInfo) {
+        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
+
         Course course = courseRepository.findById(productId)
                 .orElseThrow(() -> new CourseNotFoundException(productId));
 
-        if (!course.getUserId().equals(userId)) {
+        if (!course.getUserId().equals(userResDto.getId())) {
             throw new UnauthorizedCourseAccessException("해당 강의의 삭제 권한이 없습니다!");
         }
 

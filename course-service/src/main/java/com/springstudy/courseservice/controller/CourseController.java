@@ -38,15 +38,16 @@ public class CourseController {
     }
 
 
-    // 강의 목록
-    @GetMapping("/list")
+
+    // 강의 목록(기본 페이지)
+    @GetMapping("/")
     public ResponseEntity<List<CourseResponse>> getAllCourses() {
         return ResponseEntity.ok(courseService.getAllCourses());
     }
 
     // 페이징 조회
-    @GetMapping("/page/{page}")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@PathVariable int page, @RequestParam int size) {
+    @GetMapping("/list")
+    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
         return ResponseEntity.ok(courseService.getCoursesByPage(page, size));
     }
 
@@ -74,17 +75,17 @@ public class CourseController {
 
     // 강의 수정
     @PutMapping("/edit/{id}")
-    public ResponseEntity<CourseResponse> updateCourse(@PathVariable Long id,
+    public ResponseEntity<?> updateCourse(@PathVariable Long id,
                                                        @RequestBody CourseRequest request,
-                                                       @RequestHeader("userId") Long userId) {
-        return ResponseEntity.ok(courseService.updateCourse(id, request, userId));
+                                                       @AuthenticationPrincipal TokenUserInfo userInfo) {
+        return ResponseEntity.ok(courseService.updateCourse(id, request, userInfo));
     }
 
     // 강의 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Long id,
-                                             @RequestHeader("userId") Long userId) {
-        courseService.deleteCourse(id, userId);
+    public ResponseEntity<?> deleteCourse(@PathVariable Long id,
+                                             @AuthenticationPrincipal TokenUserInfo userInfo) {
+        courseService.deleteCourse(id, userInfo);
         return ResponseEntity.noContent().build();
     }
 

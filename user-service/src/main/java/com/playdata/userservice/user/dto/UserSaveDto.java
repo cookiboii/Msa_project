@@ -30,7 +30,7 @@ public class UserSaveDto {
               .email(this.email)
               .password(this.password)
               .username(this.username)
-              .role(this.role)
+              .role(Role.valueOf(this.role.name()))
               .build();
    }
 

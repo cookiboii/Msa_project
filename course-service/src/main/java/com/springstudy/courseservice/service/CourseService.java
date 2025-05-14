@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.springstudy.courseservice.user.entity.User;
+import com.springstudy.courseservice.user.repository.UserRepository;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -28,6 +31,7 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
     private final UserServiceClient userServiceClient;
+    private final UserRepository userRepository;
 
     public List<Course> createCourse(TokenUserInfo userInfo, List<CourseRequest> dtoList) {
         UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
@@ -132,6 +136,11 @@ public class CourseService {
     }
 
     private CourseResponse toResponse(Course course) {
+        // userId로 유저 이름 조회
+        String username = userRepository.findById(course.getUserId())
+                .map(User::getUsername)
+                .orElse("Unknown");
+
         return CourseResponse.builder()
                 .productId(course.getProductId())
                 .productName(course.getProductName())
@@ -141,6 +150,7 @@ public class CourseService {
                 .category(course.getCategory())
                 .active(course.isActive())
                 .filePath(course.getFilePath())
+                .username(username)
                 .build();
     }
 }

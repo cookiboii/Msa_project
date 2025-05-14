@@ -16,6 +16,7 @@ public class CourseResponse {
     private String category;
     private boolean active;
     private String filePath;
+    private String username;
 
     @Override
     public String toString() {

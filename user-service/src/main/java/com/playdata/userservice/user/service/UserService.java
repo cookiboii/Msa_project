@@ -52,11 +52,15 @@ public class UserService {
    @Transactional
    public User updatePassword (UserPasswordUpdateDto updateDto) {
          //비밀번호변경
-       User user  = userRepository.findById(updateDto.getId()).orElseThrow(() -> new UsernameNotFoundException("User not found: " + updateDto.getId()));
-       String encodedPassword = passwordEncoder.encode(updateDto.getPassword());
+       User user  = userRepository.findByemail(updateDto.getEmail())
+               .orElseThrow(() -> new UsernameNotFoundException("User not found: " + updateDto.getEmail()));
+
+       if(passwordEncoder.matches(updateDto.getNewPassword(), user.getPassword())) {
+           return null;
+       }
+       String encodedPassword = passwordEncoder.encode(updateDto.getNewPassword());
+
        user.changePassword(encodedPassword);
-
-
          return user;
 
    }

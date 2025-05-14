@@ -60,11 +60,15 @@ public class UserController {
          userService.deleteUser(id);
    }*/
 
-    @PutMapping("/password")
-    public ResponseEntity<CommonResDto> saveUser(@RequestBody UserPasswordUpdateDto updateDto) {
+    @PostMapping("/password")
+    public ResponseEntity<?> saveUser(@RequestBody UserPasswordUpdateDto updateDto) {
         User user = userService.updatePassword(updateDto);
-        CommonResDto resDto = new CommonResDto(HttpStatus.OK, "Password", user.getUsername());
-        return new ResponseEntity<CommonResDto>(OK);
+
+        if(user == null) {
+            return new ResponseEntity<>(FORBIDDEN);
+        }
+
+        return new ResponseEntity<CommonResDto>(ACCEPTED);
     }
 
     @GetMapping("/findByEmail")
@@ -80,7 +84,7 @@ public class UserController {
 
         CommonResDto resDto = new CommonResDto(HttpStatus.OK, "유저 찾음", build);
         return resDto;
-        }
+    }
     @GetMapping("/myinfo")
     public ResponseEntity<CommonResDto> getUser() {
         User user = userService.usersearch();

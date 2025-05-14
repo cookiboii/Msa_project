@@ -12,8 +12,6 @@ import lombok.*;
 @AllArgsConstructor
 public class UserPasswordUpdateDto {
 
-    private Long Id;
     private String email;
-    private String Password;
-    private Role Role;
+    private String newPassword;
 }

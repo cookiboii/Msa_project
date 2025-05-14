@@ -2,15 +2,13 @@ package com.playdata.userservice.user.dto;
 
 
 import com.playdata.userservice.user.entity.Role;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
+@Builder
 public class UserInfoResponseDto {
     private String username;
     private String email;

@@ -80,13 +80,22 @@ public class UserController {
 
         CommonResDto resDto = new CommonResDto(HttpStatus.OK, "유저 찾음", build);
         return resDto;
+        }
+    @GetMapping("/myinfo")
+    public ResponseEntity<CommonResDto> getUser() {
+        User user = userService.usersearch();
+
+        UserInfoResponseDto responseDto = UserInfoResponseDto.builder()
+                .email(user.getEmail())
+                .username(user.getUsername())
+                .role(user.getRole())
+                .build();
+
+        CommonResDto resDto = new CommonResDto(HttpStatus.OK, "사용자 정보 조회 성공", responseDto);
+
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
+
     }
 
-      /*@GetMapping("/userInfo")
-      public ResponseEntity<UserInfoResponseDto> userInfo(@RequestParam UserInfoDto userInfoDto){
-
-             UserInfoResponseDto userInfoResponseDto = userService.userInfo(userInfoDto);
-          return ResponseEntity.ok(userInfoResponseDto);
-      }*/
 
 }

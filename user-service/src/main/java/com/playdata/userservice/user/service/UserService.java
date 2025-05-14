@@ -2,7 +2,6 @@ package com.playdata.userservice.user.service;
 
 import com.playdata.userservice.common.auth.TokenUserInfo;
 import com.playdata.userservice.user.dto.*;
-import com.playdata.userservice.user.entity.Role;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
@@ -28,30 +27,27 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
 
-     @Transactional
+
+    @Transactional
     public User Save(UserSaveDto userSaveDto) {
-         String email = userSaveDto.getEmail();//회원가입
+        String email = userSaveDto.getEmail();
         String username = userSaveDto.getUsername();
-         String password = userSaveDto.getPassword();
+        String password = userSaveDto.getPassword();
 
-         String encodedPassword = passwordEncoder.encode(password);
-         // 이메일 중복 체크
-         if (userRepository.existsByEmail(email)) {
-             throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
-         }
+        // 이메일 중복 체크
+        if (userRepository.existsByEmail(email)) {
+            throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
+        }
+        String encodedPassword = passwordEncoder.encode(password);
+        User user  = User.builder()
+                        .username(username)
+                       .email(email)
+                     .password(encodedPassword)
+                             .role(userSaveDto.getRole())
+                .build();
 
-
-        userSaveDto.setPassword(encodedPassword);
-        userSaveDto.setUsername(username);
-        userSaveDto.setEmail(email);
-
-        User save = userRepository.save(userSaveDto.toEntity());
-
-
-         return save;
+        return userRepository.save(user);
     }
-
-
 
    @Transactional
    public User updatePassword (UserPasswordUpdateDto updateDto) {
@@ -81,16 +77,29 @@ public class UserService {
         return user;
 
      }
-      @Transactional
-       public UserInfoDto myInfo () {
-           TokenUserInfo userInfo
-                   = (TokenUserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+    public User usersearch() {
+        TokenUserInfo userInfo
+                // 필터에서 세팅한 시큐리티 인증 정보를 불러오는 메서드
+                = (TokenUserInfo) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        User user = userRepository.findByemail(userInfo.getEmail())
+                .orElseThrow(
+                        () -> new EntityNotFoundException("User not found!")
+                );
 
 
-           User user = userRepository.findByemail(userInfo.getEmail()).orElseThrow(() -> new EntityNotFoundException("User not found!"));
 
-        return user.fromEntity();
-       }
+        return  User.builder()
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .build();
+
+
+
+    }
 
 
 

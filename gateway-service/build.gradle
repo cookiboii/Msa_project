@@ -45,6 +45,11 @@ dependencies {
 
 //	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
+	// config-service로부터 공통 설정 받기 위해서 추가하는 라이브러리
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
 }
 
 dependencyManagement {

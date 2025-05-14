@@ -16,6 +16,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     List<Course> findByProductNameContaining(String keyword);
 
     // 페이징과 카테고리로 조회
-    Page<Course> findByCategory(String category, Pageable pageable);
+    List<Course> findByCategory(String category, Pageable pageable);
 
 }

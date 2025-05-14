@@ -65,16 +65,20 @@ public class CourseService {
         return toResponse(course);
     }
 
-    public Page<CourseResponse> getCoursesByPage(int page, int size) {
+    public List<CourseResponse> getCoursesByPage(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Course> coursePage = courseRepository.findAll(pageRequest);
-        return coursePage.map(this::toResponse);
+        return courseRepository.findAll(pageRequest).stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
     }
 
-    public Page<CourseResponse> getCoursesByCategory(String category, int page, int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
-        return byCategory.map(this::toResponse);
+    public List<CourseResponse> getCoursesByCategory(String category) {
+        PageRequest pageRequest = PageRequest.of(0, 10); // 0페이지, 10개씩 기본 조회
+        // 기본값을 지정하거나 파라미터로 받도록 수정
+        return courseRepository.findByCategory(category, pageRequest)
+                .stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
     }
 
     public List<CourseResponse> searchCourses(String keyword) {

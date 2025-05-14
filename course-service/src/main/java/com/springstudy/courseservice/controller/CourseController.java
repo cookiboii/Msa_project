@@ -47,13 +47,14 @@ public class CourseController {
 
     // 페이징 조회
     @GetMapping("/list")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
+    public ResponseEntity<List<CourseResponse>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
         return ResponseEntity.ok(courseService.getCoursesByPage(page, size));
     }
 
     // 카테고리별 조회
     @GetMapping("/category/{category}")
-    public ResponseEntity<List<CourseResponse>> getCoursesByCategory(@PathVariable String category) {
+    public ResponseEntity<List<CourseResponse>> getCoursesByCategory(
+            @PathVariable String category) {
         return ResponseEntity.ok(courseService.getCoursesByCategory(category));
     }
 

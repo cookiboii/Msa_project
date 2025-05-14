@@ -3,5 +3,5 @@ spring:
     name: user-service
   cloud:
     config:
-      url: http://localhost:8888
+      uri: http://localhost:8888
       profile: default

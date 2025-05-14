@@ -22,7 +22,9 @@ public class UserSaveDto {
    @NotNull(message = "공백안됩니다 ")
    private String email;
 
-   private Role role;
+
+   @Builder.Default
+   private Role role =Role.USER;
 
 
    public User toEntity() {

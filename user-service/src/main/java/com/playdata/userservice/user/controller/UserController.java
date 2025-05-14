@@ -64,15 +64,21 @@ public class UserController {
         return new ResponseEntity<CommonResDto>(OK);
     }
 
-    @GetMapping("/userinfo")
-    public ResponseEntity<?> getUserInfo(@AuthenticationPrincipal TokenUserInfo userInfo ) {
-        // userInfo에서 사용자 email을 꺼내서 사용자 정보
-        String email = userInfo.getEmail();
-        CommonResDto resDto
-                = new CommonResDto(HttpStatus.OK, "myInfo 조회 성공", email );
+    @GetMapping("/myinfo")
+    public ResponseEntity<CommonResDto> getUser() {
+        User user = userService.usersearch();
 
+        UserInfoResponseDto responseDto = UserInfoResponseDto.builder()
+                .email(user.getEmail())
+                .username(user.getUsername())
+                .role(user.getRole())
+                .build();
 
-        return new ResponseEntity<>(resDto , HttpStatus.OK);
+        CommonResDto resDto = new CommonResDto(HttpStatus.OK, "사용자 정보 조회 성공", responseDto);
+
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
+
     }
+
 
 }

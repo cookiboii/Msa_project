@@ -2,7 +2,6 @@ package com.playdata.userservice.user.service;
 
 import com.playdata.userservice.common.auth.TokenUserInfo;
 import com.playdata.userservice.user.dto.*;
-import com.playdata.userservice.user.entity.Role;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
@@ -50,8 +49,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-
-
    @Transactional
    public User updatePassword (UserPasswordUpdateDto updateDto) {
          //비밀번호변경
@@ -81,8 +78,28 @@ public class UserService {
 
      }
 
+    public User usersearch() {
+        TokenUserInfo userInfo
+                // 필터에서 세팅한 시큐리티 인증 정보를 불러오는 메서드
+                = (TokenUserInfo) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        User user = userRepository.findByemail(userInfo.getEmail())
+                .orElseThrow(
+                        () -> new EntityNotFoundException("User not found!")
+                );
 
 
+
+        return  User.builder()
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .build();
+
+
+
+    }
 
 
 

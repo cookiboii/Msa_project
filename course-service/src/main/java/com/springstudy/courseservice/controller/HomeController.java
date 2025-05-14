@@ -1,0 +1,23 @@
+package com.springstudy.courseservice.controller;
+
+import com.springstudy.courseservice.dto.CourseResponse;
+import com.springstudy.courseservice.service.CourseService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class HomeController {
+
+    private final CourseService courseService;
+
+    public HomeController(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<CourseResponse>> getAllCoursesFromRoot() {
+        return ResponseEntity.ok(courseService.getAllCourses());
+    }
+}

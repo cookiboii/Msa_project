@@ -54,6 +54,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
             String authorizationHeader
                     = exchange.getRequest()
                     .getHeaders().getFirst("Authorization");
+            log.info("authorizationHeader: {}", authorizationHeader);
 
             if (authorizationHeader == null
                     || !authorizationHeader.startsWith("Bearer ")) {
@@ -64,6 +65,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
             // Bearer 떼기
             String token
                     = authorizationHeader.replace("Bearer ", "");
+            log.info("token: {}", token);
 
             // JWT 토큰 유효성 검증 및 클레임 얻어내기
             Claims claims = validateJwt(token);

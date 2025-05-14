@@ -108,7 +108,7 @@ public class PostController {
     @GetMapping("/myquestions")
     public ResponseEntity<?> getMyQuestions(@AuthenticationPrincipal TokenUserInfo userInfo){
 
-        List<PostResDto> postResDtoList = postService.getMyAllQuestions(userInfo);
+        List<PostCoLengthDto> postResDtoList = postService.getMyAllQuestions(userInfo);
 
         CommonResDto resDto = new CommonResDto(HttpStatus.OK, userInfo.getEmail()
                 + "님의 질문 정보", postResDtoList);

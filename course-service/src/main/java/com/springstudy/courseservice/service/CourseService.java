@@ -71,11 +71,10 @@ public class CourseService {
         return coursePage.map(this::toResponse);
     }
 
-    public List<CourseResponse> getCoursesByCategory(String category) {
-        return courseRepository.findByCategory(category)
-                .stream()
-                .map(this::toResponse)
-                .collect(Collectors.toList());
+    public Page<CourseResponse> getCoursesByCategory(String category, int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
+        return byCategory.map(this::toResponse);
     }
 
     public List<CourseResponse> searchCourses(String keyword) {

@@ -1,0 +1,18 @@
+package com.playdata.userservice.client;
+
+
+import com.playdata.userservice.client.dto.CourseResDto;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+
+@FeignClient(name = "course-service")
+public interface CourseServiceClient {
+
+    @GetMapping("course/list")
+    List<CourseResDto> getAllCourses();
+
+
+
+}

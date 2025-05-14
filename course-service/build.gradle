@@ -69,6 +69,8 @@ dependencies {
 	// S3 파일 연동
 	implementation 'io.awspring.cloud:spring-cloud-aws-s3:3.0.2'
 
+	// feign client
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
 
 dependencyManagement {

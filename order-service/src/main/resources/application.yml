@@ -2,39 +2,3 @@ server:
   port: 0
 
 
-spring:
-  application:
-    name: order-service
-  datasource:
-    url: jdbc:mysql://localhost:3306/msaproject?serverTimezone=Asia/Seoul
-    # 확인을 위해 url을 각자 로컬에 맞게 작성하였습니다.
-    # 혹시 푸시받으시면 위에는 지우시면 됩니다.
-    #url: jdbc:mysql://localhost:3306/lectureservice?serverTimezone=Asia/Seoul
-    username: spring
-    password: spring
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    hibernate:
-      ddl-auto: update
-
-jwt:
-  expiration: 60
-  secretKey: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFx8wzt8PaigtMXpJHdIl6p4ILsLDasA==
-
-  secretKeyRt: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFx8wzt8PaigtMXpJHdIl6p4ILsLDasA==
-  expirationRt: 120
-
-eureka:
-  instance:
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 10
-    lease-expiration-duration-in-seconds: 30
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    healthcheck:
-      enabled: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/

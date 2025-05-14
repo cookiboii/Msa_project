@@ -3,6 +3,6 @@
   <component name="JpaBuddyIdeaProjectConfig" migrateDefaultValues="false" reUseTableSchema="true">
     <option name="migrateDefaultValues" value="false" />
     <option name="reLastEntityCreationPackage" value="order-service/src/main/java/com/playdata/orderservice" />
-    <option name="reverseEngineeringLastDbConnectionId" value="2bbb1a5c-6c1e-404f-9455-7eeaa8991a28" />
+    <option name="reverseEngineeringLastDbConnectionId" value="187bfba9-b2ea-4d6a-b733-6032e557f1de" />
   </component>
 </project>

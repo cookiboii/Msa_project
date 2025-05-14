@@ -9,6 +9,7 @@ import com.springstudy.courseservice.repository.CourseRepository;
 import com.springstudy.courseservice.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -43,11 +44,11 @@ public class CourseController {
     }
 
 
-
     // 강의 목록(기본 페이지)
     @GetMapping("/all")
-    public ResponseEntity<List<CourseResponse>> getAllCourses() {
-        return ResponseEntity.ok(courseService.getAllCourses());
+    public ResponseEntity<List<CourseResponse>> getAllCourses(Pageable pageable) {
+        log.info("/product/list: GET, pageable: {}", pageable);
+        return ResponseEntity.ok(courseService.getAllCourses(pageable));
     }
 
     // 페이징 조회
@@ -60,7 +61,7 @@ public class CourseController {
     // 카테고리별 조회
     @GetMapping("/category/{category}")
     public ResponseEntity<Page<CourseResponse>> getCoursesByCategory(@PathVariable String category,
-    @RequestParam("page") int page, @RequestParam("size") int size) {
+                                                                     @RequestParam("page") int page, @RequestParam("size") int size) {
         return ResponseEntity.ok(courseService.getCoursesByCategory(category, page, size));
     }
 
@@ -81,15 +82,15 @@ public class CourseController {
     // 강의 수정
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> updateCourse(@PathVariable Long id,
-                                                       @RequestBody CourseRequest request,
-                                                       @AuthenticationPrincipal TokenUserInfo userInfo) {
+                                          @RequestBody CourseRequest request,
+                                          @AuthenticationPrincipal TokenUserInfo userInfo) {
         return ResponseEntity.ok(courseService.updateCourse(id, request, userInfo));
     }
 
     // 강의 삭제
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCourse(@PathVariable Long id,
-                                             @AuthenticationPrincipal TokenUserInfo userInfo) {
+                                          @AuthenticationPrincipal TokenUserInfo userInfo) {
         courseService.deleteCourse(id, userInfo);
         return ResponseEntity.noContent().build();
     }
@@ -151,7 +152,7 @@ public class CourseController {
                 .active(foundCourse.isActive())
                 .build();
 
-        return new CommonResDto(HttpStatus.OK,"해당 강의 찾음" ,build);
+        return new CommonResDto(HttpStatus.OK, "해당 강의 찾음", build);
 
     }
 }

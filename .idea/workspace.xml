@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강사의 본인 강의 주문 내역 조회 수정3">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="내가 학습 가능한 강의 정보 조회 기능 추가">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/OrderingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/OrderingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/OrderingListResDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/OrderingListResDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/ProdDetailResDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/ProdDetailResDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
@@ -261,9 +256,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.OrderServiceApplication" />
         <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Spring Boot.OrderServiceApplication" />
         <item itemvalue="Gradle.OrderServiceApplicationTests" />
       </list>
     </recent_temporary>
@@ -294,7 +289,8 @@
       <workItem from="1747008025846" duration="23568000" />
       <workItem from="1747048484986" duration="7265000" />
       <workItem from="1747094767760" duration="28293000" />
-      <workItem from="1747150734031" duration="4562000" />
+      <workItem from="1747150734031" duration="13276000" />
+      <workItem from="1747181040794" duration="4962000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -384,7 +380,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747134322225</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="내가 학습 가능한 강의 정보 조회 기능 추가">
+      <option name="closed" value="true" />
+      <created>1747155660087</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747155660087</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,6 +416,7 @@
     <MESSAGE value="commit" />
     <MESSAGE value="강사의 본인 강의 주문 내역 조회 수정" />
     <MESSAGE value="강사의 본인 강의 주문 내역 조회 수정3" />
-    <option name="LAST_COMMIT_MESSAGE" value="강사의 본인 강의 주문 내역 조회 수정3" />
+    <MESSAGE value="내가 학습 가능한 강의 정보 조회 기능 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="내가 학습 가능한 강의 정보 조회 기능 추가" />
   </component>
 </project>

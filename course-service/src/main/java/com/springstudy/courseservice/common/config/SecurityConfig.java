@@ -43,9 +43,12 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> {
             auth
 //                    .requestMatchers("/user/list").hasRole("ROLE_ADMIN")
-                    .requestMatchers("/courses/**").permitAll()
+                    .requestMatchers(
+                            "/","/courses/**","/courses", "/courses/").permitAll()
                     .anyRequest().authenticated();
         });
+
+
         // "/user/create", "/user/doLogin"은 인증 검사가 필요 없다고 설정했고,
         // 나머지 요청들은 권한 검사가 필요하다고 세팅 했습니다.
         // 권한 검사가 필요한 요청들을 어떤 필터로 검사할지를 추가해 주면 됩니다.
@@ -67,7 +70,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
 
 

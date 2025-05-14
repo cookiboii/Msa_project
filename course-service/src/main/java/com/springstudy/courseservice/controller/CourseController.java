@@ -25,11 +25,9 @@ import java.util.stream.Collectors;
 public class CourseController {
 
     private final CourseService courseService;
-    private final CourseRepository courseRepository;
 
-    public CourseController(CourseService courseService, CourseRepository courseRepository) {
+    public CourseController(CourseService courseService) {
         this.courseService = courseService;
-        this.courseRepository = courseRepository;
     }
 
     // 강의 등록 (강사용)
@@ -56,7 +54,6 @@ public class CourseController {
     public ResponseEntity<Page<CourseResponse>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
         return ResponseEntity.ok(courseService.getCoursesByPage(page, size));
     }
-
 
     // 카테고리별 조회
     @GetMapping("/category/{category}")
@@ -115,7 +112,7 @@ public class CourseController {
     public ResponseEntity<?> getProductsByUserId(@RequestBody Map<String, Long> user) {
         Long userId = user.get("userId");
         System.out.println("userId = " + userId);
-        List<Course> courseList = courseRepository.findByUserId(userId);
+        List<Course> courseList = courseService.findByUserId(userId);
 
         // id만 뽑아서 List<Long>으로 변환
         List<Long> productIds = courseList.stream()

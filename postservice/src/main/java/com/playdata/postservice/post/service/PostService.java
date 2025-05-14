@@ -108,12 +108,17 @@ public class PostService {
         return false;
     }
 
-    public List<PostResDto> getMyAllQuestions(TokenUserInfo userInfo) {
+    public List<PostCoLengthDto> getMyAllQuestions(TokenUserInfo userInfo) {
 
         Long userId = getUserId(userInfo);
-        List<Post> foundAllPost = postRepository.findByUserId(userId);
+        List<Post> foundPosts = postRepository.findByUserId(userId);
 
-        List<PostResDto> list = foundAllPost.stream().map(Post::fromEntity).toList();
+        List<PostCoLengthDto> list = foundPosts.stream().map((post) -> {
+            int size = commentRepository.findByPostId(post.getId()).size();
+            PostCoLengthDto dto = new PostCoLengthDto();
+            PostCoLengthDto dto1 = dto.onlyAddLength(post, size);
+            return dto1;
+        }).toList();
 
         return list;
     }

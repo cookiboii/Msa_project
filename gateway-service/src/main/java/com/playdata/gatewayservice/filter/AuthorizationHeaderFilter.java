@@ -27,15 +27,18 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
     private String secretKey;
 
     private final List<String> allowUrl = Arrays.asList(
-            "/user/create", "/user/login"
-            ,"/courses/list", "/courses/info", "/courses/page/*", "/courses/category/*",
-            "/courses/search", "/courses/info/*", "/post/list", "/post/comment/find", "/courses/all"
+            "/user/create", "/user/login",
+            "/course-service/courses/list", "/courses/list", "/course-service/courses/info", "//courses/info",
+            "/course-service/courses/page/*", "/courses/page/*", "/course-service/courses/category/*", "/courses/category/*",
+            "/course-service/courses/search", "/courses/search", "/course-service/courses/info/*", "/courses/info/*",
+            "/post/list", "/post/comment/find", "/course-service/courses/all", "/courses/all", "/"
     );
 
     @Override
     public GatewayFilter apply(Object config) {
         return (exchange, chain) -> {
             String path = exchange.getRequest().getURI().getPath();
+            log.info("요청 path: {}", path); // 추가
             AntPathMatcher antPathMatcher = new AntPathMatcher();
 
             // 허용 url 리스트를 순회하면서 지금 들어온 요청 url과 하나라도 일치하면 true 리턴
@@ -54,6 +57,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
             String authorizationHeader
                     = exchange.getRequest()
                     .getHeaders().getFirst("Authorization");
+            log.info("authorizationHeader: {}", authorizationHeader);
 
             if (authorizationHeader == null
                     || !authorizationHeader.startsWith("Bearer ")) {
@@ -64,6 +68,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
             // Bearer 떼기
             String token
                     = authorizationHeader.replace("Bearer ", "");
+            log.info("token: {}", token);
 
             // JWT 토큰 유효성 검증 및 클레임 얻어내기
             Claims claims = validateJwt(token);

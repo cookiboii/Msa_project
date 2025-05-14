@@ -139,4 +139,10 @@ public class CourseService {
                 .filePath(course.getFilePath())
                 .build();
     }
+
+    public List<Course> findByUserId(Long userId) {
+
+        List<Course> byUserId = courseRepository.findByUserId(userId);
+        return byUserId;
+    }
 }

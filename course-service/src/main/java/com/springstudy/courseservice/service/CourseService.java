@@ -154,6 +154,7 @@ public class CourseService {
     public List<CourseResponse> getCourseById(List<Long> ids) {
         return ids.stream()
                 .map(id -> courseRepository.findById(id)
+                        .filter(Course::isActive) // active == true인 경우만 통과
                         .map(this::toResponse)
                         .orElseThrow(() -> new CourseNotFoundException(id)))
                 .collect(Collectors.toList());

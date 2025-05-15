@@ -2,6 +2,7 @@ package com.springstudy.courseservice.controller;
 
 import com.springstudy.courseservice.dto.CourseResponse;
 import com.springstudy.courseservice.service.CourseService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CourseResponse>> getAllCoursesFromRoot() {
-        return ResponseEntity.ok(courseService.getAllCourses());
+    public ResponseEntity<List<CourseResponse>> getAllCoursesFromRoot(Pageable pageable) {
+        return ResponseEntity.ok(courseService.getAllCourses(pageable));
     }
 }

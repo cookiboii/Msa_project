@@ -13,12 +13,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.springstudy.courseservice.user.entity.User;
+import com.springstudy.courseservice.user.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +32,7 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
     private final UserServiceClient userServiceClient;
+    private final UserRepository userRepository;
 
     public List<Course> createCourse(TokenUserInfo userInfo, List<CourseRequest> dtoList) {
         UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
@@ -134,6 +139,11 @@ public class CourseService {
     }
 
     private CourseResponse toResponse(Course course) {
+        // userId로 유저 이름 조회
+        String username = userRepository.findById(course.getUserId())
+                .map(User::getUsername)
+                .orElse("Unknown");
+
         return CourseResponse.builder()
                 .productId(course.getProductId())
                 .productName(course.getProductName())
@@ -146,7 +156,6 @@ public class CourseService {
                 .build();
     }
 
-    @Transactional(readOnly = true)
     public List<Course> findByUserId(Long userId) {
 
         List<Course> byUserId = courseRepository.findByUserId(userId);

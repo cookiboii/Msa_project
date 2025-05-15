@@ -93,6 +93,7 @@ public class UserController {
                 .email(user.getEmail())
                 .username(user.getUsername())
                 .role(user.getRole())
+                .userId(user.getId())
                 .build();
 
         CommonResDto resDto = new CommonResDto(HttpStatus.OK, "사용자 정보 조회 성공", responseDto);

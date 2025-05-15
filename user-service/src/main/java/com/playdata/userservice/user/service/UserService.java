@@ -100,6 +100,7 @@ public class UserService {
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole())
+                .id(user.getId())
                 .build();
 
 

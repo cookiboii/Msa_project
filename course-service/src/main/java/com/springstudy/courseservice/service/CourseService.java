@@ -91,10 +91,10 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CourseResponse> getCoursesByCategory(String category, int page, int size) {
-        if(category.equals("HTML")){
-            category = "HTML/CSS";
-        }
+    public Page<CourseResponse> getCoursesByCategory(String category) {
+        int page = 0;
+//        page = page - 1;
+        int size = 12;
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
 

@@ -70,6 +70,7 @@ public class OrderingService {
     }
 
     // 나의 주문 정보 리턴
+    @Transactional(readOnly = true)
     public List<OrderingListResDto> myOrder(final TokenUserInfo userInfo) {
         String email = userInfo.getEmail();
 
@@ -124,6 +125,7 @@ public class OrderingService {
     }
 
     // 모든 주문 정보 리턴
+    @Transactional(readOnly = true)
     public List<OrderingListResDto> findAllOrders() {
         List<Ordering> orderList = orderingRepository.findAll();
 
@@ -166,6 +168,7 @@ public class OrderingService {
     }
 
     // 강사의 본인 강의 주문 내역 리턴
+    @Transactional(readOnly = true)
     public List<OrderingListResDto> myCourseOrder(final TokenUserInfo userInfo) {
         String email = userInfo.getEmail();
 
@@ -219,6 +222,7 @@ public class OrderingService {
     }
 
     // 수강 가능한 강의 목록 리턴
+    @Transactional(readOnly = true)
     public List<OrderingListResDto> myDashboard(final TokenUserInfo userInfo) {
         // 전체 주문 목록을 먼저 가져옴
         List<OrderingListResDto> allOrders = myOrder(userInfo);

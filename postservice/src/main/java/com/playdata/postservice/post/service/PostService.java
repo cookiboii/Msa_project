@@ -108,6 +108,7 @@ public class PostService {
         return false;
     }
 
+    @Transactional(readOnly = true)
     public List<PostCoLengthDto> getMyAllQuestions(TokenUserInfo userInfo) {
 
         Long userId = getUserId(userInfo);
@@ -166,6 +167,7 @@ public class PostService {
 
     }
 
+    @Transactional(readOnly = true)
     public List<PostCoLengthDto> getAllPostOfCourse(Long courseId) {
 
         List<Post> foundPosts = postRepository.findByProductId(courseId);
@@ -180,6 +182,7 @@ public class PostService {
         return list;
     }
 
+    @Transactional(readOnly = true)
     public List<CommentResDto> findCommentByPostId(Long postId) {
 
         List<Comment> foundComments = commentRepository.findByPostId(postId);

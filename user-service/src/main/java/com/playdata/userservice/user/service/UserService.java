@@ -82,6 +82,7 @@ public class UserService {
 
      }
 
+    @Transactional(readOnly = true)
     public User usersearch() {
         TokenUserInfo userInfo
                 // 필터에서 세팅한 시큐리티 인증 정보를 불러오는 메서드
@@ -107,7 +108,7 @@ public class UserService {
 
 
 
-
+    @Transactional(readOnly = true)
     public User findUserIdByEmail(String email) {
 
         User foundUser = userRepository.findByemail(email).orElseThrow(() -> new EntityNotFoundException("User not found!"));

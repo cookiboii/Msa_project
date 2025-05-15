@@ -52,6 +52,7 @@ public class CourseService {
         return courses;
     }
 
+    @Transactional(readOnly = true)
     public List<CourseResponse> getAllCourses() {
         return courseRepository.findAll()
                 .stream()
@@ -59,24 +60,28 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public CourseResponse getCourseById(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new CourseNotFoundException(id));
         return toResponse(course);
     }
 
+    @Transactional(readOnly = true)
     public Page<CourseResponse> getCoursesByPage(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> coursePage = courseRepository.findAll(pageRequest);
         return coursePage.map(this::toResponse);
     }
 
+    @Transactional(readOnly = true)
     public Page<CourseResponse> getCoursesByCategory(String category, int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
         return byCategory.map(this::toResponse);
     }
 
+    @Transactional(readOnly = true)
     public List<CourseResponse> searchCourses(String keyword) {
         return courseRepository.findByProductNameContaining(keyword)
                 .stream()
@@ -119,6 +124,7 @@ public class CourseService {
         log.info("Course deleted: {}", productId);
     }
 
+    @Transactional(readOnly = true)
     public List<CourseResponse> getCourseById(List<Long> ids) {
         return ids.stream()
                 .map(id -> courseRepository.findById(id)
@@ -140,6 +146,7 @@ public class CourseService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public List<Course> findByUserId(Long userId) {
 
         List<Course> byUserId = courseRepository.findByUserId(userId);

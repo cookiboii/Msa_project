@@ -12,6 +12,7 @@ spring:
           "[/**]":
             allowed-origins:
               - "http://localhost:5173"
+              - "http://mymsaproject-playdata-bucket.s3-website.ap-northeast-2.amazonaws.com"
             allowed-methods:
               - GET
               - POST

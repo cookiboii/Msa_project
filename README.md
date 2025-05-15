@@ -143,72 +143,76 @@
 
 ### 🔸강의 서비스 API
   1. **강의 목록 조회**
-     - URL: `GET /api/lectures`
+     - URL: `GET /api/course-service/courses/all`
      - Response (성공 - 200 OK):
        ```json
        [
          {
-           "id": "1",
-           "title": "Java 기초 강의",
-           "description": "Java를 배우는 기초 강의입니다.",
-           "price": 10000
+             "productId": 2,
+             "productName": "일타강사 류현진의 기초 Git 강의!   (수정본)",
+             "description": "Git에 기초를 배울 수 있는 매우 훌륭한 강의입니다!\n\n\n(내용이 수정되었습니다!)",
+             "price": 35000,
+             "userId": 10,
+             "category": "Git",
+             "active": true,
+             "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
+             "username": "류현진"
          },
          {
-           "id": "2",
-           "title": "Spring Boot 강의",
-           "description": "Spring Boot로 웹 애플리케이션을 개발하는 강의입니다.",
-           "price": 20000
+             "productId": 5,
+             "productName": "일타강사 류현진의 기초 HTML 강의!",
+             "description": "초보자도 손쉽게 이해할 수 있는 HTML 특강입니다.",
+             "price": 25000,
+             "userId": 10,
+             "category": "HTML/CSS",
+             "active": true,
+             "filePath": "https://www.youtube.com/watch?v=FV32OM3B49c&list=PLI33CnBTx2MYe0rqJ2nMSbfUqLmWIJtaV",
+             "username": "류현진"
          }
-       ]
+         ]
        ```
   
   2. **강의 상세 조회**
-     - URL: `GET /api/lectures/{lectureId}`
+     - URL: `GET /course-service/courses/info/{courseID}`
      - Response (성공 - 200 OK):
        ```json
        {
-         "id": "1",
-         "title": "Java 기초 강의",
-         "description": "Java를 배우는 기초 강의입니다.",
-         "price": 10000,
-         "videoUrl": "https://s3.amazonaws.com/video/java_intro.mp4",
-         "comments": [
-           {
-             "id": "101",
-             "userId": "12345",
-             "content": "이 강의 정말 유익했어요!",
-             "createdAt": "2025-05-12T10:00:00",
-             "replies": [
-               {
-                 "id": "201",
-                 "userId": "67890",
-                 "content": "감사합니다! 더 많은 강의 준비 중입니다.",
-                 "createdAt": "2025-05-12T10:15:00"
-               }
-             ]
-           }
-         ]
+         "productId": 2,
+         "productName": "일타강사 류현진의 기초 Git 강의!",
+         "description": "Git에 기초를 배울 수 있는 매우 훌륭한 강의입니다!\n\n\n(내용이 수정되었습니다!)",
+         "price": 35000,
+         "userId": 10,
+         "category": "Git",
+         "active": true,
+         "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
+         "username": "류현진"
        }
        ```
   
   3. **강의 등록 (강사 전용)**
-    - URL: `POST /api/lectures`
+    - URL: `POST /course-service/courses/createCourse`
     - Request Body:
       ```json
       {
-        "title": "Spring Boot 입문",
+        "productName": "Spring Boot 입문",
         "description": "Spring Boot 기본 개념 강의입니다.",
         "price": 15000,
-        "category": "백엔드",
-        "instructorId": "999"
+        "category": "Spring",
+        "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=8s&ab_channel=%EC%A1%B0%EC%BD%94%EB%94%A9JoCoding"
       }
       ```
     - Response (성공 - 201 Created):
       ```json
       {
-        "id": "101",
-        "title": "Spring Boot 입문",
-        "instructorId": "999"
+        "productId": "12",
+        "productName": "Spring Boot 입문",
+        "description": "Spring Boot 기본 개념 강의입니다.",
+        "price": 15000,
+        "userId": "12",
+        "category": "Spring",
+        "active": true,
+        "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=8s&ab_channel=%EC%A1%B0%EC%BD%94%EB%94%A9JoCoding",
+        "username": "정승제"
       }
       ```
      

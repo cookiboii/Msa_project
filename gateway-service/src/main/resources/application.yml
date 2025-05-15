@@ -12,6 +12,7 @@ spring:
           "[/**]":
             allowed-origins:
               - "http://localhost:5173"
+              - "http://mymsaproject-playdata-bucket.s3-website.ap-northeast-2.amazonaws.com"
             allowed-methods:
               - GET
               - POST
@@ -60,3 +61,10 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/post-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
+
+jwt:
+  expiration: 60
+  secretKey: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFx8wzt8PaigtMXpJHdIl6p4ILsLDasA==
+
+  secretKeyRt: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFx8wzt8PaigtMXpJHdIl6p4ILsLDasA==
+  expirationRt: 120

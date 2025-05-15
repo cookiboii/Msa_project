@@ -2,8 +2,8 @@ package com.playdata.gatewayservice.filter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -23,19 +23,22 @@ import java.util.List;
 @Slf4j
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
 
-    /*@Value("${jwt.secretKey}")*/
+    @Value("${jwt.secretKey}")
     private String secretKey;
 
     private final List<String> allowUrl = Arrays.asList(
-            "/user/create", "/user/doLogin", "/user/refresh",
-            "/product/list", "/user/health-check", "/demo/no-circuit",
-            "/demo/with-circuit"
+            "/user/create", "/user/login",
+            "/course-service/courses/list", "/courses/list", "/course-service/courses/info", "//courses/info",
+            "/course-service/courses/page/*", "/courses/page/*", "/course-service/courses/category/**", "/courses/category/**",
+            "/course-service/courses/search", "/courses/search", "/course-service/courses/info/*", "/courses/info/*",
+            "/post/list", "/post/comment/find", "/course-service/courses/all", "/courses/all", "/"
     );
 
     @Override
     public GatewayFilter apply(Object config) {
         return (exchange, chain) -> {
             String path = exchange.getRequest().getURI().getPath();
+            log.info("요청 path: {}", path); // 추가
             AntPathMatcher antPathMatcher = new AntPathMatcher();
 
             // 허용 url 리스트를 순회하면서 지금 들어온 요청 url과 하나라도 일치하면 true 리턴
@@ -44,7 +47,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
                     .anyMatch(url -> antPathMatcher.match(url, path));
             log.info("isAllowed:{}", isAllowed);
 
-            if (isAllowed || path.startsWith("/")) {
+            if (isAllowed || path.startsWith("/actuator")) {
                 // 허용 url이 맞다면 그냥 통과~
                 log.info("gateway filter 통과!");
                 return chain.filter(exchange);
@@ -54,6 +57,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
             String authorizationHeader
                     = exchange.getRequest()
                     .getHeaders().getFirst("Authorization");
+            log.info("authorizationHeader: {}", authorizationHeader);
 
             if (authorizationHeader == null
                     || !authorizationHeader.startsWith("Bearer ")) {
@@ -64,6 +68,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
             // Bearer 떼기
             String token
                     = authorizationHeader.replace("Bearer ", "");
+            log.info("token: {}", token);
 
             // JWT 토큰 유효성 검증 및 클레임 얻어내기
             Claims claims = validateJwt(token);

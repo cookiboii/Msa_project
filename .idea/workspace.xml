@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 삭제 관련 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +35,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/order-service">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/course-service">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -55,6 +58,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -62,6 +67,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;vbnmopas&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cookiboii/Msa_project.git&quot;,
+    &quot;accountId&quot;: &quot;ce047064-951f-49a2-b7d9-7e0066664a20&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -73,26 +90,77 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OrderServiceApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ProductRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.config-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.course-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.discovery-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.gateway-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.order-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.postservice 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.user-service 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CourseServiceApplication (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CourseServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DiscoveryServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PostserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/orderservice&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/playdata/Msa_project/order-service/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;,
+      &quot;mysql_aurora&quot;
+    ]
   }
 }</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\playdata\Msa_project\order-service\src\main\resources" />
+      <recent name="C:\playdata\Msa_project\order-service\src\main\java\com\playdata\userservice" />
+      <recent name="C:\playdata\Msa_project\user-service\src\test\java\com\playdata\userservice\user" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\playdata\Msa_project\order-service\src\main\java\com\playdata\orderservice\common" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.playdata.orderservice.ordering.dto" />
+      <recent name="com.springstudy.courseservice.common.dto" />
+      <recent name="com.playdata.orderservice.client" />
+      <recent name="com.playdata.orderservice.common.dto" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -103,10 +171,53 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
-    <configuration name="CourseServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
+    <configuration name="OrderServiceApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/order-service" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.playdata.orderservice.OrderServiceApplicationTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="config-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.configservice.ConfigServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.playdata.configservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CourseServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="course-service.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.courseservice.CourseServiceApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.springstudy.courseservice.CourseServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.springstudy.courseservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -118,16 +229,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="gateway-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.gatewayservice.GatewayServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.playdata.gatewayservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="OrderServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="order-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.orderservice.OrderServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.playdata.orderservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -146,6 +269,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
+        <item itemvalue="Spring Boot.ConfigServiceApplication" />
+        <item itemvalue="Spring Boot.OrderServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Gradle.OrderServiceApplicationTests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -169,10 +301,167 @@
       <workItem from="1746749459059" duration="299000" />
       <workItem from="1746750382774" duration="2227000" />
       <workItem from="1746752783471" duration="688000" />
+      <workItem from="1746869124850" duration="9515000" />
+      <workItem from="1747008025846" duration="23568000" />
+      <workItem from="1747048484986" duration="7265000" />
+      <workItem from="1747094767760" duration="28293000" />
+      <workItem from="1747150734031" duration="13276000" />
+      <workItem from="1747181040794" duration="14983000" />
+      <workItem from="1747225117423" duration="7136000" />
+      <workItem from="1747267933274" duration="15295000" />
     </task>
+    <task id="LOCAL-00001" summary="강의 구매 기능 추가">
+      <option name="closed" value="true" />
+      <created>1746874114389</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746874114389</updated>
+    </task>
+    <task id="LOCAL-00002" summary="강의 구매 취소 기능 추가">
+      <option name="closed" value="true" />
+      <created>1746875553601</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746875553601</updated>
+    </task>
+    <task id="LOCAL-00003" summary="관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중">
+      <option name="closed" value="true" />
+      <created>1747009289221</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747009289221</updated>
+    </task>
+    <task id="LOCAL-00004" summary="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현">
+      <option name="closed" value="true" />
+      <created>1747016867590</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747016867590</updated>
+    </task>
+    <task id="LOCAL-00005" summary="관리자용 강의 구매 내역 조회에서 feign client로 product 정보 가져오도록 수정">
+      <option name="closed" value="true" />
+      <created>1747017578147</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747017578147</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit">
+      <option name="closed" value="true" />
+      <created>1747017996785</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747017996785</updated>
+    </task>
+    <task id="LOCAL-00007" summary="user token으로 order 동작하게 수정">
+      <option name="closed" value="true" />
+      <created>1747025631094</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747025631094</updated>
+    </task>
+    <task id="LOCAL-00008" summary="관리자용 구매 내역에서 user 정보 같이 리턴 (수정중)">
+      <option name="closed" value="true" />
+      <created>1747031034382</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747031034382</updated>
+    </task>
+    <task id="LOCAL-00009" summary="commit">
+      <option name="closed" value="true" />
+      <created>1747102593295</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747102593295</updated>
+    </task>
+    <task id="LOCAL-00010" summary="강사의 본인 강의 주문 내역 조회 수정">
+      <option name="closed" value="true" />
+      <created>1747114856102</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747114856102</updated>
+    </task>
+    <task id="LOCAL-00011" summary="강사의 본인 강의 주문 내역 조회 수정3">
+      <option name="closed" value="true" />
+      <created>1747134322225</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747134322225</updated>
+    </task>
+    <task id="LOCAL-00012" summary="내가 학습 가능한 강의 정보 조회 기능 추가">
+      <option name="closed" value="true" />
+      <created>1747155660087</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747155660087</updated>
+    </task>
+    <task id="LOCAL-00013" summary="pageable로 강의 목록(기본 페이지) 조회">
+      <option name="closed" value="true" />
+      <created>1747194747771</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747194747771</updated>
+    </task>
+    <task id="LOCAL-00014" summary="config 병합 후 오류 수정">
+      <option name="closed" value="true" />
+      <created>1747242287190</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1747242287190</updated>
+    </task>
+    <task id="LOCAL-00015" summary="강의 삭제 관련 수정">
+      <option name="closed" value="true" />
+      <created>1747282293913</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1747282293913</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="강의 구매 기능 추가" />
+    <MESSAGE value="강의 구매 취소 기능 추가" />
+    <MESSAGE value="관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중" />
+    <MESSAGE value="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현" />
+    <MESSAGE value="관리자용 강의 구매 내역 조회에서 feign client로 product 정보 가져오도록 수정" />
+    <MESSAGE value="user token으로 order 동작하게 수정" />
+    <MESSAGE value="관리자용 구매 내역에서 user 정보 같이 리턴 (수정중)" />
+    <MESSAGE value="commit" />
+    <MESSAGE value="강사의 본인 강의 주문 내역 조회 수정" />
+    <MESSAGE value="강사의 본인 강의 주문 내역 조회 수정3" />
+    <MESSAGE value="내가 학습 가능한 강의 정보 조회 기능 추가" />
+    <MESSAGE value="pageable로 강의 목록(기본 페이지) 조회" />
+    <MESSAGE value="config 병합 후 오류 수정" />
+    <MESSAGE value="강의 삭제 관련 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="강의 삭제 관련 수정" />
   </component>
 </project>

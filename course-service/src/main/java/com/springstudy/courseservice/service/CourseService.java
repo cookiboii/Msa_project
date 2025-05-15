@@ -12,6 +12,7 @@ import com.springstudy.courseservice.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -61,6 +62,7 @@ public class CourseService {
     public List<CourseResponse> getAllCourses(Pageable pageable) {
         return courseRepository.findAll(pageable)
                 .stream()
+                .filter(Course::isActive)
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
@@ -69,6 +71,9 @@ public class CourseService {
     public CourseResponse getCourseById(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new CourseNotFoundException(id));
+        if(!course.isActive()) {
+            throw new CourseNotFoundException(id);
+        }
         return toResponse(course);
     }
 
@@ -76,7 +81,13 @@ public class CourseService {
     public Page<CourseResponse> getCoursesByPage(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> coursePage = courseRepository.findAll(pageRequest);
-        return coursePage.map(this::toResponse);
+
+        List<CourseResponse> filtered = coursePage.stream()
+                .filter(Course::isActive) // active == true인 것만
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(filtered, pageRequest, filtered.size());
     }
 
     @Transactional(readOnly = true)
@@ -86,13 +97,20 @@ public class CourseService {
         int size = 12;
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
-        return byCategory.map(this::toResponse);
+
+        List<CourseResponse> filtered = byCategory.stream()
+                .filter(Course::isActive)
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(filtered, pageRequest, filtered.size());
     }
 
     @Transactional(readOnly = true)
     public List<CourseResponse> searchCourses(String keyword) {
         return courseRepository.findByProductNameContaining(keyword)
                 .stream()
+                .filter(Course::isActive)
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
@@ -136,6 +154,7 @@ public class CourseService {
     public List<CourseResponse> getCourseById(List<Long> ids) {
         return ids.stream()
                 .map(id -> courseRepository.findById(id)
+                        .filter(Course::isActive) // active == true인 경우만 통과
                         .map(this::toResponse)
                         .orElseThrow(() -> new CourseNotFoundException(id)))
                 .collect(Collectors.toList());
@@ -163,6 +182,8 @@ public class CourseService {
     public List<Course> findByUserId(Long userId) {
 
         List<Course> byUserId = courseRepository.findByUserId(userId);
-        return byUserId;
+        return byUserId.stream()
+                .filter(Course::isActive) // 또는 course -> course.getActive()
+                .collect(Collectors.toList());
     }
 }

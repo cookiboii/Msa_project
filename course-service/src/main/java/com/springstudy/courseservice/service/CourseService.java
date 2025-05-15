@@ -153,6 +153,7 @@ public class CourseService {
                 .category(course.getCategory())
                 .active(course.isActive())
                 .filePath(course.getFilePath())
+                .username(username)
                 .build();
     }
 

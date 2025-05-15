@@ -25,6 +25,7 @@ public class CourseResponse {
                 ", prodName='" + productName + '\'' +
                 ", category='" + category + '\'' +
                 ", filePath='" + filePath + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 

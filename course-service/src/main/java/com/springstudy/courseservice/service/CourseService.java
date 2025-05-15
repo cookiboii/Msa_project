@@ -81,7 +81,7 @@ public class CourseService {
 
     @Transactional(readOnly = true)
     public Page<CourseResponse> getCoursesByCategory(String category, int page, int size) {
-        if(category.equals("HTML")){
+        if (category.equals("HTML")) {
             category = "HTML/CSS";
         }
         PageRequest pageRequest = PageRequest.of(page, size);
@@ -128,7 +128,10 @@ public class CourseService {
             throw new UnauthorizedCourseAccessException("해당 강의의 삭제 권한이 없습니다!");
         }
 
-        courseRepository.delete(course);
+//        courseRepository.delete(course);
+
+        course.setActive(false);
+        courseRepository.save(course);
         log.info("Course deleted: {}", productId);
     }
 

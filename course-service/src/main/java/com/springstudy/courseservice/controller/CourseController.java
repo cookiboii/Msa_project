@@ -85,7 +85,7 @@ public class CourseController {
     }
 
     // 강의 삭제
-    @DeleteMapping("/delete/{id}")
+    @PatchMapping("/delete/{id}")
     public ResponseEntity<?> deleteCourse(@PathVariable Long id,
                                           @AuthenticationPrincipal TokenUserInfo userInfo) {
         courseService.deleteCourse(id, userInfo);

@@ -58,8 +58,8 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public List<CourseResponse> getAllCourses() {
-        return courseRepository.findAll()
+    public List<CourseResponse> getAllCourses(Pageable pageable) {
+        return courseRepository.findAll(pageable)
                 .stream()
                 .map(this::toResponse)
                 .collect(Collectors.toList());

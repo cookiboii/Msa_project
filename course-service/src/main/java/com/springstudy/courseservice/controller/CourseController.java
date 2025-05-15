@@ -77,7 +77,7 @@ public class CourseController {
 
 
     // 강의 수정
-    @PutMapping("/edit/{id}")
+    @PostMapping("/edit/{id}")
     public ResponseEntity<?> updateCourse(@PathVariable Long id,
                                           @RequestBody CourseRequest request,
                                           @AuthenticationPrincipal TokenUserInfo userInfo) {

@@ -10,6 +10,7 @@ import lombok.*;
 @Setter
 @Builder
 public class UserInfoResponseDto {
+    private Long userId;
     private String username;
     private String email;
     private Role role;

@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="course controller 수정">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/gateway-service.main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/order-service.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/order-service.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/user-service.main.iml" beforeDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 삭제 관련 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,9 +13,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$/config-service">
-      <ProjectState />
-    </projectState>
     <projectState path="$PROJECT_DIR$/course-service">
       <ProjectState />
     </projectState>
@@ -85,7 +76,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/cookiboii/Msa_project.git&quot;,
-    &quot;accountId&quot;: &quot;40efe769-1992-43bf-a208-5eefd6505775&quot;
+    &quot;accountId&quot;: &quot;ce047064-951f-49a2-b7d9-7e0066664a20&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -129,10 +120,9 @@
     &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.PostserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;config&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/orderservice&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Msa_project/config-service/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/playdata/Msa_project/order-service/src/main/resources&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -157,7 +147,6 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Msa_project\config-service\src\main\resources" />
       <recent name="C:\playdata\Msa_project\order-service\src\main\resources" />
       <recent name="C:\playdata\Msa_project\order-service\src\main\java\com\playdata\userservice" />
       <recent name="C:\playdata\Msa_project\user-service\src\test\java\com\playdata\userservice\user" />
@@ -182,7 +171,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CourseServiceApplication (1)">
+  <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
     <configuration name="OrderServiceApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -283,9 +272,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
+        <item itemvalue="Spring Boot.ConfigServiceApplication" />
         <item itemvalue="Spring Boot.OrderServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
-        <item itemvalue="Spring Boot.ConfigServiceApplication" />
         <item itemvalue="Gradle.OrderServiceApplicationTests" />
       </list>
     </recent_temporary>
@@ -293,12 +282,11 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="" />
@@ -319,8 +307,8 @@
       <workItem from="1747094767760" duration="28293000" />
       <workItem from="1747150734031" duration="13276000" />
       <workItem from="1747181040794" duration="14983000" />
-      <workItem from="1747225117423" duration="7037000" />
-      <workItem from="1747269592980" duration="10365000" />
+      <workItem from="1747225117423" duration="7136000" />
+      <workItem from="1747267933274" duration="15295000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -426,21 +414,21 @@
       <option name="project" value="LOCAL" />
       <updated>1747194747771</updated>
     </task>
-    <task id="LOCAL-00014" summary="course에서 강사명 가져오기">
+    <task id="LOCAL-00014" summary="config 병합 후 오류 수정">
       <option name="closed" value="true" />
-      <created>1747274621571</created>
+      <created>1747242287190</created>
       <option name="number" value="00014" />
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
-      <updated>1747274621571</updated>
+      <updated>1747242287190</updated>
     </task>
-    <task id="LOCAL-00015" summary="course controller 수정">
+    <task id="LOCAL-00015" summary="강의 삭제 관련 수정">
       <option name="closed" value="true" />
-      <created>1747281624873</created>
+      <created>1747282293913</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1747281624873</updated>
+      <updated>1747282293913</updated>
     </task>
     <option name="localTasksCounter" value="16" />
     <servers />
@@ -472,8 +460,8 @@
     <MESSAGE value="강사의 본인 강의 주문 내역 조회 수정3" />
     <MESSAGE value="내가 학습 가능한 강의 정보 조회 기능 추가" />
     <MESSAGE value="pageable로 강의 목록(기본 페이지) 조회" />
-    <MESSAGE value="course에서 강사명 가져오기" />
-    <MESSAGE value="course controller 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="course controller 수정" />
+    <MESSAGE value="config 병합 후 오류 수정" />
+    <MESSAGE value="강의 삭제 관련 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="강의 삭제 관련 수정" />
   </component>
 </project>

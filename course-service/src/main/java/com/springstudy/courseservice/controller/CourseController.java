@@ -107,6 +107,7 @@ public class CourseController {
         return ResponseEntity.ok(resDto);
     }
 
+
     // 강사의 본인 강의 정보 리턴하는 메서드
     @PostMapping("/findCourses")
     public ResponseEntity<?> getProductsByUserId(@RequestBody Map<String, Long> user) {

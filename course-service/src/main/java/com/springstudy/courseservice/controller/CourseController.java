@@ -57,9 +57,8 @@ public class CourseController {
 
     // 카테고리별 조회
     @GetMapping("/category/{category}")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByCategory(@PathVariable String category,
-                                                                     @RequestParam("page") int page, @RequestParam("size") int size) {
-        return ResponseEntity.ok(courseService.getCoursesByCategory(category, page, size));
+    public ResponseEntity<Page<CourseResponse>> getCoursesByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(courseService.getCoursesByCategory(category));
     }
 
     // 검색

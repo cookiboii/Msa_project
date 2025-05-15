@@ -80,10 +80,10 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CourseResponse> getCoursesByCategory(String category, int page, int size) {
-        if (category.equals("HTML")) {
-            category = "HTML/CSS";
-        }
+    public Page<CourseResponse> getCoursesByCategory(String category) {
+        int page = 0;
+//        page = page - 1;
+        int size = 12;
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
         return byCategory.map(this::toResponse);
@@ -128,10 +128,7 @@ public class CourseService {
             throw new UnauthorizedCourseAccessException("해당 강의의 삭제 권한이 없습니다!");
         }
 
-//        courseRepository.delete(course);
-
-        course.setActive(false);
-        courseRepository.save(course);
+        courseRepository.delete(course);
         log.info("Course deleted: {}", productId);
     }
 

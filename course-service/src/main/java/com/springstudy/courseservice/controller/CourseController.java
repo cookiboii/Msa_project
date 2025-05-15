@@ -57,9 +57,8 @@ public class CourseController {
 
     // 카테고리별 조회
     @GetMapping("/category/{category}")
-    public ResponseEntity<Page<CourseResponse>> getCoursesByCategory(@PathVariable String category,
-                                                                     @RequestParam("page") int page, @RequestParam("size") int size) {
-        return ResponseEntity.ok(courseService.getCoursesByCategory(category, page, size));
+    public ResponseEntity<Page<CourseResponse>> getCoursesByCategory(@PathVariable String category) {
+        return ResponseEntity.ok(courseService.getCoursesByCategory(category));
     }
 
     // 검색
@@ -77,7 +76,7 @@ public class CourseController {
 
 
     // 강의 수정
-    @PutMapping("/edit/{id}")
+    @PostMapping("/edit/{id}")
     public ResponseEntity<?> updateCourse(@PathVariable Long id,
                                           @RequestBody CourseRequest request,
                                           @AuthenticationPrincipal TokenUserInfo userInfo) {
@@ -106,6 +105,7 @@ public class CourseController {
 
         return ResponseEntity.ok(resDto);
     }
+
 
     // 강사의 본인 강의 정보 리턴하는 메서드
     @PostMapping("/findCourses")

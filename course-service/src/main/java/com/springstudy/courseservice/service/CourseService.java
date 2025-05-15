@@ -182,6 +182,8 @@ public class CourseService {
     public List<Course> findByUserId(Long userId) {
 
         List<Course> byUserId = courseRepository.findByUserId(userId);
-        return byUserId;
+        return byUserId.stream()
+                .filter(Course::isActive) // 또는 course -> course.getActive()
+                .collect(Collectors.toList());
     }
 }

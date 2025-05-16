@@ -257,15 +257,43 @@
 
 ### 🔸결제 서비스 API
   1. **강의 구매**
-     - URL: `POST /api/orders`
+     - URL: `POST /api/order/create`
      - Request Body:
        ```json
+       [
+          {"productId": 3},
+          {"productId": 4}
+       ]
+       ```
+     - Response (성공 - 201 Created):
+       ```json
        {
-         "lectureId": "1",
-         "userId": "12345",
-         "paymentMethod": "카드"
+         "orderId": "98765",
+         "status": "SUCCESS",
+         "totalPrice": 10000
        }
        ```
+       
+  2. **강의 구매 취소**
+     - URL: `POST /api/order/cancel/4`
+     - Response (성공 - 201 Created):
+       ```json
+       {
+         "orderId": "98765",
+         "status": "SUCCESS",
+         "totalPrice": 10000
+       }
+       ```
+       
+ 3. **강의 구매 조회 (학생용)**
+     - URL: `POST /api/order/my-order`
+     - Response (성공 - 201 Created):
+       ```json
+
+       ```
+
+    4. **강의 구매 조회 (강사용)**
+     - URL: `POST /api/order/my-course-order`
      - Response (성공 - 201 Created):
        ```json
        {

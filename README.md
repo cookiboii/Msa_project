@@ -331,25 +331,25 @@
      - URL: `POST /api/order/my-course-order`
      - Response (성공 - 201 Created):
        ```json
-      {
-          "statusCode": 200,
-          "statusMessage": "전체 주문 내역 조회 완료",
-          "result": [
-              {
-                  "id": 2,
-                  "userEmail": "do@naver.com",
-                  "userId": 2,
-                  "orderStatus": "CANCELED",
-                  "productId": 2,
-                  "productName": "일타강사 류현진의 기초 Git 강의!   (수정본)",
-                  "orderDate": "2025-05-15",
-                  "category": "Git",
-                  "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
-                  "active": true
-              },
-    
-          ]
-      }
+        {
+            "statusCode": 200,
+            "statusMessage": "전체 주문 내역 조회 완료",
+            "result": [
+                {
+                    "id": 2,
+                    "userEmail": "do@naver.com",
+                    "userId": 2,
+                    "orderStatus": "CANCELED",
+                    "productId": 2,
+                    "productName": "일타강사 류현진의 기초 Git 강의!   (수정본)",
+                    "orderDate": "2025-05-15",
+                    "category": "Git",
+                    "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
+                    "active": true
+                },
+      
+            ]
+        }
        ```
 
 ### 3-2. 서비스 간 통신 설계

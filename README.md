@@ -268,27 +268,27 @@
      - Response (성공 - 201 Created):
        ```json
        {
-    "statusCode": 201,
-    "statusMessage": "정상 주문 완료",
-    "result": [
-        {
-            "id": 9,
-            "userId": 2,
-            "userEmail": "do@naver.com",
-            "productId": 3,
-            "orderStatus": "ORDERED",
-            "orderDate": "2025-05-18"
-        },
-        {
-            "id": 10,
-            "userId": 2,
-            "userEmail": "do@naver.com",
-            "productId": 4,
-            "orderStatus": "ORDERED",
-            "orderDate": "2025-05-18"
-        }
-    ]
-}
+          "statusCode": 201,
+          "statusMessage": "정상 주문 완료",
+          "result": [
+              {
+                  "id": 9,
+                  "userId": 2,
+                  "userEmail": "do@naver.com",
+                  "productId": 3,
+                  "orderStatus": "ORDERED",
+                  "orderDate": "2025-05-18"
+              },
+              {
+                  "id": 10,
+                  "userId": 2,
+                  "userEmail": "do@naver.com",
+                  "productId": 4,
+                  "orderStatus": "ORDERED",
+                  "orderDate": "2025-05-18"
+              }
+          ]
+       }
        ```
        
   2. **강의 구매 취소**
@@ -347,7 +347,7 @@
                   "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
                   "active": true
               },
-             ...
+    
           ]
       }
        ```

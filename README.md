@@ -268,10 +268,27 @@
      - Response (성공 - 201 Created):
        ```json
        {
-         "orderId": "98765",
-         "status": "SUCCESS",
-         "totalPrice": 10000
-       }
+    "statusCode": 201,
+    "statusMessage": "정상 주문 완료",
+    "result": [
+        {
+            "id": 9,
+            "userId": 2,
+            "userEmail": "do@naver.com",
+            "productId": 3,
+            "orderStatus": "ORDERED",
+            "orderDate": "2025-05-18"
+        },
+        {
+            "id": 10,
+            "userId": 2,
+            "userEmail": "do@naver.com",
+            "productId": 4,
+            "orderStatus": "ORDERED",
+            "orderDate": "2025-05-18"
+        }
+    ]
+}
        ```
        
   2. **강의 구매 취소**
@@ -279,9 +296,9 @@
      - Response (성공 - 201 Created):
        ```json
        {
-         "orderId": "98765",
-         "status": "SUCCESS",
-         "totalPrice": 10000
+          "statusCode": 200,
+          "statusMessage": "주문 취소 완료",
+          "result": 10
        }
        ```
        
@@ -289,18 +306,50 @@
      - URL: `POST /api/order/my-order`
      - Response (성공 - 201 Created):
        ```json
-
+       {
+           "statusCode": 200,
+           "statusMessage": "정상 조회 완료",
+           "result": [
+               {
+                   "id": 2,
+                   "userEmail": "do@naver.com",
+                   "userId": 2,
+                   "orderStatus": "CANCELED",
+                   "productId": 2,
+                   "productName": "일타강사 류현진의 기초 Git 강의!   (수정본)",
+                   "orderDate": "2025-05-15",
+                   "category": "Git",
+                   "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
+                   "active": true
+               },
+               ...
+           ]
+       }
        ```
 
     4. **강의 구매 조회 (강사용)**
      - URL: `POST /api/order/my-course-order`
      - Response (성공 - 201 Created):
        ```json
-       {
-         "orderId": "98765",
-         "status": "SUCCESS",
-         "totalPrice": 10000
-       }
+      {
+          "statusCode": 200,
+          "statusMessage": "전체 주문 내역 조회 완료",
+          "result": [
+              {
+                  "id": 2,
+                  "userEmail": "do@naver.com",
+                  "userId": 2,
+                  "orderStatus": "CANCELED",
+                  "productId": 2,
+                  "productName": "일타강사 류현진의 기초 Git 강의!   (수정본)",
+                  "orderDate": "2025-05-15",
+                  "category": "Git",
+                  "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
+                  "active": true
+              },
+             ...
+          ]
+      }
        ```
 
 ### 3-2. 서비스 간 통신 설계

@@ -218,13 +218,14 @@
      
 
 ### 🔸댓글 서비스 API
-  1. **강의 댓글 달기**
-     - URL: `POST /api/lectures/{lectureId}/comments`
+  1. **강의 질문 달기**
+     - URL: `POST /api/post/create`
      - Request Body:
        ```json
        {
          "userId": "12345",
-         "content": "이 강의 정말 유익했어요!"
+         "title": "강의에 대한 질문이 있습니다!",
+         "content": "강의에 대한 질문에 대한 내용!"
        }
        ```
      - Response (성공 - 201 Created):
@@ -238,7 +239,7 @@
        ```
   
   2. **강사 댓글에 답글 달기**
-     - URL: `POST /api/comments/{commentId}/replies`
+     - URL: `POST /api/post/comment/create`
      - Request Body:
        ```json
        {
@@ -255,6 +256,7 @@
          "createdAt": "2025-05-12T10:15:00"
        }
        ```
+
 
 ### 🔸결제 서비스 API
   1. **강의 구매**

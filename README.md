@@ -201,6 +201,7 @@
       }
       ```
     - Response (성공 - 201 Created):
+    
       ```json
       {
         "productId": "12",
@@ -347,7 +348,7 @@
                     "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
                     "active": true
                 },
-      
+                ...
             ]
         }
        ```

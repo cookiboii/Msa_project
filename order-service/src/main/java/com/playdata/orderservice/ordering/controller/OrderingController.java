@@ -90,5 +90,15 @@ public class OrderingController {
         return ResponseEntity.ok(resDto);
     }
 
+    // 강의 평가 등록 시, 수강한 유저만 등록이 가능하게끔 하기 위해 확인 하는 로직
+    // 유사 로직이 있지만, feign 전용이라서 따로 선언함.
+    @GetMapping("/orderduser")
+    public CommonResDto<?> getOrderedUser(@RequestParam Long userId) {
+        List<Long> myOrdered = orderingService.findMyOrdered(userId);
+
+        return new CommonResDto<>(HttpStatus.FOUND, "모든 강의 찾음", myOrdered);
+    }
+
+
 
 }

@@ -2,7 +2,6 @@ package com.playdata.orderservice.ordering.service;
 
 import com.playdata.orderservice.client.ProductServiceClient;
 import com.playdata.orderservice.client.UserServiceClient;
-import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
 import com.playdata.orderservice.ordering.dto.*;
@@ -241,4 +240,13 @@ public class OrderingService {
     }
 
 
+    // eval-service로 부터 온 유저의 모든 주문 내역을 리턴하기 위한 메소드
+    public List<Long> findMyOrdered(Long userId) {
+
+        List<Long> prodList = orderingRepository.findByUserId(userId).stream().map(
+                        Ordering::getProductId)
+                .collect(Collectors.toList());
+
+        return prodList;
+    }
 }

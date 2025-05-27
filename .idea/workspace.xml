@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="로컬에서 수행하게끔 코드 수정(아직 확인 안함.)&#10;yml파일은 각자 로컬에 맞게 수정하셔야 합니다!">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 평가, eval-service 추가" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -298,7 +289,7 @@
       <workItem from="1748318985474" duration="2847000" />
       <workItem from="1748322204133" duration="191000" />
       <workItem from="1748324044590" duration="2966000" />
-      <workItem from="1748327936216" duration="9000" />
+      <workItem from="1748327936216" duration="344000" />
     </task>
     <task id="LOCAL-00001" summary="post-service 초기 커밋">
       <option name="closed" value="true" />
@@ -548,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747879702363</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="강의 평가, eval-service 추가">
+      <option name="closed" value="true" />
+      <created>1748328072591</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1748328072591</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,7 +564,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="my_prac" />
+                        <option value="origin/new_start" />
                       </list>
                     </value>
                   </entry>
@@ -578,7 +577,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="post-service 초기 수정 커밋" />
     <MESSAGE value="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음" />
     <MESSAGE value="post-service 구현중" />
     <MESSAGE value="order-service 병합 완료" />
@@ -603,6 +601,7 @@
     <MESSAGE value="active가 false인 강의들은 프론트로 리턴되지 않게 수정" />
     <MESSAGE value="배포하자!" />
     <MESSAGE value="로컬에서 수행하게끔 코드 수정(아직 확인 안함.)&#10;yml파일은 각자 로컬에 맞게 수정하셔야 합니다!" />
-    <option name="LAST_COMMIT_MESSAGE" value="로컬에서 수행하게끔 코드 수정(아직 확인 안함.)&#10;yml파일은 각자 로컬에 맞게 수정하셔야 합니다!" />
+    <MESSAGE value="강의 평가, eval-service 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="강의 평가, eval-service 추가" />
   </component>
 </project>

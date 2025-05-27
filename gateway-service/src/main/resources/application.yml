@@ -62,6 +62,16 @@ spring:
             - RewritePath=/post-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
 
+        - id: eval-service
+          uri: lb://EVAL-SERVICE
+          predicates:
+            - Path=/eval-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/eval-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+
 jwt:
   expiration: 60
   secretKey: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFx8wzt8PaigtMXpJHdIl6p4ILsLDasA==

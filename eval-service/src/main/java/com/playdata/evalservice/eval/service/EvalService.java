@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -154,6 +153,18 @@ public class EvalService {
         filteredList.stream().map(dto -> map.put(dto.getProductId(), dto.getAverageRating()));
 
         return map;
+    }
+
+    public EvalRateLenDto updateEvalInfo(Long prodId) {
+
+        EvalRateLenDto informs
+                = evalRepository.findRatingAndEvalCountByProductId(prodId);
+
+        if(informs == null) {
+            return null;
+        }
+
+        return informs;
     }
 
     private Long getUserId(TokenUserInfo userInfo) {

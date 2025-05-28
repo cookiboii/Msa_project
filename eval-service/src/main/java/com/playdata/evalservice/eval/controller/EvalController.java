@@ -3,6 +3,7 @@ package com.playdata.evalservice.eval.controller;
 import com.playdata.evalservice.common.auth.TokenUserInfo;
 import com.playdata.evalservice.common.dto.CommonResDto;
 import com.playdata.evalservice.eval.dto.EvalModiReqDto;
+import com.playdata.evalservice.eval.dto.EvalRateLenDto;
 import com.playdata.evalservice.eval.dto.EvalResDto;
 import com.playdata.evalservice.eval.dto.EvalSaveReqDto;
 import com.playdata.evalservice.eval.service.EvalService;
@@ -24,7 +25,7 @@ public class EvalController {
 
     private final EvalService evalService;
 
-    // 평가 생성 가능 여부 확인 로직
+    // 평가 생성 가능 여부 확인 로직 -> 평가 등록 버튼 클릭 시 이 메소드가 요청될 것임.
     @GetMapping("/can-create/{id}")
     public ResponseEntity<?> canEval(@AuthenticationPrincipal TokenUserInfo userInfo, @PathVariable(name = "id") Long evalId) {
         boolean canCreate = evalService.canEvalCourse(userInfo, evalId);
@@ -47,7 +48,7 @@ public class EvalController {
         
         // 이미 평가를 진행한 경우
         if(resDto == null) {
-            return new ResponseEntity<>(HttpStatus.LOCKED);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         
         CommonResDto<EvalResDto> dto =
@@ -127,9 +128,10 @@ public class EvalController {
 
     // 강의 리스트가 화면단에 출력될 때, 평점을 보여주기 위한 강의의 전체 평점 평균 조회
     // MainPage에서 course/all의 리턴값을 변형해서 prodId만을 담은 리스트를 받자.
-    // token 필요 없음
     // 이건 course-service에서 fegin으로 보내는 것이 좋을 듯
     // Map<강의 아이디, 평점>    --> 이건  프론트 단에서 보내는 요청을 받음
+
+    // token 필요 없음
     @PostMapping("/course-eval-rating")
     public ResponseEntity<?> findCoursesAverageRating(@RequestBody List<Long> prodIdList){
 
@@ -150,6 +152,16 @@ public class EvalController {
         return new CommonResDto<>(HttpStatus.FOUND, "해당 강의들의 모든 평균 평점을 찾음", ratings);
     }
 
+    // 평가 등록 및 수정 시 평가 개수와 평점의 평균을 최신화하는 로직
+    // token 필요 없음.
+    @GetMapping("/update-info/{id}")
+    public ResponseEntity<?> updateEvalInfo(@PathVariable(name = "id") Long prodId){
 
+        EvalRateLenDto evalInfo = evalService.updateEvalInfo(prodId);
+
+        CommonResDto<EvalRateLenDto> resDto = new CommonResDto<>(HttpStatus.FOUND, "해당 강의의 평점과 갯수", evalInfo);
+
+        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+    }
 
 }

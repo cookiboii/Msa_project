@@ -45,7 +45,8 @@ public class SecurityConfig {
                             "/user/refresh",
                             "/user/findByEmail",
                             "/user/health-check",
-                            "/actuator/**"
+                            "/actuator/**",
+                            "/order/ordereduser/*"
 //                            "/order/**"
                     )
                     .permitAll()

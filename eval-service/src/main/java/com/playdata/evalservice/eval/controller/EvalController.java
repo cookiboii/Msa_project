@@ -95,9 +95,9 @@ public class EvalController {
 
         EvalResDto evalResDto = evalService.findProdMyEval(userInfo, prodId);
 
-        CommonResDto<EvalResDto> commonResDto = new CommonResDto<>(HttpStatus.FOUND, "강의의 내 평가 조회", evalResDto);
+        CommonResDto<EvalResDto> commonResDto = new CommonResDto<>(HttpStatus.OK, "강의의 내 평가 조회", evalResDto);
 
-        return new ResponseEntity<>(commonResDto, HttpStatus.FOUND);
+        return new ResponseEntity<>(commonResDto, HttpStatus.OK);
     }
 
     // 마이페이지에서 평가 조회
@@ -108,9 +108,9 @@ public class EvalController {
         List<EvalResDto> myEvals =
                 evalService.findMyEval(userInfo);
 
-        CommonResDto<List<EvalResDto>> resDto = new CommonResDto<>(HttpStatus.FOUND, "유저의 모든 평가 찾음", myEvals);
+        CommonResDto<List<EvalResDto>> resDto = new CommonResDto<>(HttpStatus.OK, "유저의 모든 평가 찾음", myEvals);
 
-        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
     // 강의 디테일(강의 조회 시)에 대한 모든 평가 조회
@@ -121,9 +121,9 @@ public class EvalController {
 
         List<EvalResDto> foundEvals = evalService.findProdAllEval(prodId);
 
-        CommonResDto<List<EvalResDto>> resDto = new CommonResDto<>(HttpStatus.FOUND, "해당 강의의 모든 평가 찾음", foundEvals);
+        CommonResDto<List<EvalResDto>> resDto = new CommonResDto<>(HttpStatus.OK, "해당 강의의 모든 평가 찾음", foundEvals);
 
-        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
     // 강의 리스트가 화면단에 출력될 때, 평점을 보여주기 위한 강의의 전체 평점 평균 조회
@@ -137,9 +137,13 @@ public class EvalController {
 
         Map<Long, Double> ratings = evalService.findCourseRating(prodIdList);
 
-        CommonResDto<Map<Long, Double>> resDto = new CommonResDto<>(HttpStatus.FOUND, "해당 강의들의 모든 평균 평점을 찾음", ratings);
+        CommonResDto<Map<Long, Double>> resDto = new CommonResDto<>(HttpStatus.OK, "해당 강의들의 모든 평균 평점을 찾음", ratings);
 
-        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+        ratings.forEach((k,v)->{
+            log.info("key: {}, value: {}", k, v.toString());
+        });
+
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
     // 이건 course-service에서 feign으로 보낸다는 가정 하에 작성하는 로직
@@ -149,7 +153,7 @@ public class EvalController {
 
         Map<Long, Double> ratings = evalService.findCourseRating(prodIdList);
 
-        return new CommonResDto<>(HttpStatus.FOUND, "해당 강의들의 모든 평균 평점을 찾음", ratings);
+        return new CommonResDto<>(HttpStatus.OK, "해당 강의들의 모든 평균 평점을 찾음", ratings);
     }
 
     // 평가 등록 및 수정 시 평가 개수와 평점의 평균을 최신화하는 로직
@@ -159,9 +163,9 @@ public class EvalController {
 
         EvalRateLenDto evalInfo = evalService.updateEvalInfo(prodId);
 
-        CommonResDto<EvalRateLenDto> resDto = new CommonResDto<>(HttpStatus.FOUND, "해당 강의의 평점과 갯수", evalInfo);
+        CommonResDto<EvalRateLenDto> resDto = new CommonResDto<>(HttpStatus.OK, "해당 강의의 평점과 갯수", evalInfo);
 
-        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
 }

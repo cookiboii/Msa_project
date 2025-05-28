@@ -14,6 +14,6 @@ import java.util.List;
 public interface OrderServiceClient {
 
     @GetMapping("/order/ordereduser/{id}")
-    CommonResDto<List<Long>> userBuyIt(@PathVariable Long userId);
+    CommonResDto<List<Long>> userBuyIt(@PathVariable(name = "id") Long userId);
 
 }

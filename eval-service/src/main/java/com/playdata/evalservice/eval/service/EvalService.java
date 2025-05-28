@@ -5,9 +5,7 @@ import com.playdata.evalservice.client.OrderServiceClient;
 import com.playdata.evalservice.client.UserServiceClient;
 import com.playdata.evalservice.common.auth.TokenUserInfo;
 import com.playdata.evalservice.common.dto.CommonResDto;
-import com.playdata.evalservice.eval.dto.EvalResDto;
-import com.playdata.evalservice.eval.dto.EvalSaveReqDto;
-import com.playdata.evalservice.eval.dto.UserResDto;
+import com.playdata.evalservice.eval.dto.*;
 import com.playdata.evalservice.eval.entity.Eval;
 import com.playdata.evalservice.eval.repository.EvalRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,8 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -83,6 +84,77 @@ public class EvalService {
         return true;
     }
 
+
+    public EvalResDto modifyEval(TokenUserInfo userInfo, EvalModiReqDto modiDto) {
+
+        Long userId = getUserId(userInfo);
+
+        Eval foundEval = evalRepository.findById(modiDto.getEvalId()).orElseThrow(() -> {
+            return new EntityNotFoundException("없는 평가입니다.");
+        });
+
+        // 수정을 요청한 유저가 평가를 작성한 유저와 다른 경우
+        if(!foundEval.getUserId().equals(userId)) {
+            return null;
+        }
+        foundEval.setContent(modiDto.getContent());
+        foundEval.setRating(modiDto.getRating());
+
+        return evalRepository.save(foundEval).fromEntity();
+
+    }
+
+
+    public List<EvalResDto> findMyEval(TokenUserInfo userInfo) {
+
+        Long userId = getUserId(userInfo);
+
+        List<Eval> myEvals = evalRepository.findByUserId(userId).orElseThrow(() -> {
+            return new EntityNotFoundException("해당 유저가 작성한 평가가 없습니다.");
+        });
+
+        return myEvals.stream().map(Eval::fromEntity).toList();
+    }
+
+
+    public EvalResDto findProdMyEval(TokenUserInfo userInfo, Long prodId) {
+
+        Long userId = getUserId(userInfo);
+
+        Eval myEval = evalRepository.findByProductIdAndUserId(prodId, userId)
+                .orElseThrow(() -> {
+                    return new EntityNotFoundException("해당 강의에 작성한 평가가 없습니다");
+                });
+
+        return myEval.fromEntity();
+
+    }
+
+    public List<EvalResDto> findProdAllEval(Long prodId) {
+
+        List<Eval> evalList = evalRepository.findByProductId(prodId).orElseThrow(() -> {
+            return new EntityNotFoundException("해당 강의의 평가가 없습니다");
+        });
+
+        List<EvalResDto> list = evalList.stream().map(Eval::fromEntity).toList();
+
+        return list;
+    }
+
+    public Map<Long, Double> findCourseRating(List<Long> prodIdList) {
+
+        List<ProductRatingAvgDto> ratingList = evalRepository.findAverageRatingGroupedByProduct();
+
+        // prodIdList에 포함된 productId만 필터링
+        List<ProductRatingAvgDto> filteredList = ratingList.stream()
+                .filter(dto -> prodIdList.contains(dto.getProductId()))
+                .toList();
+
+        Map<Long, Double> map = new HashMap<>();
+        filteredList.stream().map(dto -> map.put(dto.getProductId(), dto.getAverageRating()));
+
+        return map;
+    }
 
     private Long getUserId(TokenUserInfo userInfo) {
         String email = userInfo.getEmail();

@@ -10,18 +10,12 @@ import lombok.ToString;
 @Setter
 @ToString
 @Builder
-public class EvalResDto {
+public class EvalModiReqDto {
 
     private Long evalId;
-
-    private Long userId;
-
-    private Long productId;
 
     private String content;
 
     private double rating;
-
-
 
 }

@@ -32,6 +32,7 @@ public class Eval extends BaseTimeEntity {
 
     public EvalResDto fromEntity() {
         return EvalResDto.builder()
+                .evalId(evalId)
                 .rating(rating)
                 .content(content)
                 .productId(productId)

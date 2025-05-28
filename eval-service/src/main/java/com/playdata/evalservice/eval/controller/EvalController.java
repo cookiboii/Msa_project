@@ -2,9 +2,9 @@ package com.playdata.evalservice.eval.controller;
 
 import com.playdata.evalservice.common.auth.TokenUserInfo;
 import com.playdata.evalservice.common.dto.CommonResDto;
+import com.playdata.evalservice.eval.dto.EvalModiReqDto;
 import com.playdata.evalservice.eval.dto.EvalResDto;
 import com.playdata.evalservice.eval.dto.EvalSaveReqDto;
-import com.playdata.evalservice.eval.entity.Eval;
 import com.playdata.evalservice.eval.service.EvalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/eval")
@@ -22,7 +25,7 @@ public class EvalController {
     private final EvalService evalService;
 
     // 평가 생성 가능 여부 확인 로직
-    @GetMapping("/cancreate/{id}")
+    @GetMapping("/can-create/{id}")
     public ResponseEntity<?> canEval(@AuthenticationPrincipal TokenUserInfo userInfo, @PathVariable(name = "id") Long evalId) {
         boolean canCreate = evalService.canEvalCourse(userInfo, evalId);
 
@@ -36,7 +39,6 @@ public class EvalController {
 
 
     // 평가 생성
-
     @PostMapping("/create")
     public ResponseEntity<?> createEvaluation(@AuthenticationPrincipal TokenUserInfo userInfo,
                                               @RequestBody EvalSaveReqDto reqDto){
@@ -70,14 +72,84 @@ public class EvalController {
     }
     
     // 평가 수정
+    @PostMapping("/modify")
+    public ResponseEntity<?> modifyEvaluation(@AuthenticationPrincipal TokenUserInfo userInfo,
+                                              @RequestBody EvalModiReqDto modiDto){
 
-    // 내 평가 조회
-    
+        EvalResDto evalResDto = evalService.modifyEval(userInfo, modiDto);
+
+        if(evalResDto == null) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        CommonResDto<EvalResDto> commonResDto = new CommonResDto<>(HttpStatus.ACCEPTED, "평가 수정이 성공적으로 이루어졌습니다.", evalResDto);
+
+        return new ResponseEntity<>(commonResDto, HttpStatus.ACCEPTED);
+
+    }
+
+    // 강의의 모든 평가 조회 시 내 평가 조회
+    @GetMapping("/my-eval/{id}")
+    public ResponseEntity<?> myEval(@AuthenticationPrincipal TokenUserInfo userInfo,
+                                    @PathVariable(name="id") Long prodId){
+
+        EvalResDto evalResDto = evalService.findProdMyEval(userInfo, prodId);
+
+        CommonResDto<EvalResDto> commonResDto = new CommonResDto<>(HttpStatus.FOUND, "강의의 내 평가 조회", evalResDto);
+
+        return new ResponseEntity<>(commonResDto, HttpStatus.FOUND);
+    }
+
     // 마이페이지에서 평가 조회
 
-    // 강의 디테일에 대한 평가 조회
+    @GetMapping("/my-all-evals")
+    public ResponseEntity<?> findMyAllEval(@AuthenticationPrincipal TokenUserInfo userInfo){
+
+        List<EvalResDto> myEvals =
+                evalService.findMyEval(userInfo);
+
+        CommonResDto<List<EvalResDto>> resDto = new CommonResDto<>(HttpStatus.FOUND, "유저의 모든 평가 찾음", myEvals);
+
+        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+    }
+
+    // 강의 디테일(강의 조회 시)에 대한 모든 평가 조회
+    // 단일 강의의 모든 평가 조회
+    // token 필요 없음
+    @GetMapping("/course-all-eval/{id}")
+    public ResponseEntity<?> findCourseAllEval(@PathVariable(name = "id") Long prodId){
+
+        List<EvalResDto> foundEvals = evalService.findProdAllEval(prodId);
+
+        CommonResDto<List<EvalResDto>> resDto = new CommonResDto<>(HttpStatus.FOUND, "해당 강의의 모든 평가 찾음", foundEvals);
+
+        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+    }
 
     // 강의 리스트가 화면단에 출력될 때, 평점을 보여주기 위한 강의의 전체 평점 평균 조회
+    // MainPage에서 course/all의 리턴값을 변형해서 prodId만을 담은 리스트를 받자.
+    // token 필요 없음
+    // 이건 course-service에서 fegin으로 보내는 것이 좋을 듯
+    // Map<강의 아이디, 평점>    --> 이건  프론트 단에서 보내는 요청을 받음
+    @PostMapping("/course-eval-rating")
+    public ResponseEntity<?> findCoursesAverageRating(@RequestBody List<Long> prodIdList){
 
-    //
+        Map<Long, Double> ratings = evalService.findCourseRating(prodIdList);
+
+        CommonResDto<Map<Long, Double>> resDto = new CommonResDto<>(HttpStatus.FOUND, "해당 강의들의 모든 평균 평점을 찾음", ratings);
+
+        return new ResponseEntity<>(resDto, HttpStatus.FOUND);
+    }
+
+    // 이건 course-service에서 feign으로 보낸다는 가정 하에 작성하는 로직
+    // 위의 메소드와 둘 중 하나만 사용할 것
+    @PostMapping("/course-eval-rating-feign")
+    public CommonResDto<Map<Long, Double>> findCoursesRatingFeign(@RequestBody List<Long> prodIdList){
+
+        Map<Long, Double> ratings = evalService.findCourseRating(prodIdList);
+
+        return new CommonResDto<>(HttpStatus.FOUND, "해당 강의들의 모든 평균 평점을 찾음", ratings);
+    }
+
+
+
 }

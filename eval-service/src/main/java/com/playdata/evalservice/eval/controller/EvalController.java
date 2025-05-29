@@ -126,12 +126,25 @@ public class EvalController {
         return new ResponseEntity<>(resDto, HttpStatus.OK);
     }
 
+    // 강의 상세 페이지에 평점을 보내줄 메소드
+    // token 필요 없음
+    @GetMapping("/eval-rating/{id}")
+    public ResponseEntity<?> findOneCourseRating(@PathVariable(name = "id") Long productId){
+
+        double rating = evalService.findOneCourseRating(productId);
+
+        CommonResDto<Double> resDto = new CommonResDto<>(HttpStatus.OK, "해당 강의의 평점의 평균을 구함", rating);
+
+        return new ResponseEntity<>(resDto, HttpStatus.OK);
+    }
+
+
     // 강의 리스트가 화면단에 출력될 때, 평점을 보여주기 위한 강의의 전체 평점 평균 조회
     // MainPage에서 course/all의 리턴값을 변형해서 prodId만을 담은 리스트를 받자.
     // 이건 course-service에서 fegin으로 보내는 것이 좋을 듯
     // Map<강의 아이디, 평점>    --> 이건  프론트 단에서 보내는 요청을 받음
 
-    // token 필요 없음
+    // token 필요 없음   --> 이건 전체 용도로 하자.
     @PostMapping("/course-eval-rating")
     public ResponseEntity<?> findCoursesAverageRating(@RequestBody List<Long> prodIdList){
 

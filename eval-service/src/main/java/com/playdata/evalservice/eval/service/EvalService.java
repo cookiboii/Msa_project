@@ -167,6 +167,21 @@ public class EvalService {
         return informs;
     }
 
+    public double findOneCourseRating(Long productId) {
+
+        List<Eval> evalList = evalRepository.findByProductId(productId).orElseThrow(() -> {
+            throw new EntityNotFoundException("해당 강의의 평가가 존재하지 않습니다!");
+        });
+
+        double avg = 0.0;
+        for (Eval eval : evalList) {
+            avg += eval.getRating();
+        }
+
+        return avg / evalList.size();
+
+    }
+
     private Long getUserId(TokenUserInfo userInfo) {
         String email = userInfo.getEmail();
 

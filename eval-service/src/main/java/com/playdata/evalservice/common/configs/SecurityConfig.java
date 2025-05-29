@@ -39,7 +39,7 @@ public class SecurityConfig {
             auth
 //                    .requestMatchers("/user/list").hasRole("ROLE_ADMIN")
                     .requestMatchers("/eval/can-create/**","/eval/course-all-eval/**",
-                            "/eval/course-eval-rating","/eval/update-info",
+                            "/eval/course-eval-rating","/eval/update-info", "/eval/eval-rating/*",
                             "/actuator/**").permitAll()
                     .anyRequest().authenticated();
         });

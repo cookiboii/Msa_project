@@ -12,7 +12,7 @@ import com.playdata.postservice.common.entity.BaseTimeEntity;
 @AllArgsConstructor
 @Builder
 @Entity
-@Setter
+@Table(name = "tbl_comment")
 public class Comment extends BaseTimeEntity {
 
     @Id

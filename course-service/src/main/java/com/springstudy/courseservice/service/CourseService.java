@@ -2,8 +2,8 @@ package com.springstudy.courseservice.service;
 
 import com.springstudy.courseservice.client.UserServiceClient;
 import com.springstudy.courseservice.common.auth.TokenUserInfo;
-import com.springstudy.courseservice.dto.CourseRequest;
-import com.springstudy.courseservice.dto.CourseResponse;
+import com.springstudy.courseservice.dto.CourseRequestDto;
+import com.springstudy.courseservice.dto.CourseResponseDto;
 import com.springstudy.courseservice.dto.UserResDto;
 import com.springstudy.courseservice.entity.Course;
 import com.springstudy.courseservice.common.exception.CourseNotFoundException;
@@ -35,11 +35,11 @@ public class CourseService {
     private final UserServiceClient userServiceClient;
     private final UserRepository userRepository;
 
-    public List<Course> createCourse(TokenUserInfo userInfo, List<CourseRequest> dtoList) {
+    public List<Course> createCourse(TokenUserInfo userInfo, List<CourseRequestDto> dtoList) {
         UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
 
         List<Course> courses = new ArrayList<>();
-        for (CourseRequest courseRequest : dtoList) {
+        for (CourseRequestDto courseRequest : dtoList) {
             Course course = Course.builder()
                     .productName(courseRequest.getProductName())
                     .description(courseRequest.getDescription())
@@ -59,7 +59,7 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public List<CourseResponse> getAllCourses(Pageable pageable) {
+    public List<CourseResponseDto> getAllCourses(Pageable pageable) {
         return courseRepository.findAll(pageable)
                 .stream()
                 .filter(Course::isActive)
@@ -68,7 +68,7 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public CourseResponse getCourseById(Long id) {
+    public CourseResponseDto getCourseById(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new CourseNotFoundException(id));
         if(!course.isActive()) {
@@ -78,11 +78,11 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CourseResponse> getCoursesByPage(int page, int size) {
+    public Page<CourseResponseDto> getCoursesByPage(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> coursePage = courseRepository.findAll(pageRequest);
 
-        List<CourseResponse> filtered = coursePage.stream()
+        List<CourseResponseDto> filtered = coursePage.stream()
                 .filter(Course::isActive) // active == true인 것만
                 .map(this::toResponse)
                 .collect(Collectors.toList());
@@ -91,14 +91,14 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CourseResponse> getCoursesByCategory(String category) {
+    public Page<CourseResponseDto> getCoursesByCategory(String category) {
         int page = 0;
 //        page = page - 1;
         int size = 12;
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Course> byCategory = courseRepository.findByCategory(category, pageRequest);
 
-        List<CourseResponse> filtered = byCategory.stream()
+        List<CourseResponseDto> filtered = byCategory.stream()
                 .filter(Course::isActive)
                 .map(this::toResponse)
                 .collect(Collectors.toList());
@@ -107,7 +107,7 @@ public class CourseService {
     }
 
     @Transactional(readOnly = true)
-    public List<CourseResponse> searchCourses(String keyword) {
+    public List<CourseResponseDto> searchCourses(String keyword) {
         return courseRepository.findByProductNameContaining(keyword)
                 .stream()
                 .filter(Course::isActive)
@@ -115,7 +115,7 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
-    public CourseResponse updateCourse(Long productId, CourseRequest request, TokenUserInfo userInfo) {
+    public CourseResponseDto updateCourse(Long productId, CourseRequestDto courseRequestDto, TokenUserInfo userInfo) {
         UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
 
         Course course = courseRepository.findById(productId)
@@ -125,15 +125,10 @@ public class CourseService {
             throw new UnauthorizedCourseAccessException("해당 강의의 수정 권한이 없습니다!");
         }
 
-        course.setProductName(request.getProductName());
-        course.setDescription(request.getDescription());
-        course.setPrice(request.getPrice());
-        course.setCategory(request.getCategory());
-        course.setFilePath(request.getFilePath());
+       course.updateCourseInfo(courseRequestDto);
 
-        Course updated = courseRepository.save(course);
-        log.info("Course updated: {}", updated.getProductName());
-        return toResponse(updated);
+
+        return toResponse(course);
     }
 
     public void deleteCourse(Long productId, TokenUserInfo userInfo) {
@@ -148,13 +143,13 @@ public class CourseService {
 
        //        courseRepository.delete(course);
 
-        course.setActive(false);
+        course.deactivate();
         courseRepository.save(course);
         log.info("Course deleted: {}", productId);
     }
 
     @Transactional(readOnly = true)
-    public List<CourseResponse> getCourseById(List<Long> ids) {
+    public List<CourseResponseDto> getCourseById(List<Long> ids) {
         return ids.stream()
                 .map(id -> courseRepository.findById(id)
                         .filter(Course::isActive) // active == true인 경우만 통과
@@ -163,13 +158,13 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
-    private CourseResponse toResponse(Course course) {
+    private CourseResponseDto toResponse(Course course) {
         // userId로 유저 이름 조회
         String username = userRepository.findById(course.getUserId())
                 .map(User::getUsername)
                 .orElse("Unknown");
 
-        return CourseResponse.builder()
+        return CourseResponseDto.builder()
                 .productId(course.getProductId())
                 .productName(course.getProductName())
                 .description(course.getDescription())

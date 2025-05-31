@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CourseRequest {
+public class CourseRequestDto {
     private String productName;
     private String description;
     private int price;

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 @ToString
-//@Table(name = "order")
+@Table(name = "order_tbl")
 public class Ordering {
 
     @Id

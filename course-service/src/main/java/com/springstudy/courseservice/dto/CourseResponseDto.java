@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CourseResponse {
+public class CourseResponseDto {
     private Long productId;
     private String productName;
     private String description;

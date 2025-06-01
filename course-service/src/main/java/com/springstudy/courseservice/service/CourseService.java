@@ -28,7 +28,7 @@ import com.springstudy.courseservice.user.repository.UserRepository;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-@Transactional
+
 public class CourseService {
 
     private final CourseRepository courseRepository;

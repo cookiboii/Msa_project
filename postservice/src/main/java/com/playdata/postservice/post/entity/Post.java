@@ -9,10 +9,9 @@ import com.playdata.postservice.common.entity.BaseTimeEntity;
 @Getter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @Entity
-@Setter
 @Table(name="tbl_post")
 public class Post extends BaseTimeEntity {
 
@@ -45,4 +44,7 @@ public class Post extends BaseTimeEntity {
                 .build();
     }
 
+    public void changeStatus(PostStatus postStatus) {
+        this.status = postStatus;
+    }
 }

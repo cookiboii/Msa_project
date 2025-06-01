@@ -52,13 +52,12 @@ public class PostService {
         Long postId = post.getId();
         Long productId = post.getProductId();
 
-        // 해당 강사가 답변을 달았을 때, 질문의 답변 상태를 변경시키기 위한 로직
-        // user-service와 product-service가 연동되면 구현할 것.
+
         CommonResDto<CourseResDto> resDto = courseServiceClient.getIdByCourseId(productId);
         CourseResDto result = resDto.getResult();
         Long teacherId = result.getUserId();
         if(userId == teacherId){
-            post.setStatus(PostStatus.ANSWERED);
+            post.changeStatus(PostStatus.ANSWERED);
             postRepository.save(post);
         }
 

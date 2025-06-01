@@ -9,7 +9,7 @@ import com.playdata.postservice.common.entity.BaseTimeEntity;
 @Getter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @Entity
 @Table(name = "tbl_comment")

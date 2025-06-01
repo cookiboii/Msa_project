@@ -12,7 +12,7 @@ import lombok.*;
 @Getter
 @Table(name = "tbl_user")
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 public class User extends BaseTimeEntity {
 

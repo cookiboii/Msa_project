@@ -7,8 +7,8 @@ import lombok.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Builder
 @Table(name = "tbl_course")
 public class Course {

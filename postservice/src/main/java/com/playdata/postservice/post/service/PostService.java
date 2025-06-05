@@ -209,8 +209,8 @@ public class PostService {
         if(foundPost.getUserId() != requestUserId){
             return null;
         }
-        foundPost.setTitle(reqDto.getTitle());
-        foundPost.setContent(reqDto.getContent());
+        foundPost.updateTitleAndContent(reqDto.getTitle(), reqDto.getContent());
+
 
         Post save = postRepository.save(foundPost);
 

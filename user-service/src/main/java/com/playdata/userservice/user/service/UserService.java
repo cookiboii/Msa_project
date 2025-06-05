@@ -6,6 +6,7 @@ import com.playdata.userservice.user.entity.Role;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
+import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +33,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final MailSenderService mailSenderService;
     @Value("${oauth2.kakao.client-id}")
     private String kakaoClientId;
 
@@ -140,7 +141,7 @@ public class UserService {
 
         return response.getBody();
     }
-
+    @Transactional
     public UserResDto findOrCreateKakaoUser(KakaoUserDto kakaoUserDto) {
         Optional<User> existingUser = userRepository.findBySocialProviderAndSocialId("KAKAO", kakaoUserDto.getId().toString());
 
@@ -154,10 +155,26 @@ public class UserService {
                     .socialId(kakaoUserDto.getId().toString())
                     .socialProvider("KAKAO")
                     .password(null)
-                    .role(Role.USER)
                     .build();
 
             return userRepository.save(newUser).toDto();
         }
     }
+
+  public String mailCheck (String email) {
+        Optional<User> byEmail = userRepository.findByemail(email);
+        if (byEmail.isPresent()) {
+            throw new IllegalArgumentException("이미 존재하는 이메일 입니다!");
+        }
+      String authNum;
+        try{
+          authNum = mailSenderService.joinMain(email);
+        }
+        catch (MessagingException e){
+            throw new RuntimeException("이메일 전송 과정 중 문제 발생!");
+        }
+        return authNum;
+  }
+
+
 }

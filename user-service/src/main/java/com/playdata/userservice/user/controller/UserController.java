@@ -115,7 +115,7 @@ public class UserController {
                                 id: '%s',
                                 role: '%s',
                                 provider: 'KAKAO'
-                            }, window.location.origin);
+                            }, 'http://localhost:5173');
                             window.close();
                         } else {
                             window.location.href = 'http://localhost:5173';
@@ -129,4 +129,11 @@ public class UserController {
         response.getWriter().write(html);
     }
 
+    @PostMapping("/email-valid")
+ public  ResponseEntity <CommonResDto> emailValidate(@RequestBody Map<String,String> map    ) {
+        String email = map.get("email");
+        String authNum = userService.mailCheck(email);
+
+        return ResponseEntity.ok().body(new CommonResDto(OK,"검증 완료 " ,authNum));
+ }
 }

@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
-@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @ToString
 @Table(name = "order_tbl")

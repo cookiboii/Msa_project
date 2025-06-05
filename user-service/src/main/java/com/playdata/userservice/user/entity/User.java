@@ -11,8 +11,8 @@ import lombok.*;
 @Entity
 @Getter
 @Table(name = "tbl_user")
-@NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor  //객체지향적 설계를 위해서 걸어둔다
 @Builder
 public class User extends BaseTimeEntity {
 

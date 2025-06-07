@@ -149,9 +149,16 @@ public class EvalService {
                 .filter(dto -> prodIdList.contains(dto.getProductId()))
                 .toList();
 
+        // 먼저 기본값 0.0으로 모든 ID 초기화
         Map<Long, Double> map = new HashMap<>();
-        filteredList.stream().map(dto -> map.put(dto.getProductId(), dto.getAverageRating()));
+        for (Long productId : prodIdList) {
+            map.put(productId, 0.0);
+        }
 
+        // 실제 값이 있는 경우 덮어쓰기
+        for (ProductRatingAvgDto dto : filteredList) {
+            map.put(dto.getProductId(), dto.getAverageRating());
+        }
         return map;
     }
 

@@ -4,6 +4,8 @@ import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
 import com.playdata.orderservice.common.dto.CreateOrderRequest;
+import com.playdata.orderservice.ordering.dto.KakaoPayAproveResponse;
+import com.playdata.orderservice.ordering.dto.KakaoPayDTO;
 import com.playdata.orderservice.ordering.dto.OrderingListResDto;
 import com.playdata.orderservice.ordering.dto.OrderingSaveReqDto;
 import com.playdata.orderservice.ordering.entity.Ordering;
@@ -90,5 +92,40 @@ public class OrderingController {
         return ResponseEntity.ok(resDto);
     }
 
+    @PostMapping("/pay/ready")
+    public KakaoPayDTO payReady(@AuthenticationPrincipal TokenUserInfo userInfo, @RequestBody List<OrderingSaveReqDto> dtoList) {
+        // 카카오 결제 준비하기
+        KakaoPayDTO readyResponse = orderingService.payReady(userInfo, dtoList);
+        // 세션에 결제 고유번호(tid) 저장
+        SessionUtils.addAttribute("tid", readyResponse.getTid());
+        log.info("결제 고유번호: " + readyResponse.getTid());
+
+        return readyResponse;
+    }
+
+    @GetMapping("/pay/completed")
+    public String payCompleted(@RequestParam("pg_token") String pgToken) {
+
+        String tid = SessionUtils.getStringAttributeValue("tid");
+        log.info("결제승인 요청을 인증하는 토큰: " + pgToken);
+        log.info("결제 고유번호: " + tid);
+
+        // 카카오 결제 요청하기
+        KakaoPayAproveResponse approveResponse = orderingService.payApprove(tid, pgToken);
+
+        return "redirect:/order/completed";
+    }
+
+    //결제 진행 중 취소
+    @GetMapping("/pay/cancel")
+    public void cancel() {
+        log.info("결제 취소");
+    }
+
+    //결제 실패
+    @GetMapping("/pay/fail")
+    public void fail() {
+        log.info("결제 실패");
+    }
 
 }

@@ -11,9 +11,17 @@ import com.playdata.orderservice.ordering.entity.Ordering;
 import com.playdata.orderservice.ordering.repository.OrderingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -24,6 +32,14 @@ import java.util.stream.Collectors;
 @Slf4j
 @Transactional
 public class OrderingService {
+    @Value("${oauth2.kakao.client-id}")
+    private String kakaoClientId;
+
+    @Value("${oauth2.kakao.redirect_uri}")
+    private String kakaoRedirectUri;
+
+    @Value("${oauth2.kakao.secret_key}")
+    private String secretKey;
 
     private final OrderingRepository orderingRepository;
 
@@ -238,6 +254,86 @@ public class OrderingService {
                 )
                 .peek(order -> System.out.println("필터 통과한 orderId: " + order.getId()))
                 .collect(Collectors.toList());
+    }
+
+    // 카카오페이 결제창 연결
+    public KakaoPayDTO payReady(TokenUserInfo userInfo, List<OrderingSaveReqDto> dtoList) {
+
+        log.info("service 내 payReady<dtoList> : {}", dtoList);
+
+        // 실제 USER-SERVICE에서 사용자 정보 요청
+        UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
+
+//        List<Long> productIds = orderingList.stream()
+//                .map(Ordering::getProductId)
+//                .distinct()
+//                .collect(Collectors.toList());
+//
+//        log.info("productIds는 : {}", productIds);
+//
+//        // 외부 서비스에서 한번에 강의 정보 목록 가져오기
+//        CommonResDto<List<ProdDetailResDto>> courseRes = productServiceClient.getProducts(dtoList);
+//        List<ProdDetailResDto> dtoList = courseRes.getResult();
+        log.info("본문 작성 시작");
+
+        //요청 본문 작성
+        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+        requestBody.add("cid", "TC0ONETIME");
+        requestBody.add("partner_order_id", "1234567890");
+        requestBody.add("partner_user_id", userResDto.getEmail());
+        requestBody.add("item_name", "스프링 기본");
+        requestBody.add("quantity", "1");
+        requestBody.add("total_amount", "1000");
+        requestBody.add("tax_free_amount", "0");
+        requestBody.add("approval_url", "http://localhost/order-service/order/pay/completed");
+        requestBody.add("cancel_url", "http://localhost/order-service/order/pay/cancel");
+        requestBody.add("fail_url", "http://localhost/order-service/order/pay/fail");
+
+        // HttpEntity : HTTP 요청 또는 응답에 해당하는 Http Header와 Http Body를 포함하는 클래스
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, this.getHeaders());
+        log.info("restTemplate 시작");
+        // RestTemplate
+        // : Rest 방식 API를 호출할 수 있는 Spring 내장 클래스
+        //   REST API 호출 이후 응답을 받을 때까지 기다리는 동기 방식 (json, xml 응답)
+        RestTemplate template = new RestTemplate();
+        String url = "https://open-api.kakaopay.com/online/v1/payment/ready";
+        // RestTemplate의 postForEntity : POST 요청을 보내고 ResponseEntity로 결과를 반환받는 메소드
+        ResponseEntity<KakaoPayDTO> responseEntity = template.postForEntity(url, requestEntity, KakaoPayDTO.class);
+        log.info("결제준비 응답객체: " + responseEntity.getBody());
+
+        return responseEntity.getBody();
+    }
+
+    // 카카오페이 결제 승인
+    // 사용자가 결제 수단을 선택하고 비밀번호를 입력해 결제 인증을 완료한 뒤,
+    // 최종적으로 결제 완료 처리를 하는 단계
+    public KakaoPayAproveResponse payApprove(String tid, String pgToken) {
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("cid", "TC0ONETIME");              // 가맹점 코드(테스트용)
+        parameters.put("tid", tid);                       // 결제 고유번호
+        parameters.put("partner_order_id", "1234567890"); // 주문번호
+        parameters.put("partner_user_id", "roommake");    // 회원 아이디
+        parameters.put("pg_token", pgToken);              // 결제승인 요청을 인증하는 토큰
+
+        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
+
+        RestTemplate template = new RestTemplate();
+        String url = "https://open-api.kakaopay.com/online/v1/payment/approve";
+        KakaoPayAproveResponse approveResponse = template.postForObject(url, requestEntity, KakaoPayAproveResponse.class);
+        log.info("결제승인 응답객체: " + approveResponse);
+
+        return approveResponse;
+    }
+
+    // 카카오페이 측에 요청 시 헤더부에 필요한 값
+    private HttpHeaders getHeaders() {
+
+        // 헤더 정보 세팅Add commentMore actions
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.set("Authorization", "SECRET_KEY " + secretKey);
+
+        return headers;
     }
 
 

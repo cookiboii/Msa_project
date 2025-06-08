@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 @ToString
-//@Table(name = "order")
 public class Ordering {
 
     @Id
@@ -36,5 +35,8 @@ public class Ordering {
     public void updateStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
+
+//    @OneToOne(mappedBy = "ordering", cascade = CascadeType.ALL)
+//    private Payment payment;
 
 }

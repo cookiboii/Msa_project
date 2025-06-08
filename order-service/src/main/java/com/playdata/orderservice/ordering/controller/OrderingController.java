@@ -99,25 +99,29 @@ public class OrderingController {
         log.info("Calling SessionUtils.addAttribute to save tid: {}", readyResponse.getTid());
         // 세션에 결제 고유번호(tid) 저장
 //        SessionUtils.addAttribute("tid", readyResponse.getTid());
+//        SessionUtils.addAttribute(orderId, responseEntity.getBody().getTid());
+
         log.info("결제 고유번호: " + readyResponse.getTid());
 
         return readyResponse;
     }
 
     @GetMapping("/pay/completed")
-    public String payCompleted(@RequestParam("pg_token") String pgToken,
-                               @RequestParam("orderId") String orderId) {
+    public ResponseEntity<?> payCompleted(@RequestParam("pg_token") String pgToken,
+                                                               @RequestParam("orderId") String partnerOrderId) {
         log.info("승인 단계");
 //        String tid = SessionUtils.getStringAttributeValue("tid");
-        log.info("주문번호: " + orderId);
-        String tid = SessionUtils.getStringAttributeValue(orderId);
         log.info("결제승인 요청을 인증하는 토큰: " + pgToken);
-        log.info("결제 고유번호: " + tid);
+        log.info("카카오페이 partner_order_id: " + partnerOrderId);
+//        String tid = SessionUtils.getStringAttributeValue(orderId);
 
         // 카카오 결제 요청하기
-        KakaoPayAproveResponse approveResponse = orderingService.payApprove(tid, pgToken);
+        KakaoPayAproveResponse approveResponse = orderingService.payApprove(partnerOrderId, pgToken);
+        log.info("결제 고유번호: " + approveResponse.getTid());
 
-        return "redirect:/order/pay/success";
+
+//        return "redirect:/order/pay/success";
+        return new ResponseEntity<>(approveResponse, HttpStatus.OK);
     }
 
     //결제 진행 중 취소

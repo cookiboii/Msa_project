@@ -1,10 +1,13 @@
 package com.playdata.orderservice.ordering.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.playdata.orderservice.client.ProductServiceClient;
 import com.playdata.orderservice.client.UserServiceClient;
 import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
+import com.playdata.orderservice.ordering.controller.SessionUtils;
 import com.playdata.orderservice.ordering.dto.*;
 import com.playdata.orderservice.ordering.entity.OrderStatus;
 import com.playdata.orderservice.ordering.entity.Ordering;
@@ -275,31 +278,42 @@ public class OrderingService {
 //        CommonResDto<List<ProdDetailResDto>> courseRes = productServiceClient.getProducts(dtoList);
 //        List<ProdDetailResDto> dtoList = courseRes.getResult();
         log.info("본문 작성 시작");
-
+        String orderId = UUID.randomUUID().toString();
         //요청 본문 작성
-        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
-        requestBody.add("cid", "TC0ONETIME");
-        requestBody.add("partner_order_id", "1234567890");
-        requestBody.add("partner_user_id", userResDto.getEmail());
-        requestBody.add("item_name", "스프링 기본");
-        requestBody.add("quantity", "1");
-        requestBody.add("total_amount", "1000");
-        requestBody.add("tax_free_amount", "0");
-        requestBody.add("approval_url", "http://localhost/order-service/order/pay/completed");
-        requestBody.add("cancel_url", "http://localhost/order-service/order/pay/cancel");
-        requestBody.add("fail_url", "http://localhost/order-service/order/pay/fail");
+        Map<String, Object> requestBodyMap = new HashMap<>();
+        requestBodyMap.put("cid", "TC0ONETIME");
+        requestBodyMap.put("partner_order_id", orderId);
+        requestBodyMap.put("partner_user_id", userResDto.getEmail());
+        requestBodyMap.put("item_name", "스프링 기본");
+        requestBodyMap.put("quantity", 1);
+        requestBodyMap.put("total_amount", 1000);
+        requestBodyMap.put("tax_free_amount", 0);
+        requestBodyMap.put("approval_url", "http://localhost:8000/order-service/order/pay/completed?orderId=" + orderId);
+        requestBodyMap.put("cancel_url", "http://localhost:8000/order-service/order/pay/cancel");
+        requestBodyMap.put("fail_url", "http://localhost:8000/order-service/order/pay/fail");
+
+        String jsonRequestBody;
+        // JSON 문자열로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            jsonRequestBody = objectMapper.writeValueAsString(requestBodyMap);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         // HttpEntity : HTTP 요청 또는 응답에 해당하는 Http Header와 Http Body를 포함하는 클래스
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, this.getHeaders());
+        HttpEntity<String> requestEntity = new HttpEntity<>(jsonRequestBody, this.getHeaders());
+        log.info("requestEntity의 내용 : {}", requestEntity);
         log.info("restTemplate 시작");
-        // RestTemplate
-        // : Rest 방식 API를 호출할 수 있는 Spring 내장 클래스
-        //   REST API 호출 이후 응답을 받을 때까지 기다리는 동기 방식 (json, xml 응답)
+
         RestTemplate template = new RestTemplate();
         String url = "https://open-api.kakaopay.com/online/v1/payment/ready";
-        // RestTemplate의 postForEntity : POST 요청을 보내고 ResponseEntity로 결과를 반환받는 메소드
+
         ResponseEntity<KakaoPayDTO> responseEntity = template.postForEntity(url, requestEntity, KakaoPayDTO.class);
         log.info("결제준비 응답객체: " + responseEntity.getBody());
+
+        log.info("주문번호: " + orderId);
+        SessionUtils.addAttribute(orderId, responseEntity.getBody().getTid());
 
         return responseEntity.getBody();
     }
@@ -308,6 +322,8 @@ public class OrderingService {
     // 사용자가 결제 수단을 선택하고 비밀번호를 입력해 결제 인증을 완료한 뒤,
     // 최종적으로 결제 완료 처리를 하는 단계
     public KakaoPayAproveResponse payApprove(String tid, String pgToken) {
+        log.info("결제 완료 처리 단계 시작");
+
         Map<String, String> parameters = new HashMap<>();
         parameters.put("cid", "TC0ONETIME");              // 가맹점 코드(테스트용)
         parameters.put("tid", tid);                       // 결제 고유번호
@@ -328,9 +344,8 @@ public class OrderingService {
     // 카카오페이 측에 요청 시 헤더부에 필요한 값
     private HttpHeaders getHeaders() {
 
-        // 헤더 정보 세팅Add commentMore actions
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.setContentType(MediaType.APPLICATION_JSON); // JSON으로 변경
         headers.set("Authorization", "SECRET_KEY " + secretKey);
 
         return headers;

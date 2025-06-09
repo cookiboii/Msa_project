@@ -7,7 +7,6 @@ import com.playdata.orderservice.client.UserServiceClient;
 import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
-import com.playdata.orderservice.ordering.controller.SessionUtils;
 import com.playdata.orderservice.ordering.dto.*;
 import com.playdata.orderservice.ordering.entity.OrderStatus;
 import com.playdata.orderservice.ordering.entity.Ordering;
@@ -274,6 +273,7 @@ public class OrderingService {
         List<Ordering> createdOrders = createOrder(userInfo, dtoList);
         // 결제와 연결할 대표 주문 엔티티 선택 (여기서는 첫 번째 주문을 대표로 사용)
         Ordering representativeOrder = createdOrders.get(0);
+
         String partnerOrderId = UUID.randomUUID().toString(); // 카카오페이에 넘길 고유 주문 번호 (UUID)
 
         // dtoList에서 productId 목록 추출
@@ -288,7 +288,7 @@ public class OrderingService {
         List<ProdDetailResDto> productDetails = courseRes.getResult();
 
         // 각 상품의 가격을 합산하여 total_amount 계산
-        Integer totalAmount = 100;
+        int totalAmount = 0;
         for (OrderingSaveReqDto orderDto : dtoList) {
             // dtoList의 각 상품과, productDetails에서 해당 상품의 가격을 찾아서 합산
             ProdDetailResDto matchedProduct = productDetails.stream()
@@ -342,11 +342,12 @@ public class OrderingService {
         RestTemplate template = new RestTemplate();
         String url = "https://open-api.kakaopay.com/online/v1/payment/ready";
 
+
         ResponseEntity<KakaoPayDTO> responseEntity = template.postForEntity(url, requestEntity, KakaoPayDTO.class);
         log.info("결제준비 응답객체: " + responseEntity.getBody());
 
         log.info("주문번호: " + partnerOrderId);
-        SessionUtils.addAttribute(partnerOrderId, responseEntity.getBody().getTid());
+//        SessionUtils.addAttribute(partnerOrderId, responseEntity.getBody().getTid());
 
         //Payment 엔티티에 tid와 orderId(Ordering 엔티티) 저장
         Payment newPayment = new Payment();
@@ -416,6 +417,92 @@ public class OrderingService {
         return approveResponse;
     }
 
+    // 결제 환불
+    public KakaoPayCancelResponse kakaoCancel(Long orderId) {
+
+        log.info("환불 로직 단계");
+
+        // Payment 정보 조회
+        Payment foundPayment = paymentRepository.findByOrderingId(orderId)
+                .orElseThrow(() -> new RuntimeException("결제 정보를 찾을 수 없습니다. orderId: " + orderId));
+
+        String storedTid = foundPayment.getTid();
+        Ordering ordering = foundPayment.getOrdering();
+
+        log.info("ordering: " + ordering);
+
+        if (ordering == null) {
+            throw new RuntimeException("결제와 연결된 주문 정보를 찾을 수 없습니다.");
+        }
+
+        log.info("상품 번호: {}", ordering.getProductId());
+        ProdDetailResDto productRes = productServiceClient.findById(ordering.getProductId());
+//        ProdDetailResDto productDetail = productRes.getResult();
+        log.info("상품 정보 {}", productRes);
+        log.info("prodDetail: " + productRes);
+
+        if (productRes == null) {
+            throw new RuntimeException("상품 상세 정보를 찾을 수 없습니다: " + ordering.getProductId());
+        }
+
+        int price = productRes.getPrice();
+        log.info("취소할 금액: {} ", price);
+        log.info("결제고유번호: {}", storedTid);
+
+
+        // 환불 요청 본문 작성
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("cid", "TC0ONETIME");
+        parameters.put("tid", storedTid);  //결제고유번호
+        parameters.put("cancel_amount", price);
+        parameters.put("cancel_tax_free_amount", 0); //취소 비과세 금액
+        parameters.put("cancel_vat_amount", 0);  //취소 부가세 금액
+
+        String jsonRequestBody;
+        // JSON 문자열로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            jsonRequestBody = objectMapper.writeValueAsString(parameters);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        // 4. HttpEntity 생성 및 RestTemplate 호출
+        HttpEntity<String> requestEntity = new HttpEntity<>(jsonRequestBody, this.getHeaders());
+        log.info("requestEntity의 내용 : {}", requestEntity);
+
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://open-api.kakaopay.com/online/v1/payment/cancel"; // 카카오페이 취소 API URL
+//        String url = "https://open-api.kakaopay.com/online/v1/payment/ready";
+
+
+        // postForObject는 응답 본문만 받으므로, 예외 처리를 고려해야 합니다.
+        // postForEntity를 사용하여 HTTP 상태 코드도 확인하는 것이 더 견고합니다.
+        ResponseEntity<KakaoPayCancelResponse> responseEntity = restTemplate.postForEntity(
+                url,
+                requestEntity,
+                KakaoPayCancelResponse.class);
+
+        KakaoPayCancelResponse cancelResponse = responseEntity.getBody();
+
+        // 환불 성공 후 Payment, Ordering 엔티티 상태 업데이트
+        if (responseEntity.getStatusCode().is2xxSuccessful() && cancelResponse != null) {
+            foundPayment.setSuccess(false);
+            // foundPayment.setRefundedAmount(foundPayment.getRefundedAmount() + cancelPrice); // 부분 환불 시 필요
+            paymentRepository.save(foundPayment);
+
+            ordering.updateStatus(OrderStatus.CANCELED);
+            orderingRepository.save(ordering);
+            log.info("결제 및 주문 상태 업데이트 완료");
+        } else {
+            log.error("카카오페이 환불 실패 또는 응답 본문 없음: {}", responseEntity);
+            // 실패 처리 로직 (예외 throw 등)
+            throw new RuntimeException("카카오페이 환불 요청 실패");
+        }
+
+        return cancelResponse;
+    }
+
     // 카카오페이 측에 요청 시 헤더부에 필요한 값
     private HttpHeaders getHeaders() {
 
@@ -425,6 +512,5 @@ public class OrderingService {
 
         return headers;
     }
-
 
 }

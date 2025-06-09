@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="파일 정리, 필터 url 설정 추가">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="카카오페이 결제 승인 처리 구현">
       <change afterPath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/SessionUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/KakaoPayAproveResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/KakaoPayDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/dto/KakaoPayCancelResponse.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/order-service/src/main/resources/bootstrap.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/bootstrap.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/course-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/configs/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/client/ProductServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/client/ProductServiceClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/OrderingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/OrderingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/SessionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/controller/SessionUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/repository/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/repository/PaymentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/ordering/service/OrderingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
@@ -71,8 +70,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -288,10 +287,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.OrderServiceApplicationTests" />
+      <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
+      <item itemvalue="Spring Boot.PostserviceApplication" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
+      <item itemvalue="Spring Boot.OrderServiceApplication" />
+      <item itemvalue="Spring Boot.GatewayServiceApplication" />
+      <item itemvalue="Spring Boot.ConfigServiceApplication" />
+      <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.OrderServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Spring Boot.OrderServiceApplication" />
         <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
         <item itemvalue="Spring Boot.ConfigServiceApplication" />
         <item itemvalue="Gradle.OrderServiceApplicationTests" />
@@ -336,6 +345,9 @@
       <workItem from="1748834188623" duration="1607000" />
       <workItem from="1748840612238" duration="596000" />
       <workItem from="1749039761380" duration="13986000" />
+      <workItem from="1749309434570" duration="12829000" />
+      <workItem from="1749364556238" duration="16114000" />
+      <workItem from="1749428286638" duration="26469000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -481,7 +493,31 @@
       <option name="project" value="LOCAL" />
       <updated>1749045749020</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="카카오페이 구현중">
+      <option name="closed" value="true" />
+      <created>1749310260992</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1749310260992</updated>
+    </task>
+    <task id="LOCAL-00020" summary="카카오페이 결제 승인 처리 구현중">
+      <option name="closed" value="true" />
+      <created>1749365221528</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1749365221528</updated>
+    </task>
+    <task id="LOCAL-00021" summary="카카오페이 결제 승인 처리 구현">
+      <option name="closed" value="true" />
+      <created>1749383822346</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1749383822346</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +550,10 @@
     <MESSAGE value="config 병합 후 오류 수정" />
     <MESSAGE value="강의 삭제 관련 수정" />
     <MESSAGE value="파일 정리, 필터 url 설정 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="파일 정리, 필터 url 설정 추가" />
+    <MESSAGE value="카카오페이 구현중" />
+    <MESSAGE value="카카오페이 결제 승인 처리 구현중" />
+    <MESSAGE value="카카오페이 결제 승인 처리 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="카카오페이 결제 승인 처리 구현" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

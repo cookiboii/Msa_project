@@ -7,7 +7,9 @@ import com.playdata.orderservice.common.dto.CreateOrderRequest;
 import com.playdata.orderservice.ordering.dto.*;
 import com.playdata.orderservice.ordering.entity.Ordering;
 import com.playdata.orderservice.ordering.service.OrderingService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import jakarta.ws.rs.core.MediaType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.security.Principal;
 import java.util.List;
@@ -102,8 +105,8 @@ public class OrderingController {
     }
 
     @GetMapping("/pay/completed")
-    public ResponseEntity<?> payCompleted(@RequestParam("pg_token") String pgToken,
-                                          @RequestParam("orderId") String partnerOrderId) {
+    public void payCompleted(@RequestParam("pg_token") String pgToken,
+                             @RequestParam("orderId") String partnerOrderId, HttpServletResponse response) throws IOException {
         log.info("승인 단계");
         log.info("결제승인 요청을 인증하는 토큰: " + pgToken);
         log.info("카카오페이 partner_order_id: " + partnerOrderId);
@@ -112,8 +115,30 @@ public class OrderingController {
         KakaoPayAproveResponse approveResponse = orderingService.payApprove(partnerOrderId, pgToken);
         log.info("결제 고유번호: " + approveResponse.getTid());
 
-//        return "redirect:/order/pay/success";
-        return new ResponseEntity<>(approveResponse, HttpStatus.OK);
+        // 팝업 닫기 HTML 응답
+        String html = """
+                <html><body>
+                <script>
+                  const payload = {
+                    tid: '%s',
+                    orderId: '%s'
+                  };
+                
+                  if (window.opener) {
+                    window.opener.postMessage({ type: 'KAKAO_PAY_SUCCESS', payload }, '*');
+                  }
+                
+                  window.close();
+                </script>
+                <p>결제가 완료되었습니다. 창이 곧 닫힙니다...</p>
+                </body></html>
+                """.formatted(
+                approveResponse.getTid(),
+                approveResponse.getPartner_order_id()
+        );
+        response.setContentType("text/html;charset=utf-8");
+        response.getWriter().write(html);
+
     }
 
     //결제 진행 중 취소

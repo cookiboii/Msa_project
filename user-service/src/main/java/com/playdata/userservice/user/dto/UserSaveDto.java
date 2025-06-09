@@ -27,13 +27,5 @@ public class UserSaveDto {
    private Role role =Role.USER;
 
 
-   public User toEntity() {
-      return  User.builder()
-              .email(this.email)
-              .password(this.password)
-              .username(this.username)
-              .role(Role.valueOf(this.role.name()))
-              .build();
-   }
 
 }

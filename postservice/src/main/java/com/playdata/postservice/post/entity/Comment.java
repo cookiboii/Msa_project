@@ -9,10 +9,10 @@ import com.playdata.postservice.common.entity.BaseTimeEntity;
 @Getter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @Entity
-@Setter
+@Table(name = "tbl_comment")
 public class Comment extends BaseTimeEntity {
 
     @Id

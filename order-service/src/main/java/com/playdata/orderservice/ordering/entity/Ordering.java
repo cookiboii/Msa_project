@@ -7,12 +7,11 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @ToString
-//@Table(name = "order")
+@Table(name = "order_tbl")
 public class Ordering {
 
     @Id

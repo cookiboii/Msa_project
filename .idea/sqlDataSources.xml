@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="794a3ef9-5524-4f10-9341-76098a7eaad7" name="spring_db">
+      <data-sources db="75c92ddf-57a9-4537-9b95-fef937a03406" />
+    </mapping>
+    <mapping uuid="26c10b6c-0f7e-4a33-a63a-64cb8807c64e" name="@localhost Mapping">
+      <data-sources db="d7220980-dbeb-4b39-86c3-f2e88f02f6ee" />
+    </mapping>
+    <mapping uuid="1988f228-00a8-4f08-ae7e-164030447834" name="database-1.cpkmo0aw48cr.ap-northeast-2.rds.amazonaws.com Mapping">
+      <data-sources db="187bfba9-b2ea-4d6a-b733-6032e557f1de" ddl="fe62da66-e962-4d6b-871a-fa78a8958f12" />
+      <scope>
+        <node kind="database" negative="1" />
+      </scope>
+    </mapping>
+  </component>
+</project>

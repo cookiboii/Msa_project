@@ -16,4 +16,6 @@ public class UserResDto {
     private String name;
     private Role role;
 
+    private String profileImage;
+    private String socialProvider;
 }

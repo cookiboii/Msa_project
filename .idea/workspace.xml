@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 등록, 조회, 수정, 삭제 기능 구현함">
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/auth/JwtAuthFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/auth/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/auth/TokenUserInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/config/AwsS3Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/dto/CommonErrorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/exception/CommonExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/common/exception/CustomAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/controller/CourseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/dto/CourseRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/dto/CourseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/entity/Course.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/repository/CourseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/service/CourseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/resources/application_local.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/main/java/com/playdata/courseservice/CourseServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/CourseServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/test/java/com/playdata/courseservice/CourseServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/test/java/com/springstudy/courseservice/LectureServiceApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config-service/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,25 +57,33 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kimjiwon0450"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kimjiwon0450&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/cookiboii/Msa_project.git",
-    "accountId": "40efe769-1992-43bf-a208-5eefd6505775"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cookiboii/Msa_project.git&quot;,
+    &quot;accountId&quot;: &quot;40efe769-1992-43bf-a208-5eefd6505775&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2woNOZNposkA2FB0yNRQp0w11J9" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="flattenModules" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -116,7 +101,7 @@
     "Spring Boot.GatewayServiceApplication.executor": "Run",
     "git-widget-placeholder": "feature/courseservice",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Msa_project",
+    "last_opened_file_path": "C:/Msa_project/config-service",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -127,6 +112,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Msa_project\config-service" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -138,6 +128,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
+    <configuration name="CourseServiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="course-service.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.springstudy.courseservice.CourseServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CourseServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="course-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.courseservice.CourseServiceApplication" />
@@ -219,6 +216,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="강의 등록, 조회, 수정, 삭제 기능 구현함" />

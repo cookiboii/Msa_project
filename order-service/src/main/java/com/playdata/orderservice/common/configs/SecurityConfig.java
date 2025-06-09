@@ -46,8 +46,10 @@ public class SecurityConfig {
                             "/user/findByEmail",
                             "/user/health-check",
                             "/actuator/**",
-                            "/order/ordereduser/*"
+                            "/order/ordereduser/*",
+                            "/actuator/**",
 //                            "/order/**"
+                            "/order/pay/**"
                     )
                     .permitAll()
                     .anyRequest().authenticated();

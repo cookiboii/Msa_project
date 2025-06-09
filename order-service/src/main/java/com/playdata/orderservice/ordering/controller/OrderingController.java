@@ -1,9 +1,7 @@
 package com.playdata.orderservice.ordering.controller;
 
-import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
-import com.playdata.orderservice.common.dto.CreateOrderRequest;
 import com.playdata.orderservice.ordering.dto.OrderingListResDto;
 import com.playdata.orderservice.ordering.dto.OrderingSaveReqDto;
 import com.playdata.orderservice.ordering.entity.Ordering;
@@ -12,11 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController
@@ -100,5 +96,48 @@ public class OrderingController {
     }
 
 
+    @PostMapping("/pay/ready")
+    public KakaoPayDTO payReady(@AuthenticationPrincipal TokenUserInfo userInfo, @RequestBody List<OrderingSaveReqDto> dtoList) {
+        // 카카오 결제 준비하기
+        KakaoPayDTO readyResponse = orderingService.payReady(userInfo, dtoList);
+        log.info("Calling SessionUtils.addAttribute to save tid: {}", readyResponse.getTid());
+        // 세션에 결제 고유번호(tid) 저장
+//        SessionUtils.addAttribute("tid", readyResponse.getTid());
+//        SessionUtils.addAttribute(orderId, responseEntity.getBody().getTid());
+
+        log.info("결제 고유번호: " + readyResponse.getTid());
+
+        return readyResponse;
+    }
+
+    @GetMapping("/pay/completed")
+    public ResponseEntity<?> payCompleted(@RequestParam("pg_token") String pgToken,
+                                                               @RequestParam("orderId") String partnerOrderId) {
+        log.info("승인 단계");
+//        String tid = SessionUtils.getStringAttributeValue("tid");
+        log.info("결제승인 요청을 인증하는 토큰: " + pgToken);
+        log.info("카카오페이 partner_order_id: " + partnerOrderId);
+//        String tid = SessionUtils.getStringAttributeValue(orderId);
+
+        // 카카오 결제 요청하기
+        KakaoPayAproveResponse approveResponse = orderingService.payApprove(partnerOrderId, pgToken);
+        log.info("결제 고유번호: " + approveResponse.getTid());
+
+
+//        return "redirect:/order/pay/success";
+        return new ResponseEntity<>(approveResponse, HttpStatus.OK);
+    }
+
+    //결제 진행 중 취소
+    @GetMapping("/pay/cancel")
+    public void cancel() {
+        log.info("결제 취소");
+    }
+
+    //결제 실패
+    @GetMapping("/pay/fail")
+    public void fail() {
+        log.info("결제 실패");
+    }
 
 }

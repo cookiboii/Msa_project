@@ -36,4 +36,7 @@ public class Ordering {
         this.orderStatus = orderStatus;
     }
 
+//    @OneToOne(mappedBy = "ordering", cascade = CascadeType.ALL)
+//    private Payment payment;
+
 }

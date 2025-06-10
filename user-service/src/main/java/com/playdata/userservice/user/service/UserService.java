@@ -1,5 +1,6 @@
 package com.playdata.userservice.user.service;
 
+import com.playdata.userservice.common.auth.JwtTokenProvider;
 import com.playdata.userservice.common.auth.TokenUserInfo;
 import com.playdata.userservice.user.dto.*;
 import com.playdata.userservice.user.entity.Role;
@@ -10,7 +11,9 @@ import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -24,9 +27,12 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -34,6 +40,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final MailSenderService mailSenderService;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final RedisTemplate<String, String> redisTemplate;
+    private static final String VERIFICATION_CODE_KEY = "email_verify:code:";
+    private static final String VERIFICATION_ATTEMPT_KEY = "email_verify:attempt:";
+    private static final String VERIFICATION_BLOCK_KEY = "email_verify:block:";
+
     @Value("${oauth2.kakao.client-id}")
     private String kakaoClientId;
 
@@ -42,9 +54,9 @@ public class UserService {
 
     @Transactional
     public User Save(UserSaveDto userSaveDto) {
-        String email = userSaveDto.getEmail();
-        String username = userSaveDto.getUsername();
-        String password = userSaveDto.getPassword();
+        String email = userSaveDto.email();
+        String username = userSaveDto.username();
+        String password = userSaveDto.password();
 
         if (userRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("이미 존재하는 이메일입니다.");
@@ -55,7 +67,7 @@ public class UserService {
                 .username(username)
                 .email(email)
                 .password(encodedPassword)
-                .role(userSaveDto.getRole())
+                .role(userSaveDto.role())
                 .build();
 
         return userRepository.save(user);
@@ -63,30 +75,29 @@ public class UserService {
 
     @Transactional
     public User updatePassword(UserPasswordUpdateDto updateDto) {
-        User user = userRepository.findByemail(updateDto.getEmail())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + updateDto.getEmail()));
+        User user = userRepository.findByEmail(updateDto.email())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + updateDto.email()));
 
-        if (passwordEncoder.matches(updateDto.getNewPassword(), user.getPassword())) {
-            return null;
+        if (passwordEncoder.matches(updateDto.email(), user.getPassword())) {
+            throw new IllegalArgumentException("현재 비밀번호가 일치하지 않습니다.");
         }
 
-        String encodedPassword = passwordEncoder.encode(updateDto.getNewPassword());
+        String encodedPassword = passwordEncoder.encode(updateDto.newPassword());
         user.changePassword(encodedPassword);
         return user;
     }
 
-    @Transactional
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
 
     @Transactional
     public User Login(UserLoginDto userLoginDto) {
-        User user = userRepository.findByemail(userLoginDto.getEmail())
+        String email = userLoginDto.email();
+        String inputPassword = userLoginDto.password();
+
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User not found!"));
 
-        if (!passwordEncoder.matches(userLoginDto.getPassword(), user.getPassword())) {
-            throw new IllegalArgumentException("비밀번호 틀렸습니다.");
+        if (!passwordEncoder.matches(inputPassword, user.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
         }
 
         return user;
@@ -97,7 +108,7 @@ public class UserService {
         TokenUserInfo userInfo = (TokenUserInfo) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
 
-        User user = userRepository.findByemail(userInfo.getEmail())
+        User user = userRepository.findByEmail(userInfo.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException("User not found!"));
 
         return User.builder()
@@ -162,7 +173,7 @@ public class UserService {
     }
 
   public String mailCheck (String email) {
-        Optional<User> byEmail = userRepository.findByemail(email);
+        Optional<User> byEmail = userRepository.findByEmail(email);
         if (byEmail.isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 이메일 입니다!");
         }
@@ -173,8 +184,80 @@ public class UserService {
         catch (MessagingException e){
             throw new RuntimeException("이메일 전송 과정 중 문제 발생!");
         }
+      String key = VERIFICATION_CODE_KEY + email;
+      redisTemplate.opsForValue().set(key, authNum, Duration.ofMinutes(1));
         return authNum;
   }
+    @Transactional
+    public String resetPassword(String email) {
+        log.info(email);
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User not found! " + email));
+
+        String tempPassword = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        String encodedPassword = passwordEncoder.encode(tempPassword);
+        user.changePassword(encodedPassword);
+
+        try {
+            mailSenderService.sendTempPasswordMail(email, tempPassword);
+        } catch (MessagingException e) {
+            throw new RuntimeException("이메일 전송 실패");
+        }
+
+        return "임시비밀번호가 전송되었습니다.";
+    }
+    // 인증 코드 검증 로직
+    public Map<String, String> verifyEmail(Map<String, String> map) {
+        // 차단 상태 확인
+        if (isBlocked(map.get("email"))) {
+            throw new IllegalArgumentException("blocking");
+        }
+
+        // 레디스에 저장된 인증 코드 조회
+        String key = VERIFICATION_CODE_KEY + map.get("email");
+        Object foundCode = redisTemplate.opsForValue().get(key);
+        if (foundCode == null) { // 조회결과가 null? -> 만료됨!
+            throw new IllegalArgumentException("authCode expired!");
+        }
+
+        // 인증 시도 횟수 증가
+        int attemptCount = incrementAttemptCount(map.get("email"));
+
+        // 조회한 코드와 사용자가 입력한 인증번호 검증
+        if (!foundCode.toString().equals(map.get("code"))) {
+            // 최대 시도 횟수 초과시 차단
+            if (attemptCount >= 3) {
+                blockUser(map.get("email"));
+                throw new IllegalArgumentException("email blocked!");
+            }
+            int remainingAttempts = 3 - attemptCount;
+            throw new IllegalArgumentException(String.format("authCode wrong!, %d", remainingAttempts));
+        }
+
+        log.info("이메일 인증 성공!, email: {}", map.get("email"));
+        redisTemplate.delete(key); // 레디스에서 인증번호 삭제
+        return map;
+    }
+
+    private boolean isBlocked(String email) {
+        String key = VERIFICATION_BLOCK_KEY + email;
+        return redisTemplate.hasKey(key);
+    }
+
+    private void blockUser(String email) {
+        String key = VERIFICATION_BLOCK_KEY + email;
+        redisTemplate.opsForValue().set(key, "blocked", Duration.ofMinutes(30));
+    }
+
+    private int incrementAttemptCount(String email) {
+        String key = VERIFICATION_ATTEMPT_KEY + email;
+        Object obj = redisTemplate.opsForValue().get(key);
+
+        int count = (obj != null) ? Integer.parseInt(obj.toString()) + 1 : 1;
+        redisTemplate.opsForValue().set(key, String.valueOf(count), Duration.ofMinutes(3));
+
+        return count;
+    }
 
 
 }

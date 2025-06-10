@@ -100,7 +100,7 @@ public class UserController {
 
         KakaoUserDto kakaoUserDto =userService.getKakaoUser(kakaoAccessToken);
        UserResDto userResDto = userService.findOrCreateKakaoUser(kakaoUserDto);
-        String token = jwtTokenProvider.createToken(userResDto.getEmail(),userResDto.getRole().toString());
+        String token = jwtTokenProvider.createToken(userResDto.email(),userResDto.role().toString());
 
         String html = String.format("""
                 <!DOCTYPE html>
@@ -124,7 +124,7 @@ public class UserController {
                     <p>카카오 로그인 처리 중...</p>
                 </body>
                 </html>
-                """, token, userResDto.getId(), userResDto.getRole().toString());
+                """, token, userResDto.id() ,userResDto.role());
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(html);
     }
@@ -136,4 +136,17 @@ public class UserController {
 
         return ResponseEntity.ok().body(new CommonResDto(OK,"검증 완료 " ,authNum));
  }
+    @PostMapping("/reset-password")
+           public ResponseEntity<String> resetPassword(@RequestBody EmailDto EmailDto) {
+                  String email = EmailDto.email();
+                  String result = userService.resetPassword(email);
+                 return ResponseEntity.ok().body(result);
+          }
+
+    @PostMapping("/verify")
+    public ResponseEntity<?> verifyEmail(@RequestBody Map<String, String> map) {
+        log.info("인증 코드 검증! map: {}", map);
+        Map<String, String> result = userService.verifyEmail(map);
+        return ResponseEntity.ok().body("Success");
+    }
 }

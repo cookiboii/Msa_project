@@ -4,7 +4,7 @@ package com.springstudy.courseservice.dto;
 import com.springstudy.courseservice.common.auth.Role;
 import lombok.*;
 
-@Getter @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

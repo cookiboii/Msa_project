@@ -3,7 +3,7 @@ package com.springstudy.courseservice.dto;
 import lombok.*;
 
 @Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

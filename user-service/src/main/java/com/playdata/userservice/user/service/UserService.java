@@ -2,6 +2,7 @@ package com.playdata.userservice.user.service;
 
 import com.playdata.userservice.common.auth.TokenUserInfo;
 import com.playdata.userservice.user.dto.*;
+import com.playdata.userservice.user.entity.Role;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
@@ -216,6 +217,7 @@ public class UserService {
         try {
             authNum = mailSenderService.joinMain(email);
         } catch (MessagingException e) {
+            log.info(e.getMessage());
             throw new RuntimeException("이메일 전송 과정 중 문제 발생");
         }
 
@@ -308,5 +310,21 @@ public class UserService {
         }
 
         return tempPassword;
+    }
+
+    // 강사로 Role을 변환하는 메소드
+    public UserResDto changeRole(TokenUserInfo userInfo) {
+
+        User foundUser
+                = userRepository.findByemail(userInfo.getEmail())
+                .orElseThrow(() -> new EntityNotFoundException("User not found! " + userInfo.getEmail()));
+
+        if(foundUser.getRole() == Role.USER) {
+            foundUser.changeRole(Role.ADMIN);
+            return userRepository.save(foundUser).toDto();
+        }
+        else{
+            return null;
+        }
     }
 }

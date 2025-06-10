@@ -1,6 +1,7 @@
 package com.playdata.userservice.user.controller;
 
 import com.playdata.userservice.common.auth.JwtTokenProvider;
+import com.playdata.userservice.common.auth.TokenUserInfo;
 import com.playdata.userservice.common.dto.CommonResDto;
 import com.playdata.userservice.user.dto.*;
 import com.playdata.userservice.user.dto.UserLoginDto;
@@ -14,6 +15,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -109,6 +111,20 @@ public class UserController {
 
     }
 
+    // 마이페이지에서 강사로 전환하는 버튼을 담당하는 메소드
+    @GetMapping("/change-role")
+    public ResponseEntity<?> changeRole(@AuthenticationPrincipal TokenUserInfo userInfo){
+        UserResDto resDto = userService.changeRole(userInfo);
+        if(resDto == null) {
+            return new ResponseEntity<>(CONFLICT);
+        }
+        else{
+            CommonResDto commonResDto = new CommonResDto(OK, "강사로의 전환이 완료됨", resDto);
+            return new ResponseEntity<>(commonResDto, OK);
+        }
+    }
+
+
     // 카카오 콜백 요청 처리
     @GetMapping("/kakao")
     public void kakaoCallback(@RequestParam String code , HttpServletResponse response) throws IOException {
@@ -152,7 +168,7 @@ public class UserController {
         String email = map.get("email");
         String authNum = userService.mailCheck(email);
 
-        return ResponseEntity.ok().body(new CommonResDto(OK,"검증 완료 " ,authNum));
+        return ResponseEntity.ok().body(new CommonResDto(OK,"인증 요청 이메일 발송" ,authNum));
     }
 
     // 인증 코드를 검증하는 로직

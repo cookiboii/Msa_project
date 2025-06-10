@@ -271,8 +271,7 @@ public class OrderingService {
         UserResDto userResDto = userServiceClient.findByEmail(userInfo.getEmail()).getResult();
 
         List<Ordering> createdOrders = createOrder(userInfo, dtoList);
-        // 결제와 연결할 대표 주문 엔티티 선택 (여기서는 첫 번째 주문을 대표로 사용)
-        Ordering representativeOrder = createdOrders.get(0);
+
 
         String partnerOrderId = UUID.randomUUID().toString(); // 카카오페이에 넘길 고유 주문 번호 (UUID)
 
@@ -347,19 +346,19 @@ public class OrderingService {
         log.info("결제준비 응답객체: " + responseEntity.getBody());
 
         log.info("주문번호: " + partnerOrderId);
-//        SessionUtils.addAttribute(partnerOrderId, responseEntity.getBody().getTid());
 
         //Payment 엔티티에 tid와 orderId(Ordering 엔티티) 저장
-        Payment newPayment = new Payment();
-        newPayment.setOrdering(representativeOrder); // createOrder로 생성된 대표 주문 엔티티와 연결
-        newPayment.setTid(responseEntity.getBody().getTid());
-        newPayment.setSuccess(false); // 초기 상태는 false
-        newPayment.setPaymentDate(LocalDateTime.now()); // 결제 준비 시점 시간
+        for (Ordering order : createdOrders) {
+            Payment payment = Payment.builder()
+                    .ordering(order) // 각 주문과 연결
+                    .tid(responseEntity.getBody().getTid()) // 동일한 tid 공유
+                    .success(false) // 초기 상태
+                    .paymentDate(LocalDateTime.now()) // 결제 준비 시점 시간
+                    .partnerOrderId(partnerOrderId) // 동일한 partnerOrderId 공유
+                    .build();
 
-        newPayment.setPartnerOrderId(partnerOrderId); // Payment 엔티티에 partnerOrderId 필드가 있다면 추가
-
-        paymentRepository.save(newPayment); // Payment 정보 저장
-
+            paymentRepository.save(payment); // Payment 정보 저장
+        }
 
         return responseEntity.getBody();
     }
@@ -371,13 +370,18 @@ public class OrderingService {
     public KakaoPayAproveResponse payApprove(String partnerOrderId, String pgToken) {
         log.info("결제 완료 처리 단계 시작");
 
-        Payment foundPayment = paymentRepository.findByPartnerOrderId(partnerOrderId)
-                .orElseThrow(() -> new RuntimeException("결제 정보를 찾을 수 없습니다. partnerOrderId: " + partnerOrderId));
+        List<Payment> foundPayment = paymentRepository.findByPartnerOrderId(partnerOrderId);
 
-        String storedTid = foundPayment.getTid(); // Payment 엔티티에 저장된 tid 사용
-        Ordering relatedOrder = foundPayment.getOrdering(); // Payment와 연결된 Ordering 엔티티
+        if (foundPayment.isEmpty()) {
+            throw new RuntimeException("결제 정보를 찾을 수 없습니다. partnerOrderId: " + partnerOrderId);
+        }
 
-        if (relatedOrder == null) {
+        String storedTid = foundPayment.get(0).getTid(); // Payment 엔티티에 저장된 tid 사용
+        List<Ordering> relatedOrder = foundPayment.stream()
+                .map(Payment::getOrdering)
+                .toList();  // Payment와 연결된 Ordering 엔티티
+
+        if (relatedOrder.isEmpty()) {
             throw new RuntimeException("결제와 연결된 주문 정보를 찾을 수 없습니다.");
         }
 
@@ -385,34 +389,29 @@ public class OrderingService {
         parameters.put("cid", "TC0ONETIME");              // 가맹점 코드(테스트용)
         parameters.put("tid", storedTid);                       // 결제 고유번호
         parameters.put("partner_order_id", partnerOrderId); // 주문번호
-        parameters.put("partner_user_id", relatedOrder.getUserEmail());    // 회원 아이디
+        parameters.put("partner_user_id", relatedOrder.get(0).getUserEmail());    // 회원 아이디
         parameters.put("pg_token", pgToken);              // 결제승인 요청을 인증하는 토큰
-
-        String jsonRequestBody;
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            jsonRequestBody = objectMapper.writeValueAsString(parameters);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
 
         HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
 
         RestTemplate template = new RestTemplate();
         String url = "https://open-api.kakaopay.com/online/v1/payment/approve";
-//        ResponseEntity<KakaoPayAproveResponse> responseEntity = template.postForObject(url, requestEntity, KakaoPayAproveResponse.class);
-//        KakaoPayAproveResponse approveResponse = responseEntity.getBody();
+
         KakaoPayAproveResponse approveResponse = template.postForObject(url, requestEntity, KakaoPayAproveResponse.class);
         log.info("결제승인 응답객체: " + approveResponse);
 
-        // 결제 성공 후 Payment 엔티티 및 Ordering 엔티티 상태 업데이트
-        foundPayment.setSuccess(true);
-        foundPayment.setPaymentDate(LocalDateTime.now()); // 실제 결제 완료 시간으로 업데이트
-        paymentRepository.save(foundPayment);
+        // 결제 성공 후 Payment 엔티티 상태 업데이트
+        for (Payment p : foundPayment) {
+            p.setSuccess(true);
+            p.setPaymentDate(LocalDateTime.now()); // 실제 결제 완료 시간으로 업데이트
+            paymentRepository.save(p);
+        }
 
-        // Ordering의 상태도 PAID로 업데이트
-        relatedOrder.updateStatus(OrderStatus.ORDERED); // OrderStatus에 PAID 추가 필요 (또는 COMPLETED)
-        orderingRepository.save(relatedOrder);
+        // Ordering의 상태 업데이트
+        for (Ordering ordering : relatedOrder) {
+            ordering.updateStatus(OrderStatus.ORDERED);
+            orderingRepository.save(ordering);
+        }
 
         return approveResponse;
     }
@@ -473,8 +472,6 @@ public class OrderingService {
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://open-api.kakaopay.com/online/v1/payment/cancel"; // 카카오페이 취소 API URL
-//        String url = "https://open-api.kakaopay.com/online/v1/payment/ready";
-
 
         // postForObject는 응답 본문만 받으므로, 예외 처리를 고려해야 합니다.
         // postForEntity를 사용하여 HTTP 상태 코드도 확인하는 것이 더 견고합니다.
@@ -496,7 +493,6 @@ public class OrderingService {
             log.info("결제 및 주문 상태 업데이트 완료");
         } else {
             log.error("카카오페이 환불 실패 또는 응답 본문 없음: {}", responseEntity);
-            // 실패 처리 로직 (예외 throw 등)
             throw new RuntimeException("카카오페이 환불 요청 실패");
         }
 

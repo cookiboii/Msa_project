@@ -1,0 +1,207 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3149b107-6f9c-4e14-ba2b-315204dc0292\" name=\"Changes\" comment=\"강의 삭제 관련 수정\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$/course-service\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/discovery-service\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/gateway-service\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/order-service\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/postservice\">\r\n      <ProjectState />\r\n    </projectState>\r\n    <projectState path=\"$PROJECT_DIR$/user-service\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$/order-service\">\r\n          <activation />\r\n        </task>\r\n        <task path=\"$PROJECT_DIR$/course-service\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"gateway-service\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;vbnmopas&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/cookiboii/Msa_project.git&quot;,\r\n    &quot;accountId&quot;: &quot;ce047064-951f-49a2-b7d9-7e0066664a20&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2woNOZNposkA2FB0yNRQp0w11J9\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"flattenModules\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,\r\n    &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.OrderServiceApplicationTests.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.ProductRepositoryTest.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.config-service 빌드.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.course-service 빌드.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.discovery-service 빌드.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.gateway-service 빌드.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.order-service 빌드.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.postservice 빌드.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.user-service 빌드.executor&quot;: &quot;Run&quot;,\r\n    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.CourseServiceApplication (1).executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.CourseServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.DiscoveryServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.PostserviceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;feature/orderservice&quot;,\r\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/playdata/Msa_project/order-service/src/main/resources&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  },\r\n  &quot;keyToStringList&quot;: {\r\n    &quot;DatabaseDriversLRU&quot;: [\r\n      &quot;mysql&quot;,\r\n      &quot;mysql_aurora&quot;\r\n    ]\r\n  }\r\n}</component>\r\n  <component name=\"ReactorSettings\">\r\n    <option name=\"notificationShown\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\playdata\\Msa_project\\order-service\\src\\main\\resources\" />\r\n      <recent name=\"C:\\playdata\\Msa_project\\order-service\\src\\main\\java\\com\\playdata\\userservice\" />\r\n      <recent name=\"C:\\playdata\\Msa_project\\user-service\\src\\test\\java\\com\\playdata\\userservice\\user\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\playdata\\Msa_project\\order-service\\src\\main\\java\\com\\playdata\\orderservice\\common\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"com.playdata.orderservice.ordering.dto\" />\r\n      <recent name=\"com.springstudy.courseservice.common.dto\" />\r\n      <recent name=\"com.playdata.orderservice.client\" />\r\n      <recent name=\"com.playdata.orderservice.common.dto\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunDashboard\">\r\n    <option name=\"configurationTypes\">\r\n      <set>\r\n        <option value=\"KtorApplicationConfigurationType\" />\r\n        <option value=\"MicronautRunConfigurationType\" />\r\n        <option value=\"QuarkusRunConfigurationType\" />\r\n        <option value=\"SpringBootApplicationConfigurationType\" />\r\n      </set>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.ConfigServiceApplication\">\r\n    <configuration name=\"OrderServiceApplicationTests\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/order-service\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\":test\" />\r\n            <option value=\"--tests\" />\r\n            <option value=\"&quot;com.playdata.orderservice.OrderServiceApplicationTests&quot;\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <RunAsTest>true</RunAsTest>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"ConfigServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"config-service.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.playdata.configservice.ConfigServiceApplication\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.playdata.configservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"CourseServiceApplication (1)\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"course-service.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.springstudy.courseservice.CourseServiceApplication\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.springstudy.courseservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"DiscoveryServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"discovery-service.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.playdata.discoveryservice.DiscoveryServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"GatewayServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"gateway-service.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.playdata.gatewayservice.GatewayServiceApplication\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.playdata.gatewayservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"OrderServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"order-service.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.playdata.orderservice.OrderServiceApplication\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"com.playdata.orderservice.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PostserviceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"postservice.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.playdata.postservice.PostserviceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"UserServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"user-service.main\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.playdata.userservice.UserServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Spring Boot.CourseServiceApplication (1)\" />\r\n        <item itemvalue=\"Spring Boot.ConfigServiceApplication\" />\r\n        <item itemvalue=\"Spring Boot.OrderServiceApplication\" />\r\n        <item itemvalue=\"Spring Boot.GatewayServiceApplication\" />\r\n        <item itemvalue=\"Gradle.OrderServiceApplicationTests\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3149b107-6f9c-4e14-ba2b-315204dc0292\" name=\"Changes\" comment=\"\" />\r\n      <created>1744852472660</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1744852472660</updated>\r\n      <workItem from=\"1744852498436\" duration=\"431000\" />\r\n      <workItem from=\"1744852959126\" duration=\"75000\" />\r\n      <workItem from=\"1746703940055\" duration=\"3000\" />\r\n      <workItem from=\"1746704006019\" duration=\"8054000\" />\r\n      <workItem from=\"1746749459059\" duration=\"299000\" />\r\n      <workItem from=\"1746750382774\" duration=\"2227000\" />\r\n      <workItem from=\"1746752783471\" duration=\"688000\" />\r\n      <workItem from=\"1746869124850\" duration=\"9515000\" />\r\n      <workItem from=\"1747008025846\" duration=\"23568000\" />\r\n      <workItem from=\"1747048484986\" duration=\"7265000\" />\r\n      <workItem from=\"1747094767760\" duration=\"28293000\" />\r\n      <workItem from=\"1747150734031\" duration=\"13276000\" />\r\n      <workItem from=\"1747181040794\" duration=\"14983000\" />\r\n      <workItem from=\"1747225117423\" duration=\"7136000\" />\r\n      <workItem from=\"1747267933274\" duration=\"15295000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"강의 구매 기능 추가\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746874114389</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746874114389</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"강의 구매 취소 기능 추가\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1746875553601</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1746875553601</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747009289221</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747009289221</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747016867590</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747016867590</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"관리자용 강의 구매 내역 조회에서 feign client로 product 정보 가져오도록 수정\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747017578147</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747017578147</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747017996785</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747017996785</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"user token으로 order 동작하게 수정\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747025631094</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747025631094</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"관리자용 구매 내역에서 user 정보 같이 리턴 (수정중)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747031034382</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747031034382</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747102593295</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747102593295</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"강사의 본인 강의 주문 내역 조회 수정\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747114856102</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747114856102</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"강사의 본인 강의 주문 내역 조회 수정3\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747134322225</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747134322225</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"내가 학습 가능한 강의 정보 조회 기능 추가\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747155660087</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747155660087</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"pageable로 강의 목록(기본 페이지) 조회\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747194747771</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747194747771</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"config 병합 후 오류 수정\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747242287190</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747242287190</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"강의 삭제 관련 수정\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1747282293913</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1747282293913</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"16\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"강의 구매 기능 추가\" />\r\n    <MESSAGE value=\"강의 구매 취소 기능 추가\" />\r\n    <MESSAGE value=\"관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중\" />\r\n    <MESSAGE value=\"나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현\" />\r\n    <MESSAGE value=\"관리자용 강의 구매 내역 조회에서 feign client로 product 정보 가져오도록 수정\" />\r\n    <MESSAGE value=\"user token으로 order 동작하게 수정\" />\r\n    <MESSAGE value=\"관리자용 구매 내역에서 user 정보 같이 리턴 (수정중)\" />\r\n    <MESSAGE value=\"commit\" />\r\n    <MESSAGE value=\"강사의 본인 강의 주문 내역 조회 수정\" />\r\n    <MESSAGE value=\"강사의 본인 강의 주문 내역 조회 수정3\" />\r\n    <MESSAGE value=\"내가 학습 가능한 강의 정보 조회 기능 추가\" />\r\n    <MESSAGE value=\"pageable로 강의 목록(기본 페이지) 조회\" />\r\n    <MESSAGE value=\"config 병합 후 오류 수정\" />\r\n    <MESSAGE value=\"강의 삭제 관련 수정\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"강의 삭제 관련 수정\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 71f0b3a9cd4d4c5899f3240da8949d6a3eb3f82a)
++++ b/.idea/workspace.xml	(date 1749451399182)
+@@ -4,7 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 삭제 관련 수정">
++    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="jenkins 세팅 1">
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -65,6 +66,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="config" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -76,7 +82,7 @@
+   <component name="GithubPullRequestsUISettings">{
+   &quot;selectedUrlAndAccountId&quot;: {
+     &quot;url&quot;: &quot;https://github.com/cookiboii/Msa_project.git&quot;,
+-    &quot;accountId&quot;: &quot;ce047064-951f-49a2-b7d9-7e0066664a20&quot;
++    &quot;accountId&quot;: &quot;40efe769-1992-43bf-a208-5eefd6505775&quot;
+   }
+ }</component>
+   <component name="ProjectColorInfo">{
+@@ -84,64 +90,68 @@
+   &quot;associatedIndex&quot;: 1
+ }</component>
+   <component name="ProjectId" id="2woNOZNposkA2FB0yNRQp0w11J9" />
++  <component name="ProjectLevelVcsManager">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="flattenModules" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+-    &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.OrderServiceApplicationTests.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.ProductRepositoryTest.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.config-service 빌드.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.course-service 빌드.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.discovery-service 빌드.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.gateway-service 빌드.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.order-service 빌드.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.postservice 빌드.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.user-service 빌드.executor&quot;: &quot;Run&quot;,
+-    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Spring Boot.CourseServiceApplication (1).executor&quot;: &quot;Run&quot;,
+-    &quot;Spring Boot.CourseServiceApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Spring Boot.DiscoveryServiceApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Spring Boot.PostserviceApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;feature/orderservice&quot;,
+-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/playdata/Msa_project/order-service/src/main/resources&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Downloaded.Files.Path.Enabled": "false",
++    "Gradle.Build gateway-service.executor": "Run",
++    "Gradle.OrderServiceApplicationTests.executor": "Run",
++    "Gradle.ProductRepositoryTest.executor": "Run",
++    "Gradle.config-service 빌드.executor": "Run",
++    "Gradle.course-service 빌드.executor": "Run",
++    "Gradle.discovery-service 빌드.executor": "Run",
++    "Gradle.gateway-service 빌드.executor": "Run",
++    "Gradle.order-service 빌드.executor": "Run",
++    "Gradle.postservice 빌드.executor": "Run",
++    "Gradle.user-service 빌드.executor": "Run",
++    "Gradle.소스 다운로드.executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "Repository.Attach.Annotations": "false",
++    "Repository.Attach.JavaDocs": "false",
++    "Repository.Attach.Sources": "false",
++    "RequestMappingsPanelOrder0": "0",
++    "RequestMappingsPanelOrder1": "1",
++    "RequestMappingsPanelWidth0": "75",
++    "RequestMappingsPanelWidth1": "75",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "Spring Boot.ConfigServiceApplication.executor": "Run",
++    "Spring Boot.CourseServiceApplication (1).executor": "Run",
++    "Spring Boot.CourseServiceApplication.executor": "Run",
++    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
++    "Spring Boot.GatewayServiceApplication.executor": "Run",
++    "Spring Boot.OrderServiceApplication.executor": "Run",
++    "Spring Boot.PostserviceApplication.executor": "Run",
++    "Spring Boot.UserServiceApplication.executor": "Run",
++    "git-widget-placeholder": "main",
++    "junie.onboarding.icon.badge.shown": "true",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "C:/Msa_project",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "모듈",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "run.configurations.included.in.services": "true",
++    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
++    "vue.rearranger.settings.migration": "true"
+   },
+-  &quot;keyToStringList&quot;: {
+-    &quot;DatabaseDriversLRU&quot;: [
+-      &quot;mysql&quot;,
+-      &quot;mysql_aurora&quot;
++  "keyToStringList": {
++    "DatabaseDriversLRU": [
++      "mysql",
++      "mysql_aurora"
+     ]
+   }
+-}</component>
++}]]></component>
+   <component name="ReactorSettings">
+     <option name="notificationShown" value="true" />
+   </component>
+@@ -282,11 +292,12 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
++        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
++        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+       </set>
+     </attachedChunks>
+   </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+       <changelist id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="" />
+@@ -309,6 +320,9 @@
+       <workItem from="1747181040794" duration="14983000" />
+       <workItem from="1747225117423" duration="7136000" />
+       <workItem from="1747267933274" duration="15295000" />
++      <workItem from="1747988339150" duration="129000" />
++      <workItem from="1747988821612" duration="66000" />
++      <workItem from="1749451317432" duration="81000" />
+     </task>
+     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
+       <option name="closed" value="true" />
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-251.23774.435\">\r\n    <data-source name=\"msa-rds-user\" uuid=\"3d606dc4-f54c-43ea-b784-3bf587882ebb\">\r\n      <database-info product=\"MySQL\" version=\"8.0.41\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)\" dbms=\"MYSQL\" exact-version=\"8.0.41\" exact-driver-version=\"8.2\">\r\n        <extra-name-characters>#@</extra-name-characters>\r\n        <identifier-quote-string>`</identifier-quote-string>\r\n        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"exact\" quoted-identifiers=\"exact\" />\r\n      <secret-storage>master_key</secret-storage>\r\n      <user-name>spring-msa-user</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"schema\">\r\n            <name qname=\"@\" />\r\n            <name qname=\"msa-rds-user\" />\r\n          </node>\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n      <load-sources>user_and_system_sources</load-sources>\r\n    </data-source>\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 71f0b3a9cd4d4c5899f3240da8949d6a3eb3f82a)
++++ b/.idea/dataSources.local.xml	(date 1747789853728)
+@@ -1,11 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="dataSourceStorageLocal" created-in="IU-251.23774.435">
++  <component name="dataSourceStorageLocal" created-in="IU-243.26053.27">
+     <data-source name="msa-rds-user" uuid="3d606dc4-f54c-43ea-b784-3bf587882ebb">
+       <database-info product="MySQL" version="8.0.41" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.41" exact-driver-version="8.2">
+         <extra-name-characters>#@</extra-name-characters>
+         <identifier-quote-string>`</identifier-quote-string>
+-        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
+       </database-info>
+       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+       <secret-storage>master_key</secret-storage>

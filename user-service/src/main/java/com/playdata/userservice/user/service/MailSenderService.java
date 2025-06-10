@@ -19,10 +19,10 @@ public class MailSenderService {
     private final JavaMailSender mailSender;
 
     public String joinMain (String email) throws MessagingException {
-      String setFrom = "luo1998@gmail.com";
-      String  id = UUID.randomUUID().toString().replace("-", "");
-      String toMail =email;
-      String title = " 회원가입 인증 이메일";
+        String setFrom = "luo1998@gmail.com";
+        String  id = UUID.randomUUID().toString().replace("-", "");
+        String toMail =email;
+        String title = " 회원가입 인증 이메일";
         String content = "홈페이지 가입을 신청해 주셔서 감사합니다." +
                 "<br><br>" +
                 "인증 번호는 <strong>" + id+ "</strong> 입니다. <br>" +

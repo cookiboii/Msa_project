@@ -27,9 +27,11 @@ import static org.springframework.http.HttpStatus.*;
 @Slf4j
 public class UserController {
 
-     private final UserService userService;
+    private final UserService userService;
+
     private final JwtTokenProvider jwtTokenProvider;
-     public UserController(UserService userService, JwtTokenProvider jwtTokenProvider) {
+
+    public UserController(UserService userService, JwtTokenProvider jwtTokenProvider) {
          this.userService = userService;
          this.jwtTokenProvider = jwtTokenProvider;
      }
@@ -72,8 +74,24 @@ public class UserController {
 
         return new ResponseEntity<CommonResDto>(ACCEPTED);
     }
+    
+    // 다른 서비스에서 feign 클라이언트로 요청을 보내는 로직임
+    // 절대 삭제하지 말것!
+    // 본인이 사용하지 않는 메소드라고 해서 생각없이 삭제하는 몰상식한 행동을 하지 않길 바람.
+    @GetMapping("/findByEmail")
+    public CommonResDto findByEmail(@RequestParam String email) {
+        User foundUser = userService.findUserIdByEmail(email);
 
+        UserResDto build = UserResDto.builder()
+                .email(foundUser.getEmail())
+                .id(foundUser.getId())
+                .name(foundUser.getUsername())
+                .role(foundUser.getRole())
+                .build();
 
+        CommonResDto resDto = new CommonResDto(HttpStatus.OK, "유저 찾음", build);
+        return resDto;
+    }
     @GetMapping("/myinfo")
     public ResponseEntity<CommonResDto> getUser() {
         User user = userService.usersearch();
@@ -96,10 +114,10 @@ public class UserController {
     public void kakaoCallback(@RequestParam String code , HttpServletResponse response) throws IOException {
         log.info("카카오 콜백 처리 시작! code: {}", code);
 
-       String kakaoAccessToken = userService.getKakaoAccessToken(code);
+        String kakaoAccessToken = userService.getKakaoAccessToken(code);
 
         KakaoUserDto kakaoUserDto =userService.getKakaoUser(kakaoAccessToken);
-       UserResDto userResDto = userService.findOrCreateKakaoUser(kakaoUserDto);
+        UserResDto userResDto = userService.findOrCreateKakaoUser(kakaoUserDto);
         String token = jwtTokenProvider.createToken(userResDto.getEmail(),userResDto.getRole().toString());
 
         String html = String.format("""
@@ -130,10 +148,20 @@ public class UserController {
     }
 
     @PostMapping("/email-valid")
- public  ResponseEntity <CommonResDto> emailValidate(@RequestBody Map<String,String> map    ) {
+    public  ResponseEntity <CommonResDto> emailValidate(@RequestBody Map<String,String> map    ) {
         String email = map.get("email");
         String authNum = userService.mailCheck(email);
 
         return ResponseEntity.ok().body(new CommonResDto(OK,"검증 완료 " ,authNum));
- }
+    }
+
+    // 인증 코드를 검증하는 로직
+    @PostMapping("/verify")
+    public ResponseEntity<?> verify(@RequestBody Map<String, String> map){
+        log.info("인증 코드 검증! map: {}", map);
+
+        Map<String, String> result = userService.verifyEmail(map);
+
+        return ResponseEntity.ok().body("Success");
+    }
 }

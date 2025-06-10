@@ -35,7 +35,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory {
             ,"/eval/course-all-eval/*","/eval/course-eval-rating","/eval/update-info/*","/eval/course-eval-rating-feign",
             "/eval/eval-rating/*",
             "/post/list", "/post/comment/find", "/course-service/courses/all", "/courses/all", "/","/user/kakao","/user/email-valid",
-            "/post/list", "/post/comment/find", "/course-service/courses/all", "/courses/all", "/", "/order/pay/completed/**"
+            "/order/pay/completed/**", "/user/verify"
     );
 
     @Override

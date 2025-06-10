@@ -10,9 +10,9 @@ import lombok.*;
 
 @Entity
 @Getter
-@Table(name = "tbl_user")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor  //객체지향적 설계를 위해서 걸어둔다
+@Table(name = "user_tb")
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class User extends BaseTimeEntity {
 
@@ -26,15 +26,12 @@ public class User extends BaseTimeEntity {
 
     private String password;
 
-
-    @Column(name="name",unique = true)
     private String email;
 
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Role role = Role.USER;
-
 
     @Column
     private String socialId; // 소셜 로그인 고유 ID
@@ -45,11 +42,9 @@ public class User extends BaseTimeEntity {
     @Column
     private String socialProvider; // GOOGLE, KAKAO, NAVER, null(일반 로그인)
 
-
     public void changePassword(String newPassword) {
         this.password = newPassword;
     }
-
 
 
 
@@ -64,10 +59,10 @@ public class User extends BaseTimeEntity {
                   .build();
       }
 
-       public UserResDto toDto() {
+    public UserResDto toDto() {
         return  UserResDto.builder()
 
-                        .email(this.email)
+                .email(this.email)
                 .name(this.username)
                 .profileImage(this.profileImage)
                 .socialProvider(this.socialProvider)
@@ -75,6 +70,6 @@ public class User extends BaseTimeEntity {
 
 
                 .build();
-       }
+    }
 
 }

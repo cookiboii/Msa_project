@@ -44,6 +44,20 @@ public class MailSenderService {
 
     }
 
+    public void sendTempPasswordMail(String toEmail, String tempPassword) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
+        helper.setTo(toEmail);
+        helper.setSubject(" 임시 비밀번호 안내");
+        helper.setText(
+                "<p>요청하신 임시 비밀번호는 다음과 같습니다:</p>" +
+                        "<h3>" + tempPassword + "</h3>" +
+                        "로그인 후 반드시 비밀번호를 변경해 주세요.</p>",
+                true
+        );
+
+        mailSender.send(message);
+    }
 
 }

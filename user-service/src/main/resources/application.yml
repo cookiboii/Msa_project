@@ -58,5 +58,5 @@ eureka:
 
 oauth2:
   kakao:
-    client-id: 16a5cc3c2d930524373be21f6bf96353
+    client-id: # 값을 넣어야 함. push 할때는 비워두는 게 좋아보임
     redirect-uri: http://localhost:8000/user-service/user/kakao

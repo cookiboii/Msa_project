@@ -11,6 +11,11 @@
         <module name="eval-service.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.springstudy.course-service" target="17" />
+      <module name="com.springstudy.course-service.main" target="17" />
+      <module name="com.springstudy.course-service.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

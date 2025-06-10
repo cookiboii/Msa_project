@@ -19,7 +19,8 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+
   cloud:
     refresh:
       extra-refreshable: com.zaxxer.hikari.HikariDataSource

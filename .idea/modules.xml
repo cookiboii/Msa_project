@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/backend_msa.iml" filepath="$PROJECT_DIR$/.idea/backend_msa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/course-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/course-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gateway-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gateway-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/order-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/order-service.main.iml" />
     </modules>
   </component>

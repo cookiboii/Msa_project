@@ -155,4 +155,13 @@ public class UserController {
         return ResponseEntity.ok().body(new CommonResDto(OK,"검증 완료 " ,authNum));
     }
 
+    // 인증 코드를 검증하는 로직
+    @PostMapping("/verify")
+    public ResponseEntity<?> verify(@RequestBody Map<String, String> map){
+        log.info("인증 코드 검증! map: {}", map);
+
+        Map<String, String> result = userService.verifyEmail(map);
+
+        return ResponseEntity.ok().body("Success");
+    }
 }

@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 평가, eval-service 추가" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/playdata/gatewayservice/filter/AuthorizationHeaderFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,8 +63,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -290,6 +296,9 @@
       <workItem from="1748322204133" duration="191000" />
       <workItem from="1748324044590" duration="2966000" />
       <workItem from="1748327936216" duration="344000" />
+      <workItem from="1749519321951" duration="3503000" />
+      <workItem from="1749525206097" duration="14000" />
+      <workItem from="1749528109223" duration="1566000" />
     </task>
     <task id="LOCAL-00001" summary="post-service 초기 커밋">
       <option name="closed" value="true" />
@@ -547,7 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748328072591</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="카카오 관련 로직을 제외한 부분은 테스트 완료하였습니다.">
+      <option name="closed" value="true" />
+      <created>1749474092952</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1749474092952</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,7 +581,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/new_start" />
+                        <option value="origin/my_prac" />
                       </list>
                     </value>
                   </entry>
@@ -577,7 +594,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="post-service, 강사님과 진행한 코드와의 테스트 결과 문제 없음" />
     <MESSAGE value="post-service 구현중" />
     <MESSAGE value="order-service 병합 완료" />
     <MESSAGE value="커밋 하기" />
@@ -602,6 +618,7 @@
     <MESSAGE value="배포하자!" />
     <MESSAGE value="로컬에서 수행하게끔 코드 수정(아직 확인 안함.)&#10;yml파일은 각자 로컬에 맞게 수정하셔야 합니다!" />
     <MESSAGE value="강의 평가, eval-service 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="강의 평가, eval-service 추가" />
+    <MESSAGE value="카카오 관련 로직을 제외한 부분은 테스트 완료하였습니다." />
+    <option name="LAST_COMMIT_MESSAGE" value="카카오 관련 로직을 제외한 부분은 테스트 완료하였습니다." />
   </component>
 </project>

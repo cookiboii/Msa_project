@@ -164,4 +164,10 @@ public class UserController {
 
         return ResponseEntity.ok().body("Success");
     }
+
+    @GetMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@RequestParam String email) {
+        String result = userService.resetPassword(email);
+        return ResponseEntity.ok().body(result);
+    }
 }

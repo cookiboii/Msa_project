@@ -30,6 +30,7 @@ import org.springframework.web.client.RestTemplate;
 import java.time.Duration;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -288,5 +289,24 @@ public class UserService {
         redisTemplate.opsForValue().set(key, String.valueOf(count), Duration.ofMinutes(1));
 
         return count;
+    }
+
+    @Transactional
+    public String resetPassword(String email) {
+        log.info(email);
+        User user = userRepository.findByemail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User not found! " + email));
+
+        String tempPassword = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        String encodedPassword = passwordEncoder.encode(tempPassword);
+        user.changePassword(encodedPassword);
+
+        try {
+            mailSenderService.sendTempPasswordMail(email, tempPassword);
+        } catch (MessagingException e) {
+            throw new RuntimeException("이메일 전송 실패");
+        }
+
+        return tempPassword;
     }
 }

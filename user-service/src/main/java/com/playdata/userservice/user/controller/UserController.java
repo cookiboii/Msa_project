@@ -136,12 +136,12 @@ public class UserController {
 
         return ResponseEntity.ok().body(new CommonResDto(OK,"검증 완료 " ,authNum));
  }
-    @PostMapping("/reset-password")
-           public ResponseEntity<String> resetPassword(@RequestBody EmailDto EmailDto) {
-                  String email = EmailDto.email();
-                  String result = userService.resetPassword(email);
-                 return ResponseEntity.ok().body(result);
-          }
+//    @P/*ostMapping("/reset-password")
+//           public ResponseEntity<String> resetPassword(@RequestBody EmailDto EmailDto) {
+//                  String email = EmailDto.email();
+//                  String result = userService.resetPassword(email);
+//                 return ResponseEntity.ok().body(result);
+//          }*/
 
     @PostMapping("/verify")
     public ResponseEntity<?> verifyEmail(@RequestBody Map<String, String> map) {
@@ -149,4 +149,32 @@ public class UserController {
         Map<String, String> result = userService.verifyEmail(map);
         return ResponseEntity.ok().body("Success");
     }
+    // 1단계: 인증 요청
+    @PostMapping("/reset-password")
+    public ResponseEntity<CommonResDto> requestResetPassword(@RequestBody EmailDto EmailDto) {
+
+        userService.sendResetCode(EmailDto.email());
+        return ResponseEntity.ok(new CommonResDto(OK, "인증 코드가 이메일로 전송되었습니다", null));
+    }
+
+    // 2단계: 인증 코드 검증
+    @PostMapping("/verify-code")
+    public ResponseEntity<CommonResDto> verifyResetCode(@RequestBody Map<String, String> map) {
+        String email = map.get("email");
+        String code = map.get("code");
+        boolean valid = userService.verifyResetCode(email, code);
+        if (!valid) {
+            return ResponseEntity.status(BAD_REQUEST)
+                    .body(new CommonResDto(BAD_REQUEST, "인증 코드가 일치하지 않습니다", null));
+        }
+        return ResponseEntity.ok(new CommonResDto(OK, "인증 성공", null));
+    }
+
+    // 3단계: 비밀번호 변경
+    @PostMapping("/update-password")
+    public ResponseEntity<CommonResDto> updatePassword(@RequestBody UserPasswordUpdateDto updateDto) {
+        userService.updatePasswordAfterVerification(updateDto);
+        return ResponseEntity.ok(new CommonResDto(OK, "비밀번호가 성공적으로 변경되었습니다", null));
+    }
+
 }

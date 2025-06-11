@@ -209,9 +209,9 @@ public class UserService {
     // 인증 코드 검증 로직
     public Map<String, String> verifyEmail(Map<String, String> map) {
         // 차단 상태 확인
-        if (isBlocked(map.get("email"))) {
+       /* if (isBlocked(map.get("email"))) {
             throw new IllegalArgumentException("blocking");
-        }
+        }*/
 
         // 레디스에 저장된 인증 코드 조회
         String key = VERIFICATION_CODE_KEY + map.get("email");
@@ -226,11 +226,11 @@ public class UserService {
         // 조회한 코드와 사용자가 입력한 인증번호 검증
         if (!foundCode.toString().equals(map.get("code"))) {
             // 최대 시도 횟수 초과시 차단
-            if (attemptCount >= 3) {
+            if (attemptCount >= 1000) {
                 blockUser(map.get("email"));
                 throw new IllegalArgumentException("email blocked!");
             }
-            int remainingAttempts = 3 - attemptCount;
+            int remainingAttempts = 100000 - attemptCount;
             throw new IllegalArgumentException(String.format("authCode wrong!, %d", remainingAttempts));
         }
 
@@ -258,6 +258,33 @@ public class UserService {
 
         return count;
     }
+    @Transactional
+    public void sendResetCode(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("해당 이메일을 가진 사용자를 찾을 수 없습니다."));
+        String code = String.valueOf((int) ((Math.random() * 900000) + 100000)); // 6자리 숫자
+        redisTemplate.opsForValue().set("reset:" + email, code, Duration.ofMinutes(5));
+        try {
+            mailSenderService.sendAuthCode(email, code);
+        } catch (MessagingException e) {
+            throw new RuntimeException("이메일 발송 실패");
+        }
+    }
+    public boolean verifyResetCode(String email, String inputCode) {
+        String redisKey = "reset:" + email;
+        String savedCode = redisTemplate.opsForValue().get(redisKey);
+        return savedCode != null && savedCode.equals(inputCode);
+    }
 
+    @Transactional
+    public void updatePasswordAfterVerification(UserPasswordUpdateDto updateDto) {
+        String email = updateDto.email();
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("해당 이메일을 가진 사용자를 찾을 수 없습니다."));
+
+        String encodedPassword = passwordEncoder.encode(updateDto.newPassword());
+        user.changePassword(encodedPassword);
+        redisTemplate.delete("reset:" + email); // 인증 코드 삭제
+    }
 
 }

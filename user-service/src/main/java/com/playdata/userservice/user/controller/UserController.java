@@ -181,9 +181,31 @@ public class UserController {
         return ResponseEntity.ok().body("Success");
     }
 
+    // 1단계: 인증 요청
     @GetMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestParam String email) {
-        String result = userService.resetPassword(email);
-        return ResponseEntity.ok().body(result);
+    public ResponseEntity<CommonResDto> requestResetPassword(@RequestParam String email) {
+
+        userService.sendResetCode(email);
+        return ResponseEntity.ok(new CommonResDto(OK, "인증 코드가 이메일로 전송되었습니다", true));
+    }
+
+    // 2단계: 인증 코드 검증
+    @GetMapping("/verify-code")
+    public ResponseEntity<CommonResDto> verifyResetCode(@RequestParam Map<String, String> map) {
+        String email = map.get("email");
+        String code = map.get("code");
+        boolean valid = userService.verifyResetCode(email, code);
+        if (!valid) {
+            return ResponseEntity.status(BAD_REQUEST)
+                    .body(new CommonResDto(BAD_REQUEST, "인증 코드가 일치하지 않습니다", true));
+        }
+        return ResponseEntity.ok(new CommonResDto(OK, "인증 성공", true));
+    }
+
+    // 3단계: 비밀번호 변경
+    @PostMapping("/update-password")
+    public ResponseEntity<CommonResDto> updatePassword(@RequestBody UserPasswordUpdateDto updateDto) {
+        userService.updatePasswordAfterVerification(updateDto);
+        return ResponseEntity.ok(new CommonResDto(OK, "비밀번호가 성공적으로 변경되었습니다", true));
     }
 }

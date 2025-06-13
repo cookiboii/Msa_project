@@ -49,6 +49,16 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getAllCourses(pageable));
     }
 
+    // 정렬해서 조회
+    @GetMapping("/all/sort")
+    public ResponseEntity<Page<CourseResponseDto>> getSortedCourses(
+            @RequestParam(defaultValue = "") String sort,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "15") int size
+    ) {
+        return ResponseEntity.ok(courseService.getCoursesSorted(sort, page, size));
+    }
+
     // 페이징 조회
     @GetMapping("/list")
     public ResponseEntity<Page<CourseResponseDto>> getCoursesByPage(@RequestParam int page, @RequestParam int size) {
@@ -63,6 +73,9 @@ public class CourseController {
         }
         return ResponseEntity.ok(courseService.getCoursesByCategory(category));
     }
+
+
+
 
     // 검색
     @GetMapping("/search")
@@ -155,4 +168,7 @@ public class CourseController {
         return new CommonResDto(HttpStatus.OK, "해당 강의 찾음", build);
 
     }
+
+
+
 }

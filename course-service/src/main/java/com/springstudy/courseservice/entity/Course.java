@@ -59,4 +59,5 @@ public class Course {
     public void deactivate() {
         this.active = false;
     }
+
 }

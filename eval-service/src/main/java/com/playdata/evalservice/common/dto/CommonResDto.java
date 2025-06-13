@@ -20,4 +20,6 @@ public class CommonResDto<T> {
         this.result = result;
     }
 
+
+
 }

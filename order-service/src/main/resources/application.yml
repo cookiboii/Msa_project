@@ -39,3 +39,10 @@ eureka:
       defaultZone: http://localhost:8761/eureka
       instance:
         instance-id: ${spring.cloud.client.ip-address}:${spring.application.instance_id:${random.value}}
+
+# 카카오페이용 데이터
+oauth2:
+  kakao:
+    client-id: # 지우고 push해야합니다....
+    redirect_uri: http://localhost:8000/order-service/order/kakao
+    secret_key: # 지우고 push 해야 합니다....

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ProductRatingAvgDto {
+public class ProductRatingAvgDto<T> {
     private Long productId;
     private Double averageRating;
 }

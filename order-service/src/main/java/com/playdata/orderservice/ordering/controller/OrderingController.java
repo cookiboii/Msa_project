@@ -1,10 +1,11 @@
 package com.playdata.orderservice.ordering.controller;
 
-import com.playdata.orderservice.common.auth.Role;
 import com.playdata.orderservice.common.auth.TokenUserInfo;
 import com.playdata.orderservice.common.dto.CommonResDto;
 import com.playdata.orderservice.common.dto.CreateOrderRequest;
 import com.playdata.orderservice.ordering.dto.*;
+import com.playdata.orderservice.ordering.dto.OrderingListResDto;
+import com.playdata.orderservice.ordering.dto.OrderingSaveReqDto;
 import com.playdata.orderservice.ordering.entity.Ordering;
 import com.playdata.orderservice.ordering.service.OrderingService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 

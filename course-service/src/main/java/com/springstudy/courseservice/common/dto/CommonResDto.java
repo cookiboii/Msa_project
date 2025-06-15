@@ -1,13 +1,11 @@
 package com.springstudy.courseservice.common.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.http.HttpStatus;
 
 @Getter @Setter @ToString
 @NoArgsConstructor
+@Data
 public class CommonResDto<T> {
 
     private int statusCode;

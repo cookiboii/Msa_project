@@ -22,6 +22,4 @@ public class EvalResDto {
 
     private double rating;
 
-
-
 }

@@ -1,6 +1,6 @@
 package com.springstudy.courseservice.controller;
 
-import com.springstudy.courseservice.dto.CourseResponse;
+import com.springstudy.courseservice.dto.CourseResponseDto;
 import com.springstudy.courseservice.service.CourseService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CourseResponse>> getAllCoursesFromRoot(Pageable pageable) {
+    public ResponseEntity<List<CourseResponseDto>> getAllCoursesFromRoot(Pageable pageable) {
         return ResponseEntity.ok(courseService.getAllCourses(pageable));
     }
 }

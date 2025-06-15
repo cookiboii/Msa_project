@@ -49,8 +49,6 @@ public class SecurityConfig {
                             "/order/ordereduser/*",
                             "/actuator/**",
 //                            "/order/**"
-                            "/order/pay/**",
-                            "/order/ordereduser/*"
                             "/order/pay/**"
                     )
                     .permitAll()

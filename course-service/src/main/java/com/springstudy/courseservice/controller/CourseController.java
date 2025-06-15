@@ -58,6 +58,9 @@ public class CourseController {
     // 카테고리별 조회
     @GetMapping("/category/{category}")
     public ResponseEntity<Page<CourseResponse>> getCoursesByCategory(@PathVariable String category) {
+        if (category.equals("HTMLCSS")) {
+            category = "HTML/CSS";
+        }
         return ResponseEntity.ok(courseService.getCoursesByCategory(category));
     }
 

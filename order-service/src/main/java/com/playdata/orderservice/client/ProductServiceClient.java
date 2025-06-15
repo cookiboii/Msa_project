@@ -2,7 +2,6 @@ package com.playdata.orderservice.client;
 
 import com.playdata.orderservice.common.dto.CommonResDto;
 import com.playdata.orderservice.ordering.dto.ProdDetailResDto;
-import com.playdata.orderservice.ordering.dto.ProductResDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ import java.util.Map;
 public interface ProductServiceClient {
 
     @GetMapping("/courses/info/{id}")
-    CommonResDto<ProdDetailResDto> findById(@PathVariable Long id);
+    ProdDetailResDto findById(@PathVariable Long id);
 
     @PostMapping("/courses/products")
     CommonResDto<List<ProdDetailResDto>> getProducts(@RequestBody List<Long> productIds);

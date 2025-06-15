@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="config 오류 수정">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,6 +295,7 @@
       <workItem from="1749519321951" duration="3503000" />
       <workItem from="1749525206097" duration="14000" />
       <workItem from="1749528109223" duration="1566000" />
+      <workItem from="1749804877754" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="post-service 초기 커밋">
       <option name="closed" value="true" />
@@ -569,7 +569,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749784465872</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다.">
+      <option name="closed" value="true" />
+      <created>1749784888100</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1749784888101</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +607,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="order-service 병합 완료" />
     <MESSAGE value="커밋 하기" />
     <MESSAGE value="병합 완료하였습니다. 로컬에서 로직들 확인 부탁드립니다." />
     <MESSAGE value="질문, 답글 프론트와 기능 구현됨." />
@@ -624,6 +631,7 @@
     <MESSAGE value="강의 평가, eval-service 추가" />
     <MESSAGE value="카카오 관련 로직을 제외한 부분은 테스트 완료하였습니다." />
     <MESSAGE value="config 오류 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="config 오류 수정" />
+    <MESSAGE value="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다." />
+    <option name="LAST_COMMIT_MESSAGE" value="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다." />
   </component>
 </project>

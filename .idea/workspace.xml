@@ -242,11 +242,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.EvalServiceApplication" />
       <item itemvalue="Spring Boot.ConfigServiceApplication" />
       <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
-      <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
-      <item itemvalue="Spring Boot.EvalServiceApplication" />
       <item itemvalue="Spring Boot.GatewayServiceApplication" />
+      <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
       <item itemvalue="Spring Boot.OrderServiceApplication" />
       <item itemvalue="Spring Boot.PostserviceApplication" />
       <item itemvalue="Spring Boot.UserServiceApplication" />

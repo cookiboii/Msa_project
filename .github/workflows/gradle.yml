@@ -1,0 +1,81 @@
+name: MSA CI/CD with ECR & ArgoCD
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  ECR_REGISTRY: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com
+  REGION: ap-northeast-2
+  SERVICE_DIRS: config-service,discovery-service,gateway-service,user-service,postservice,order-service,course-service
+  NEW_TAG: 1.0.${{ github.run_number }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.REGION }}
+
+    - name: Login to Amazon ECR
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Detect Changed Services
+      id: detect
+      run: |
+        echo "SERVICE_DIRS=${{ env.SERVICE_DIRS }}"
+        CHANGED=""
+        for service in $(echo "${{ env.SERVICE_DIRS }}" | tr "," "\n"); do
+          if git diff --name-only HEAD~1 HEAD | grep "^$service/"; then
+            CHANGED="$CHANGED $service"
+          fi
+        done
+        echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+        echo "Changed Services: $CHANGED"
+
+    - name: Build & Push Changed Services
+      if: steps.detect.outputs.changed != ''
+      run: |
+        for service in ${{ steps.detect.outputs.changed }}; do
+          echo "Building $service"
+          cd $service
+          chmod +x ./gradlew
+          ./gradlew clean build -x test
+          docker build -t $ECR_REGISTRY/$service:${{ env.NEW_TAG }} .
+          docker push $ECR_REGISTRY/$service:${{ env.NEW_TAG }}
+          cd ..
+        done
+
+    - name: Checkout K8s GitOps Repo
+      uses: actions/checkout@v3
+      with:
+        repository: EunHyeokLee123/k8s
+        token: ${{ secrets.GIT_ACCESS_TOKEN }}
+        path: k8s-repo
+
+    - name: Update Image Tags in values.yaml
+      if: steps.detect.outputs.changed != ''
+      run: |
+        for service in ${{ steps.detect.outputs.changed }}; do
+          sed -i "s|image: .*|image: $ECR_REGISTRY/$service:${{ env.NEW_TAG }}|" k8s-repo/msa-chart/charts/$service/values.yaml
+        done
+        cd k8s-repo
+        git config user.name "GitHub Actions"
+        git config user.email "github-actions@example.com"
+        git add .
+        git commit -m "Update image tags [${{ env.NEW_TAG }}] for: ${{ steps.detect.outputs.changed }}"
+        git push

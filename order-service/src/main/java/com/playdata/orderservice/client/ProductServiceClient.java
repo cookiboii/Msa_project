@@ -13,7 +13,7 @@ import java.util.Map;
 public interface ProductServiceClient {
 
     @GetMapping("/courses/info/{id}")
-    CommonResDto<ProdDetailResDto> findById(@PathVariable Long id);
+    ProdDetailResDto findById(@PathVariable Long id);
 
     @PostMapping("/courses/products")
     CommonResDto<List<ProdDetailResDto>> getProducts(@RequestBody List<Long> productIds);

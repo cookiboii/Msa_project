@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="강의 정렬 로직 추가">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다.">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/entity/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eval-service/.gradle/8.13/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/eval-service/.gradle/8.13/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eval-service/.gradle/8.13/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/eval-service/.gradle/8.13/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eval-service/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/eval-service/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eval-service/src/main/java/com/playdata/evalservice/eval/controller/EvalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/eval-service/src/main/java/com/playdata/evalservice/eval/controller/EvalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/playdata/orderservice/common/configs/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +90,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/cookiboii/Msa_project.git&quot;,
-    &quot;accountId&quot;: &quot;40efe769-1992-43bf-a208-5eefd6505775&quot;
+    &quot;accountId&quot;: &quot;cdc124fd-3631-485f-b68e-e804517d9a10&quot;
   }
 }</component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -116,8 +124,6 @@
     &quot;Gradle.postservice 빌드.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.user-service 빌드.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Database detector&quot;: &quot;데이터베이스 탐지기&quot;,
-    &quot;Notification.DoNotAsk-Database detector&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -134,9 +140,9 @@
     &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.PostserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/courseservice&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;temp__merge__01&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/eks-deploy-practice/orderservice_msa&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/Msa_project/eval-service/src/main/java/com/playdata/evalservice/eval/dto&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -168,8 +174,8 @@
       <recent name="C:\Users\user\Desktop\Msa_project\postservice\src\main\java\com\playdata\postservice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.springstudy.courseservice.dto" />
       <recent name="com.springstudy.courseservice.common.dto" />
+      <recent name="com.springstudy.courseservice.dto" />
       <recent name="com.playdata.userservice.user.dto" />
       <recent name="com.playdata.postservice.common.entity" />
     </key>
@@ -184,7 +190,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CourseServiceApplication (1)">
+  <component name="RunManager" selected="Spring Boot.EvalServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.configservice.ConfigServiceApplication" />
@@ -295,10 +301,10 @@
       <workItem from="1748322204133" duration="191000" />
       <workItem from="1748324044590" duration="2966000" />
       <workItem from="1748327936216" duration="344000" />
-      <workItem from="1749530781026" duration="710000" />
-      <workItem from="1749539749019" duration="6315000" />
-      <workItem from="1749791467923" duration="14626000" />
-      <workItem from="1750032361579" duration="60000" />
+      <workItem from="1749519321951" duration="3503000" />
+      <workItem from="1749525206097" duration="14000" />
+      <workItem from="1749528109223" duration="1566000" />
+      <workItem from="1749804877754" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="post-service 초기 커밋">
       <option name="closed" value="true" />
@@ -556,23 +562,31 @@
       <option name="project" value="LOCAL" />
       <updated>1748328072591</updated>
     </task>
-    <task id="LOCAL-00033" summary="redis를 통한 이메일 인증 로직 구현">
+    <task id="LOCAL-00033" summary="카카오 관련 로직을 제외한 부분은 테스트 완료하였습니다.">
       <option name="closed" value="true" />
-      <created>1749544240794</created>
+      <created>1749474092952</created>
       <option name="number" value="00033" />
       <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1749544240794</updated>
+      <updated>1749474092952</updated>
     </task>
-    <task id="LOCAL-00034" summary="강의 정렬 로직 추가">
+    <task id="LOCAL-00034" summary="config 오류 수정">
       <option name="closed" value="true" />
-      <created>1749808744928</created>
+      <created>1749784465872</created>
       <option name="number" value="00034" />
       <option name="presentableId" value="LOCAL-00034" />
       <option name="project" value="LOCAL" />
-      <updated>1749808744929</updated>
+      <updated>1749784465872</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다.">
+      <option name="closed" value="true" />
+      <created>1749784888100</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1749784888101</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +603,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/new_start" />
+                        <option value="origin/my_prac" />
                       </list>
                     </value>
                   </entry>
@@ -602,7 +616,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="order-service 병합 완료" />
     <MESSAGE value="커밋 하기" />
     <MESSAGE value="병합 완료하였습니다. 로컬에서 로직들 확인 부탁드립니다." />
     <MESSAGE value="질문, 답글 프론트와 기능 구현됨." />
@@ -625,23 +638,9 @@
     <MESSAGE value="배포하자!" />
     <MESSAGE value="로컬에서 수행하게끔 코드 수정(아직 확인 안함.)&#10;yml파일은 각자 로컬에 맞게 수정하셔야 합니다!" />
     <MESSAGE value="강의 평가, eval-service 추가" />
-    <MESSAGE value="redis를 통한 이메일 인증 로직 구현" />
-    <MESSAGE value="강의 정렬 로직 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="강의 정렬 로직 추가" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/course-service/src/main/java/com/springstudy/courseservice/controller/CourseController.java</url>
-          <line>34</line>
-          <properties class="com.springstudy.courseservice.controller.CourseController" method="createCourse">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="카카오 관련 로직을 제외한 부분은 테스트 완료하였습니다." />
+    <MESSAGE value="config 오류 수정" />
+    <MESSAGE value="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다." />
+    <option name="LAST_COMMIT_MESSAGE" value="config 오류 수정, 단 local에서 개발중이기에, config-service를 실행하시면 오류가 발생하니, 배포환경이 아닌 로컬환경에서는 config-service를 실행하지 않고 켜시기 바랍니다." />
   </component>
 </project>

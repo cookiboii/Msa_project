@@ -2,6 +2,7 @@ package com.playdata.userservice.user.service;
 
 import com.playdata.userservice.common.auth.TokenUserInfo;
 import com.playdata.userservice.user.dto.*;
+import com.playdata.userservice.user.entity.Role;
 import com.playdata.userservice.user.entity.User;
 import com.playdata.userservice.user.repository.UserRepository;
 
@@ -216,6 +217,7 @@ public class UserService {
         try {
             authNum = mailSenderService.joinMain(email);
         } catch (MessagingException e) {
+            log.info(e.getMessage());
             throw new RuntimeException("이메일 전송 과정 중 문제 발생");
         }
 
@@ -292,21 +294,49 @@ public class UserService {
     }
 
     @Transactional
-    public String resetPassword(String email) {
-        log.info(email);
+    public void sendResetCode(String email) {
         User user = userRepository.findByemail(email)
-                .orElseThrow(() -> new EntityNotFoundException("User not found! " + email));
-
-        String tempPassword = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
-        String encodedPassword = passwordEncoder.encode(tempPassword);
-        user.changePassword(encodedPassword);
-
+                .orElseThrow(() -> new EntityNotFoundException("해당 이메일을 가진 사용자를 찾을 수 없습니다."));
+        String code = String.valueOf((int) ((Math.random() * 900000) + 100000)); // 6자리 숫자
+        redisTemplate.opsForValue().set("reset:" + email, code, Duration.ofMinutes(5));
         try {
-            mailSenderService.sendTempPasswordMail(email, tempPassword);
+            mailSenderService.sendAuthCode(email, code);
         } catch (MessagingException e) {
-            throw new RuntimeException("이메일 전송 실패");
+            throw new RuntimeException("이메일 발송 실패");
         }
+    }
 
-        return tempPassword;
+    public boolean verifyResetCode(String email, String inputCode) {
+        String redisKey = "reset:" + email;
+        String savedCode = redisTemplate.opsForValue().get(redisKey).toString();
+        return savedCode != null && savedCode.equals(inputCode);
+    }
+
+    @Transactional
+    public void updatePasswordAfterVerification(UserPasswordUpdateDto updateDto) {
+        String email = updateDto.getEmail();
+        User user = userRepository.findByemail(email)
+                .orElseThrow(() -> new EntityNotFoundException("해당 이메일을 가진 사용자를 찾을 수 없습니다."));
+
+        String encodedPassword = passwordEncoder.encode(updateDto.getNewPassword());
+        user.changePassword(encodedPassword);
+        userRepository.save(user);
+        redisTemplate.delete("reset:" + email); // 인증 코드 삭제
+    }
+
+    // 강사로 Role을 변환하는 메소드
+    public UserResDto changeRole(TokenUserInfo userInfo) {
+
+        User foundUser
+                = userRepository.findByemail(userInfo.getEmail())
+                .orElseThrow(() -> new EntityNotFoundException("User not found! " + userInfo.getEmail()));
+
+        if(foundUser.getRole() == Role.USER) {
+            foundUser.changeRole(Role.ADMIN);
+            return userRepository.save(foundUser).toDto();
+        }
+        else{
+            return null;
+        }
     }
 }

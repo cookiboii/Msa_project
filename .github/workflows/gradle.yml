@@ -63,7 +63,7 @@ jobs:
     - name: Checkout K8s GitOps Repo
       uses: actions/checkout@v3
       with:
-        repository: EunHyeokLee123/k8s
+        repository: cookiboii/git-Ops
         token: ${{ secrets.GIT_ACCESS_TOKEN }}
         path: k8s-repo
 
@@ -74,7 +74,7 @@ jobs:
           sed -i "s|image: .*|image: $ECR_REGISTRY/$service:${{ env.NEW_TAG }}|" k8s-repo/msa-chart/charts/$service/values.yaml
         done
         cd k8s-repo
-        git config user.name "naseokhoo"
+        git config user.name "cookiboii"
         git config user.email "nahoo1202@naver.com"
         git add .
         git commit -m "Update image tags [${{ env.NEW_TAG }}] for: ${{ steps.detect.outputs.changed }}"

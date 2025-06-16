@@ -9,6 +9,7 @@ import com.springstudy.courseservice.repository.CourseRepository;
 import com.springstudy.courseservice.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +55,7 @@ public class CourseController {
     public ResponseEntity<Page<CourseResponseDto>> getSortedCourses(
             @RequestParam(defaultValue = "") String sort,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "15") int size
+            @RequestParam(defaultValue = "16") int size
     ) {
         return ResponseEntity.ok(courseService.getCoursesSorted(sort, page, size));
     }
@@ -74,6 +75,20 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getCoursesByCategory(category));
     }
 
+    // 카테고리 + 정렬 + 페이징
+    @GetMapping("/category/{category}/sort")
+    public ResponseEntity<Page<CourseResponseDto>> getCoursesByCategorySorted(
+            @PathVariable String category,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "16") int size,
+            @RequestParam(defaultValue = "") String sort) {
+
+        if (category.equals("HTMLCSS")) {
+            category = "HTML/CSS";
+        }
+
+        return ResponseEntity.ok(courseService.getCoursesByCategoryAndSort(category, page, size, sort));
+    }
 
 
 
@@ -168,7 +183,5 @@ public class CourseController {
         return new CommonResDto(HttpStatus.OK, "해당 강의 찾음", build);
 
     }
-
-
 
 }

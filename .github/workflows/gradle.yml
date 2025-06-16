@@ -74,8 +74,8 @@ jobs:
           sed -i "s|image: .*|image: $ECR_REGISTRY/$service:${{ env.NEW_TAG }}|" k8s-repo/msa-chart/charts/$service/values.yaml
         done
         cd k8s-repo
-        git config user.name "GitHub Actions"
-        git config user.email "github-actions@example.com"
+        git config user.name "naseokhoo"
+        git config user.email "nahoo1202@naver.com"
         git add .
         git commit -m "Update image tags [${{ env.NEW_TAG }}] for: ${{ steps.detect.outputs.changed }}"
         git push

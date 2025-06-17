@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="yml파일 변경">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="같은에러 반복">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,7 +311,7 @@
       <workItem from="1747181040794" duration="14983000" />
       <workItem from="1747225117423" duration="7136000" />
       <workItem from="1747267933274" duration="15295000" />
-      <workItem from="1750124155691" duration="4746000" />
+      <workItem from="1750124155691" duration="9094000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -479,7 +473,31 @@
       <option name="project" value="LOCAL" />
       <updated>1750127692672</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="docker파일변경">
+      <option name="closed" value="true" />
+      <created>1750130006537</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1750130006537</updated>
+    </task>
+    <task id="LOCAL-00022" summary="gradle.yml변경중">
+      <option name="closed" value="true" />
+      <created>1750130243361</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1750130243361</updated>
+    </task>
+    <task id="LOCAL-00023" summary="같은에러 반복">
+      <option name="closed" value="true" />
+      <created>1750130590162</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1750130590162</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,6 +534,9 @@
     <MESSAGE value="도커파일수정" />
     <MESSAGE value="도커파일 변경후 다시 빌드" />
     <MESSAGE value="yml파일 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="yml파일 변경" />
+    <MESSAGE value="docker파일변경" />
+    <MESSAGE value="gradle.yml변경중" />
+    <MESSAGE value="같은에러 반복" />
+    <option name="LAST_COMMIT_MESSAGE" value="같은에러 반복" />
   </component>
 </project>

@@ -68,6 +68,7 @@ jobs:
 
             docker-compose down
 
+            # latest 태그 → 실제 태그로 변경
             sed -i "s/:latest/:${{ env.TAG }}/g" docker-compose.yml
 
             docker-compose pull

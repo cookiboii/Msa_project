@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="같은에러 반복">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="gradle.yml 수정했어">
       <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -311,7 +311,7 @@
       <workItem from="1747181040794" duration="14983000" />
       <workItem from="1747225117423" duration="7136000" />
       <workItem from="1747267933274" duration="15295000" />
-      <workItem from="1750124155691" duration="9094000" />
+      <workItem from="1750124155691" duration="10063000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -497,7 +497,23 @@
       <option name="project" value="LOCAL" />
       <updated>1750130590162</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="gradle.yml">
+      <option name="closed" value="true" />
+      <created>1750136794096</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1750136794096</updated>
+    </task>
+    <task id="LOCAL-00025" summary="gradle.yml 수정했어">
+      <option name="closed" value="true" />
+      <created>1750137093619</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1750137093619</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,6 +553,8 @@
     <MESSAGE value="docker파일변경" />
     <MESSAGE value="gradle.yml변경중" />
     <MESSAGE value="같은에러 반복" />
-    <option name="LAST_COMMIT_MESSAGE" value="같은에러 반복" />
+    <MESSAGE value="gradle.yml" />
+    <MESSAGE value="gradle.yml 수정했어" />
+    <option name="LAST_COMMIT_MESSAGE" value="gradle.yml 수정했어" />
   </component>
 </project>

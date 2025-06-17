@@ -1,4 +1,4 @@
-name: MSA Build & Deploy
+name: MSA CI/CD to EC2 with ECR
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and Push Docker Images
+      - name: Build JARs & Docker Images
         run: |
           for service in $(echo "${{ env.SERVICE_DIRS }}" | tr ',' '\n'); do
             echo "Building and pushing $service"
@@ -55,7 +55,7 @@ jobs:
           script: |
             aws ecr get-login-password --region ${{ env.REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
             cd /home/ec2-user/app
-            docker-compose down
             sed -i "s/:latest/:${{ env.TAG }}/g" docker-compose.yml
+            docker-compose down
             docker-compose pull
             docker-compose up -d

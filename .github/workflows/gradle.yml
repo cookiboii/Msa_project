@@ -34,31 +34,29 @@ jobs:
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and Push Docker Images
+      - name: Build and Push Docker Images (with latest tag)
         run: |
           for service in $(echo "${{ env.SERVICE_DIRS }}" | tr ',' '\n'); do
             echo "Building and pushing $service"
             cd $service
             chmod +x ./gradlew
             ./gradlew clean build -x test
-            docker build -t $ECR_REGISTRY/$service:${{ env.TAG }} .
+            docker build -t $ECR_REGISTRY/$service:${{ env.TAG }} -t $ECR_REGISTRY/$service:latest .
             docker push $ECR_REGISTRY/$service:${{ env.TAG }}
+            docker push $ECR_REGISTRY/$service:latest
             cd ..
           done
 
-      - name: Generate .env file for TAG
-        run: echo "TAG=${{ env.TAG }}" > .env
-
-      - name: Send docker-compose.yml and .env
+      - name: Send docker-compose.yml to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
-          source: "docker-compose.yml,.env"
-          target: "/home/ubuntu/"
+          source: "./docker-compose.yml"
+          target: "/home/ubuntu"
 
-      - name: SSH Deploy with Docker Compose
+      - name: Deploy on EC2 via SSH
         uses: appleboy/ssh-action@v0.1.8
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -67,28 +65,28 @@ jobs:
           script: |
             cd /home/ubuntu
 
-            if [ -d "docker-compose.yml" ]; then
-              rm -rf docker-compose.yml
+            # 도커 권한 확인 (sudo 필요 시)
+            if ! docker ps > /dev/null 2>&1; then
+              echo "Docker requires sudo. Switching..."
+              alias docker='sudo docker'
+              alias docker-compose='sudo docker-compose'
             fi
 
+            # docker-compose 설치 (필요 시)
             if ! command -v docker-compose &> /dev/null; then
               echo "Installing docker-compose..."
               sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
               sudo chmod +x /usr/local/bin/docker-compose
             fi
 
+            # ECR 로그인
             aws ecr get-login-password --region ${{ env.REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
-            docker-compose down --remove-orphans
-            docker-compose pull
-            docker-compose up -d
+            # 기존 컨테이너 중지 및 제거
+            docker-compose down
 
-      - name: Check container status and logs
-        uses: appleboy/ssh-action@v0.1.8
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          script: |
-            docker ps -a
-            docker-compose logs --tail=100
+            # 최신 이미지 pull
+            docker-compose pull
+
+            # 서비스 재시작
+            docker-compose up -d

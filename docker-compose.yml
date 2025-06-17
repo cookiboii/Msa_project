@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  config-service:
+    image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/config-service:latest
+    ports:
+      - "8888:8888"
+
+  discovery-service:
+    image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/discovery-service:latest
+    ports:
+      - "8761:8761"
+
+  gateway-service:
+    image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/gateway-service:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - config-service
+      - discovery-service
+
+  user-service:
+    image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/user-service:latest
+    ports:
+      - "8081:8080"
+
+  postservice:
+    image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/postservice:latest
+    ports:
+      - "8082:8080"
+
+  order-service:
+    image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/order-service:latest
+    ports:
+      - "8083:8080"
+
+  course-service:
+    image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/course-service:latest
+    ports:
+      - "8084:8080"

@@ -18,6 +18,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Check docker-compose.yml existence
+        run: ls -l docker-compose.yml
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -64,11 +67,12 @@ jobs:
           script: |
             cd /home/ec2-user
 
+            which docker-compose
+
             aws ecr get-login-password --region ${{ env.REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
             docker-compose down
 
-            # latest 태그 → 실제 태그로 변경
             sed -i "s/:latest/:${{ env.TAG }}/g" docker-compose.yml
 
             docker-compose pull

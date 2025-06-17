@@ -46,28 +46,49 @@ jobs:
             cd ..
           done
 
-      - name: SSH Deploy to EC2 (docker run)
+      - name: Generate .env file for TAG
+        run: echo "TAG=${{ env.TAG }}" > .env
+
+      - name: Send docker-compose.yml and .env
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          source: "docker-compose.yml,.env"
+          target: "/home/ubuntu/"
+
+      - name: SSH Deploy with Docker Compose
         uses: appleboy/ssh-action@v0.1.8
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            # ECR 로그인
+            cd /home/ubuntu
+
+            if [ -d "docker-compose.yml" ]; then
+              rm -rf docker-compose.yml
+            fi
+
+            if ! command -v docker-compose &> /dev/null; then
+              echo "Installing docker-compose..."
+              sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+              sudo chmod +x /usr/local/bin/docker-compose
+            fi
+
             aws ecr get-login-password --region ${{ env.REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
-            # 이전 컨테이너 정리
-            docker rm -f config-service discovery-service gateway-service user-service postservice order-service course-service || true
+            docker-compose down --remove-orphans
+            docker-compose pull
+            docker-compose up -d
 
-            # 공통 옵션
-            BASE_URL=${{ env.ECR_REGISTRY }}
-            TAG=${{ env.TAG }}
-
-            # 서비스별 실행
-            docker run -d --name config-service -p 8888:8888 $BASE_URL/config-service:$TAG
-            docker run -d --name discovery-service -p 8761:8761 $BASE_URL/discovery-service:$TAG
-            docker run -d --name gateway-service -p 8000:8000 --link config-service --link discovery-service $BASE_URL/gateway-service:$TAG
-            docker run -d --name user-service -p 8081:8080 $BASE_URL/user-service:$TAG
-            docker run -d --name postservice -p 8082:8080 $BASE_URL/postservice:$TAG
-            docker run -d --name order-service -p 8083:8080 $BASE_URL/order-service:$TAG
-            docker run -d --name course-service -p 8084:8080 $BASE_URL/course-service:$TAG
+      - name: Check container status and logs
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            docker ps -a
+            docker-compose logs --tail=100

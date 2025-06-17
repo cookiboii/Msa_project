@@ -46,14 +46,14 @@ jobs:
             cd ..
           done
 
-      - name: Copy docker-compose.yml to EC2
+      - name: Copy docker-compose.yml to EC2 home directory
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_KEY }}
           source: docker-compose.yml
-          target: /home/ec2-user/app/docker-compose.yml
+          target: /home/ec2-user/docker-compose.yml
 
       - name: SSH Deploy to EC2
         uses: appleboy/ssh-action@v0.1.8
@@ -62,17 +62,12 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_KEY }}
           script: |
-            # app 디렉토리가 없으면 생성
-            mkdir -p /home/ec2-user/app
+            cd /home/ec2-user
 
-            # ECR 로그인
             aws ecr get-login-password --region ${{ env.REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
-
-            cd /home/ec2-user/app
 
             docker-compose down
 
-            # docker-compose.yml 내 :latest 태그를 현재 태그로 변경
             sed -i "s/:latest/:${{ env.TAG }}/g" docker-compose.yml
 
             docker-compose pull

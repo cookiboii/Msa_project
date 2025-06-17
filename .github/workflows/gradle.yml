@@ -64,13 +64,6 @@ jobs:
           script: |
             cd /home/ubuntu
 
-            # docker-compose 설치 여부 확인 및 없으면 설치
-            which docker-compose || (
-              echo "docker-compose not found, installing..."
-              sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-              sudo chmod +x /usr/local/bin/docker-compose
-            )
-
             aws ecr get-login-password --region ${{ env.REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
             docker-compose down

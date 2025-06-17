@@ -1,11 +1,7 @@
-# 빌드 단계
-FROM gradle:7.6.1-jdk17 AS builder
+FROM openjdk:17-jdk-alpine
 WORKDIR /app
-COPY . .
-RUN ./gradlew clean build -x test
 
-# 실행 단계
-FROM openjdk:17-jdk-slim
-WORKDIR /app
-COPY --from=builder /app/build/libs/*.jar app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY build/libs/*.jar REDnotice.jar
+
+# 컨테이너 시작 시 실행할 명령어
+ENTRYPOINT ["java", "-jar", "REDnotice.jar"]

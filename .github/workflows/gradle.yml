@@ -53,21 +53,26 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
+          username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           source: docker-compose.yml
-          target: /home/ec2-user/docker-compose.yml
+          target: /home/ubuntu/docker-compose.yml
 
       - name: SSH Deploy to EC2
         uses: appleboy/ssh-action@v0.1.8
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
+          username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd /home/ec2-user
+            cd /home/ubuntu
 
-            which docker-compose
+            # docker-compose 설치 여부 확인 및 없으면 설치
+            which docker-compose || (
+              echo "docker-compose not found, installing..."
+              sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+              sudo chmod +x /usr/local/bin/docker-compose
+            )
 
             aws ecr get-login-password --region ${{ env.REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 

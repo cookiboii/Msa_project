@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="도커 컴포즈 추가">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="도커 파일수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +83,10 @@
     "accountId": "3e2b78ef-4ba7-4e5c-a94b-68b8f72f14bf"
   }
 }]]></component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -94,8 +98,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.postservice/Dockerfile builder.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.Build gateway-service.executor": "Run",
+    "Gradle.Build user-service.executor": "Run",
     "Gradle.OrderServiceApplicationTests.executor": "Run",
     "Gradle.ProductRepositoryTest.executor": "Run",
     "Gradle.config-service 빌드.executor": "Run",
@@ -176,31 +182,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
-    <configuration name="OrderServiceApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/order-service" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.playdata.orderservice.OrderServiceApplicationTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="com.playdata.config-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.configservice.ConfigServiceApplication" />
@@ -274,13 +256,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
+    <configuration name="postservice/Dockerfile builder" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="gradle7.6.1-jdk17_builder" />
+          <option name="buildCliOptions" value="--target builder" />
+          <option name="buildOnly" value="true" />
+          <option name="sourceFilePath" value="postservice/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.postservice/Dockerfile builder" />
         <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
         <item itemvalue="Spring Boot.ConfigServiceApplication" />
         <item itemvalue="Spring Boot.OrderServiceApplication" />
         <item itemvalue="Spring Boot.GatewayServiceApplication" />
-        <item itemvalue="Gradle.OrderServiceApplicationTests" />
       </list>
     </recent_temporary>
   </component>
@@ -314,7 +311,7 @@
       <workItem from="1747181040794" duration="14983000" />
       <workItem from="1747225117423" duration="7136000" />
       <workItem from="1747267933274" duration="15295000" />
-      <workItem from="1750124155691" duration="206000" />
+      <workItem from="1750124155691" duration="1434000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -444,7 +441,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750124322729</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="도커 파일수정">
+      <option name="closed" value="true" />
+      <created>1750124632191</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1750124632191</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,6 +482,7 @@
     <MESSAGE value="config 병합 후 오류 수정" />
     <MESSAGE value="강의 삭제 관련 수정" />
     <MESSAGE value="도커 컴포즈 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="도커 컴포즈 추가" />
+    <MESSAGE value="도커 파일수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="도커 파일수정" />
   </component>
 </project>

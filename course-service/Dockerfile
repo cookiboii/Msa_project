@@ -1,8 +1,14 @@
 # 빌드 단계
-FROM gradle:7.6.1-jdk17 AS builder
+FROM eclipse-temurin:17-jdk
+
 WORKDIR /app
+
 COPY . .
+
+RUN chmod +x ./gradlew
+
 RUN ./gradlew clean build -x test
+
 
 # 실행 단계
 FROM openjdk:17-jdk-slim

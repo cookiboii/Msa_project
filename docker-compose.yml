@@ -1,6 +1,15 @@
-
+version: '3.8'
 
 services:
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
   config-service:
     image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/config-service:latest
     ports:
@@ -23,11 +32,15 @@ services:
     image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/user-service:latest
     ports:
       - "8081:8080"
+    depends_on:
+      - redis
 
   post-service:
     image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/postservice:latest
     ports:
       - "8082:8080"
+    depends_on:
+      - redis
 
   order-service:
     image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/order-service:latest
@@ -38,3 +51,6 @@ services:
     image: 061039771220.dkr.ecr.ap-northeast-2.amazonaws.com/course-service:latest
     ports:
       - "8084:8080"
+
+volumes:
+  redis_data:

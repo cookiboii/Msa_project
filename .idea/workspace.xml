@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.yml">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/gradle.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="config-service잡음">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +316,10 @@
       <workItem from="1747225117423" duration="7136000" />
       <workItem from="1747267933274" duration="15295000" />
       <workItem from="1750124155691" duration="21447000" />
-      <workItem from="1750167326270" duration="6835000" />
+      <workItem from="1750167326270" duration="7328000" />
+      <workItem from="1750176674249" duration="3000" />
+      <workItem from="1750205819122" duration="11436000" />
+      <workItem from="1750226761217" duration="542000" />
     </task>
     <task id="LOCAL-00001" summary="강의 구매 기능 추가">
       <option name="closed" value="true" />
@@ -662,7 +665,39 @@
       <option name="project" value="LOCAL" />
       <updated>1750174538002</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.ymlv3">
+      <option name="closed" value="true" />
+      <created>1750176137659</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1750176137659</updated>
+    </task>
+    <task id="LOCAL-00045" summary="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.yml 시작해보자">
+      <option name="closed" value="true" />
+      <created>1750206215871</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1750206215871</updated>
+    </task>
+    <task id="LOCAL-00046" summary="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.yml 시작해보자">
+      <option name="closed" value="true" />
+      <created>1750209633296</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1750209633296</updated>
+    </task>
+    <task id="LOCAL-00047" summary="config-service잡음">
+      <option name="closed" value="true" />
+      <created>1750226906779</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1750226906779</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,9 +715,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="도커파일수정" />
-    <MESSAGE value="도커파일 변경후 다시 빌드" />
-    <MESSAGE value="yml파일 변경" />
     <MESSAGE value="docker파일변경" />
     <MESSAGE value="gradle.yml변경중" />
     <MESSAGE value="같은에러 반복" />
@@ -705,6 +737,9 @@
     <MESSAGE value="재사용 도커컴포즈쪽수정-추가" />
     <MESSAGE value="재사용 도커컴포즈쪽수정 gradle.yml" />
     <MESSAGE value="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.yml" />
+    <MESSAGE value="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.ymlv3" />
+    <MESSAGE value="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.yml 시작해보자" />
+    <MESSAGE value="config-service잡음" />
+    <option name="LAST_COMMIT_MESSAGE" value="config-service잡음" />
   </component>
 </project>

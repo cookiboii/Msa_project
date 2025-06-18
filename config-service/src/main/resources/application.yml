@@ -1,3 +1,23 @@
+server:
+  port: 8888
+
 spring:
+  application:
+    name: config-service
+
   profiles:
     active: dev
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cookiboii/localRo.git
+          username: cookiboii
+          password: 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  # 👈 여기에 GitHub Personal Access Token 입력
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

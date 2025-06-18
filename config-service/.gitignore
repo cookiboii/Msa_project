@@ -1,5 +1,5 @@
 README.md
-application.yml
+config-service/src/main/resources/application.yml
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

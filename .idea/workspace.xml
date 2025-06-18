@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="docker-compose.yml 수정" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="공통 yml수정완료">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postservice/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/resources/bootstrap.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -315,15 +320,7 @@
       <workItem from="1750167326270" duration="7328000" />
       <workItem from="1750176674249" duration="3000" />
       <workItem from="1750205819122" duration="11436000" />
-      <workItem from="1750226761217" duration="7426000" />
-    </task>
-    <task id="LOCAL-00003" summary="관리자용 강의 구매 내역 조회 기능 구현, userservice, productservice feign client 수정중">
-      <option name="closed" value="true" />
-      <created>1747009289221</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1747009289221</updated>
+      <workItem from="1750226761217" duration="8445000" />
     </task>
     <task id="LOCAL-00004" summary="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현">
       <option name="closed" value="true" />
@@ -709,7 +706,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750234199279</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="공통 yml수정완료">
+      <option name="closed" value="true" />
+      <created>1750235016677</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1750235016677</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -727,7 +732,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="같은에러 반복" />
     <MESSAGE value="gradle.yml" />
     <MESSAGE value="gradle.yml 수정했어" />
     <MESSAGE value="gradle.yml 수정함" />
@@ -752,6 +756,7 @@
     <MESSAGE value="config-service잡음" />
     <MESSAGE value="bootstrap.yml 추가 ,application.yml변동" />
     <MESSAGE value="docker-compose.yml 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker-compose.yml 수정" />
+    <MESSAGE value="공통 yml수정완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="공통 yml수정완료" />
   </component>
 </project>

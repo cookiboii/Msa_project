@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="config-service잡음">
-      <change afterPath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/postservice/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/bootstrap.yml" afterDir="false" />
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="bootstrap.yml 추가 ,application.yml변동">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -326,15 +318,7 @@
       <workItem from="1750167326270" duration="7328000" />
       <workItem from="1750176674249" duration="3000" />
       <workItem from="1750205819122" duration="11436000" />
-      <workItem from="1750226761217" duration="5659000" />
-    </task>
-    <task id="LOCAL-00001" summary="강의 구매 기능 추가">
-      <option name="closed" value="true" />
-      <created>1746874114389</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1746874114389</updated>
+      <workItem from="1750226761217" duration="6785000" />
     </task>
     <task id="LOCAL-00002" summary="강의 구매 취소 기능 추가">
       <option name="closed" value="true" />
@@ -720,7 +704,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750227571110</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="bootstrap.yml 추가 ,application.yml변동">
+      <option name="closed" value="true" />
+      <created>1750232927244</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1750232927245</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,7 +730,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="docker파일변경" />
     <MESSAGE value="gradle.yml변경중" />
     <MESSAGE value="같은에러 반복" />
     <MESSAGE value="gradle.yml" />
@@ -763,6 +754,7 @@
     <MESSAGE value="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.ymlv3" />
     <MESSAGE value="재사용 도커컴포즈쪽수정 gradle.yml docker-compose.yml 시작해보자" />
     <MESSAGE value="config-service잡음" />
-    <option name="LAST_COMMIT_MESSAGE" value="config-service잡음" />
+    <MESSAGE value="bootstrap.yml 추가 ,application.yml변동" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap.yml 추가 ,application.yml변동" />
   </component>
 </project>

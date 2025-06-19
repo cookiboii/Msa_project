@@ -398,7 +398,8 @@
        ```
 
      5. **카카오페이 결제**
-   
+      - URL: `POST /api/order/pay/ready
+      - Response (성공 - 201 Created):
 
 
 

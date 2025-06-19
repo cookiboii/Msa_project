@@ -183,57 +183,47 @@
          }
        }
        ```
- 3. 이메일 인증 코드 요청 (회원가입용)
-URL: `POST /api/v1/users/email-valid`
+ 3. **이메일 인증 요청**
+URL: POST /api/v1/users/email-valid
 
 Request Body:
 
 json
-복사
 ```
 {
   "email": "user@example.com"
 }
 ```
-4. 비밀번호 재설정 - 1단계: 인증 코드 전송
-URL: POST `/api/v1/users/reset-password`
-
-Request Body:
+Response (성공 - 200 OK):
 
 json
-복사
 ```
 {
-  "email": "user@example.com"
+  "status": "OK",
+  "message": "검증 완료",
+  "data": "123456"
 }
 ```
-5. 비밀번호 재설정 - 2단계: 인증 코드 확인
-URL: `POST /api/v1/users/verify-code`
+4. **비밀번호 재설정 - 새 비밀번호 등록**
+URL: POST /api/v1/users/update-password
 
 Request Body:
-
-json
-복사
-```
-{
-  "email": "user@example.com",
-  "code": "123456"
-}
-
-```
-6. 비밀번호 재설정 - 3단계: 새 비밀번호 등록
-URL: POST `/api/v1/users/update-password`
-
-Request Body:
-
-json
 ```
 {
   "email": "user@example.com",
   "newPassword": "NewSecurePassword123!"
 }
 ```
+Response (성공 - 200 OK):
 
+ json
+```
+{
+  "status": "OK",
+  "message": "비밀번호가 성공적으로 변경되었습니다",
+  "data": null
+}
+```
 ### 🔸강의 서비스 API
   1. **강의 목록 조회**
      - URL: `GET /api/course-service/courses/all`

@@ -527,13 +527,13 @@ Response (성공 - 200 OK):
    }
    ```
   - Response:
-    ```json
-    {
-      "tid": "T846c8034b8e100c2b77",
-      "next_redirect_pc_url": "https://kauth.kakao.com/.../redirect",
-      "created_at": "2025-06-19T15:33:15"
-    }
-   ```
+   ```json
+     {
+       "tid": "T846c8034b8e100c2b77",
+       "next_redirect_pc_url": "https://kauth.kakao.com/.../redirect",
+       "created_at": "2025-06-19T15:33:15"
+     }
+  ```
 
 
 6. **카카오페이 결제 승인**  

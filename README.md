@@ -570,7 +570,7 @@ json
 
 
 
-## 5. MSA 아키텍처 설계도
+## 5. DevOps 아키텍처 설계도
 ![image](https://github.com/user-attachments/assets/6358a0c5-57c0-4610-b7a1-741c8baf8b57)
 
 

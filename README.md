@@ -30,10 +30,10 @@
 
 ### 기술 스택
 
-- **백엔드**: Spring Boot, Spring Cloud (Config, Eureka, Gateway), Spring Security, Spring Data JPA
+- **백엔드**: Spring Boot, Spring Cloud (Config, Gateway), Spring Security, Spring Data JPA
 - **프론트엔드**: React, Vite, Axios, CSS
-- **DB**: MySQL
-- **인프라**: AWS EC2, S3, RDS, CloudFront
+- **DB**: MySQL, Redis
+- **인프라**: AWS EC2, S3, RDS, CloudFront, EKS, Jenkins, Elasticache, ACM, Route 53, Helm, argocd, Docker
 
 ### 마이크로서비스 구조
 
@@ -45,7 +45,7 @@
 6. **Notification-Service**: 결제 성공, 강의 승인 등 이벤트 알림
 7. **Gateway-Service**: API 게이트웨이 (라우팅, 인증 필터)
 8. **Config-Service**: 공통 설정 관리 (Spring Cloud Config)
-9. **Eureka-Service**: 서비스 디스커버리
+9. **Eval-Service**: 강의 평가 생성, 수정, 삭제 및 평점 조회회
 ![제목 없는 다이어그램 drawio (2)](https://github.com/user-attachments/assets/d0e9b721-18c8-4484-942d-d547c937fea4)
 ## 2. 요구사항 정의서
 

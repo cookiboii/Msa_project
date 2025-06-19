@@ -72,7 +72,9 @@
 8. **Config-Service**: 공통 설정 관리 (Spring Cloud Config)
 9. **Eval-Service**: 강의 평가 생성, 수정, 삭제 및 평점 조회
 10. **Email-Service**: 회원가입, 비밀번호 변경을 위한 인증번호 전송 및 검증
-![제목 없는 다이어그램 drawio (2)](https://github.com/user-attachments/assets/d0e9b721-18c8-4484-942d-d547c937fea4)
+
+![제목 없는 다이어그램-페이지-2 drawio](https://github.com/user-attachments/assets/fe1779a3-2309-4acb-b876-84726ef949ad)
+
 
 ## 2. 요구사항 정의서
 

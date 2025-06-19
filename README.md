@@ -618,7 +618,8 @@ Response (성공 - 200 OK):
 [👉🏻 프론트엔드 코드](https://github.com/EunHyeokLee123/msa-project-front)
 
 ### 4-2. 배포 Source
-[👉🏻 배포 백엔드 코드](https://github.com/EunHyeokLee123/jenkins-project)
+[👉🏻 배포용 백엔드 코드](https://github.com/EunHyeokLee123/jenkins-project)
+<br><br>
 [👉🏻 Helm Chart 코드](https://github.com/EunHyeokLee123/msa-project-k8s)
 
 

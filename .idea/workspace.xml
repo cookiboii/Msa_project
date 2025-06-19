@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="공통 yml수정완료">
+    <list default="true" id="3149b107-6f9c-4e14-ba2b-315204dc0292" name="Changes" comment="bootstrap.yml 수정후 재배포1212">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/course-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postservice/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/postservice/src/main/resources/bootstrap.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,63 +95,68 @@
     <option name="flattenModules" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.postservice/Dockerfile builder.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.Build gateway-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build user-service.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.OrderServiceApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ProductRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.config-service 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.course-service 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.discovery-service 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.gateway-service 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.order-service 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.postservice 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.user-service 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CourseServiceApplication (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CourseServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiscoveryServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.OrderServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.PostserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;user&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/playdata/Msa_project/order-service/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.postservice/Dockerfile builder.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build config-service.executor": "Run",
+    "Gradle.Build discovery-service.executor": "Run",
+    "Gradle.Build gateway-service.executor": "Run",
+    "Gradle.Build order-service.executor": "Run",
+    "Gradle.Build postservice.executor": "Run",
+    "Gradle.Build user-service.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.OrderServiceApplicationTests.executor": "Run",
+    "Gradle.ProductRepositoryTest.executor": "Run",
+    "Gradle.config-service 빌드.executor": "Run",
+    "Gradle.course-service 빌드.executor": "Run",
+    "Gradle.discovery-service 빌드.executor": "Run",
+    "Gradle.gateway-service 빌드.executor": "Run",
+    "Gradle.order-service 빌드.executor": "Run",
+    "Gradle.postservice 빌드.executor": "Run",
+    "Gradle.user-service 빌드.executor": "Run",
+    "Gradle.소스 다운로드.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "Spring Boot.ConfigServiceApplication.executor": "Run",
+    "Spring Boot.CourseServiceApplication (1).executor": "Run",
+    "Spring Boot.CourseServiceApplication.executor": "Run",
+    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
+    "Spring Boot.OrderServiceApplication.executor": "Run",
+    "Spring Boot.PostserviceApplication.executor": "Run",
+    "Spring Boot.UserServiceApplication.executor": "Run",
+    "git-widget-placeholder": "user",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/playdata/Msa_project/order-service/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "모듈",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;,
-      &quot;mysql_aurora&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql",
+      "mysql_aurora"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -185,7 +187,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+  <component name="RunManager" selected="Docker.postservice/Dockerfile builder">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="com.playdata.config-service.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.playdata.configservice.ConfigServiceApplication" />
@@ -278,11 +280,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.ConfigServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
         <item itemvalue="Docker.postservice/Dockerfile builder" />
         <item itemvalue="Spring Boot.CourseServiceApplication (1)" />
-        <item itemvalue="Spring Boot.ConfigServiceApplication" />
         <item itemvalue="Spring Boot.OrderServiceApplication" />
-        <item itemvalue="Spring Boot.GatewayServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -320,63 +322,9 @@
       <workItem from="1750167326270" duration="7328000" />
       <workItem from="1750176674249" duration="3000" />
       <workItem from="1750205819122" duration="11436000" />
-      <workItem from="1750226761217" duration="8445000" />
-    </task>
-    <task id="LOCAL-00004" summary="나의 강의 구매 내역 조회에서 feign client로 product 정보 가져오기 구현">
-      <option name="closed" value="true" />
-      <created>1747016867590</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1747016867590</updated>
-    </task>
-    <task id="LOCAL-00005" summary="관리자용 강의 구매 내역 조회에서 feign client로 product 정보 가져오도록 수정">
-      <option name="closed" value="true" />
-      <created>1747017578147</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1747017578147</updated>
-    </task>
-    <task id="LOCAL-00006" summary="commit">
-      <option name="closed" value="true" />
-      <created>1747017996785</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1747017996785</updated>
-    </task>
-    <task id="LOCAL-00007" summary="user token으로 order 동작하게 수정">
-      <option name="closed" value="true" />
-      <created>1747025631094</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1747025631094</updated>
-    </task>
-    <task id="LOCAL-00008" summary="관리자용 구매 내역에서 user 정보 같이 리턴 (수정중)">
-      <option name="closed" value="true" />
-      <created>1747031034382</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1747031034382</updated>
-    </task>
-    <task id="LOCAL-00009" summary="commit">
-      <option name="closed" value="true" />
-      <created>1747102593295</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1747102593295</updated>
-    </task>
-    <task id="LOCAL-00010" summary="강사의 본인 강의 주문 내역 조회 수정">
-      <option name="closed" value="true" />
-      <created>1747114856102</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1747114856102</updated>
+      <workItem from="1750226761217" duration="9353000" />
+      <workItem from="1750248756204" duration="9153000" />
+      <workItem from="1750258101645" duration="2112000" />
     </task>
     <task id="LOCAL-00011" summary="강사의 본인 강의 주문 내역 조회 수정3">
       <option name="closed" value="true" />
@@ -714,7 +662,63 @@
       <option name="project" value="LOCAL" />
       <updated>1750235016677</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="bootstrap.yml 수정후 재배포">
+      <option name="closed" value="true" />
+      <created>1750236112429</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1750236112429</updated>
+    </task>
+    <task id="LOCAL-00054" summary="bootstrap.yml 수정후 재배포">
+      <option name="closed" value="true" />
+      <created>1750254894691</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1750254894692</updated>
+    </task>
+    <task id="LOCAL-00055" summary="bootstrap.yml 수정후 재배포">
+      <option name="closed" value="true" />
+      <created>1750255603361</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1750255603361</updated>
+    </task>
+    <task id="LOCAL-00056" summary="bootstrap.yml 수정후 재배포1212">
+      <option name="closed" value="true" />
+      <created>1750257198074</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1750257198074</updated>
+    </task>
+    <task id="LOCAL-00057" summary="bootstrap.yml 수정후 재배포1212">
+      <option name="closed" value="true" />
+      <created>1750257526459</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1750257526459</updated>
+    </task>
+    <task id="LOCAL-00058" summary="bootstrap.yml 수정후 재배포1212">
+      <option name="closed" value="true" />
+      <created>1750258919312</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1750258919312</updated>
+    </task>
+    <task id="LOCAL-00059" summary="bootstrap.yml 수정후 재배포1212">
+      <option name="closed" value="true" />
+      <created>1750259423590</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1750259423590</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,8 +736,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="gradle.yml" />
-    <MESSAGE value="gradle.yml 수정했어" />
     <MESSAGE value="gradle.yml 수정함" />
     <MESSAGE value="gradle.yml 바꿔봤음 어떰" />
     <MESSAGE value="제발돼라" />
@@ -757,6 +759,8 @@
     <MESSAGE value="bootstrap.yml 추가 ,application.yml변동" />
     <MESSAGE value="docker-compose.yml 수정" />
     <MESSAGE value="공통 yml수정완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="공통 yml수정완료" />
+    <MESSAGE value="bootstrap.yml 수정후 재배포" />
+    <MESSAGE value="bootstrap.yml 수정후 재배포1212" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap.yml 수정후 재배포1212" />
   </component>
 </project>

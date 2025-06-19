@@ -518,7 +518,7 @@ Response (성공 - 200 OK):
       "next_redirect_pc_url": "https://kauth.kakao.com/.../redirect",
       "created_at": "2025-06-19T15:33:15"
     }
-
+   ```
 
 
 
@@ -540,7 +540,7 @@ Response (성공 - 200 OK):
      "approved_at": "2025-06-19T15:35:45",
      "payload": "{\"customField\":\"exampleValue\"}"
    }
-
+   ```
 
 
 

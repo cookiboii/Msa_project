@@ -411,10 +411,17 @@ Response (성공 - 200 OK):
      - URL: `POST /api/order/create`
      - Request Body:
        ```json
-       [
-          {"productId": 3},
-          {"productId": 4}
-       ]
+       {
+          "email": "pa@naver.com",
+          "dtoList": [
+              {
+                  "productId": 3
+              },
+               {
+                  "productId": 4
+              }
+          ]
+      }
        ```
      - Response (성공 - 201 Created):
        ```json
@@ -507,9 +514,17 @@ Response (성공 - 200 OK):
   - URL: `POST /api/order/pay/ready
   - Request Body:
    ```json
-   [
-      {"productId": 3}
-   ]
+    {
+       "email": "pa@naver.com",
+       "dtoList": [
+           {
+               "productId": 3
+           },
+            {
+               "productId": 4
+           }
+       ]
+   }
    ```
   - Response:
     ```json
@@ -521,28 +536,25 @@ Response (성공 - 200 OK):
    ```
 
 
-
- 6. **카카오페이 결제 승인**
-  - URL: `POST /api/order/pay/completed?pg_token=dkteisjsklefi&orderId=T846c8034b8e100c2b77
-  - Response (성공 - 201 Created):
-   ```json
-   {
-     "aid": "A20250619000123456789",
-     "tid": "T846c8034b8e100c2b77",
-     "cid": "TC0ONETIME",
-     "partner_order_id": "98f735f4-331e-46b9-92f0-c28231706e3a",
-     "partner_user_id": "user123@naver.com",
-     "payment_method_type": "CARD",
-     "item_name": "Java 입문 강의",
-     "item_code": "16",
-     "quantity": 1,
-     "created_at": "2025-06-19T15:33:15",
-     "approved_at": "2025-06-19T15:35:45",
-     "payload": "{\"customField\":\"exampleValue\"}"
-   }
-   ```
-
-
+6. **카카오페이 결제 승인**  
+- URL: `POST /api/order/pay/completed?pg_token={pg_token}&orderId={partnerOrderId}
+- Response (성공 - 201 Created):
+ ```json
+ {
+   "aid": "A20250619000123456789",
+   "tid": "T846c8034b8e100c2b77",
+   "cid": "TC0ONETIME",
+   "partner_order_id": "98f735f4-331e-46b9-92f0-c28231706e3a",
+   "partner_user_id": "user123@naver.com",
+   "payment_method_type": "CARD",
+   "item_name": "Java 입문 강의",
+   "item_code": "16",
+   "quantity": 1,
+   "created_at": "2025-06-19T15:33:15",
+   "approved_at": "2025-06-19T15:35:45",
+   "payload": "{\"customField\":\"exampleValue\"}"
+ }
+ ```
 
  7. **카카오페이 환불**
   - URL: `POST /api/order/refund?orderId=T846c8034b8e100c2b77

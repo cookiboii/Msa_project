@@ -285,7 +285,6 @@ Response (성공 - 200 OK):
       }
       ```
     - Response (성공 - 201 Created):
-    
       ```json
       {
         "productId": "12",
@@ -425,64 +424,64 @@ Response (성공 - 200 OK):
        ```
      - Response (성공 - 201 Created):
        ```json
-       {
-          "statusCode": 201,
-          "statusMessage": "정상 주문 완료",
-          "result": [
-              {
-                  "id": 9,
-                  "userId": 2,
-                  "userEmail": "do@naver.com",
-                  "productId": 3,
-                  "orderStatus": "ORDERED",
-                  "orderDate": "2025-05-18"
-              },
-              {
-                  "id": 10,
-                  "userId": 2,
-                  "userEmail": "do@naver.com",
-                  "productId": 4,
-                  "orderStatus": "ORDERED",
-                  "orderDate": "2025-05-18"
-              }
-          ]
-       }
+         {
+            "statusCode": 201,
+            "statusMessage": "정상 주문 완료",
+            "result": [
+                {
+                    "id": 9,
+                    "userId": 2,
+                    "userEmail": "do@naver.com",
+                    "productId": 3,
+                    "orderStatus": "ORDERED",
+                    "orderDate": "2025-05-18"
+                },
+                {
+                    "id": 10,
+                    "userId": 2,
+                    "userEmail": "do@naver.com",
+                    "productId": 4,
+                    "orderStatus": "ORDERED",
+                    "orderDate": "2025-05-18"
+                }
+            ]
+         }
        ```
        
   2. **강의 구매 취소**
      - URL: `POST /api/order/cancel/4`
      - Response (성공 - 201 Created):
        ```json
-       {
-          "statusCode": 200,
-          "statusMessage": "주문 취소 완료",
-          "result": 10
-       }
+         {
+            "statusCode": 200,
+            "statusMessage": "주문 취소 완료",
+            "result": 10
+         }
        ```
        
  3. **강의 구매 조회 (학생용)**
      - URL: `POST /api/order/my-order`
      - Response (성공 - 201 Created):
        ```json
-       {
-           "statusCode": 200,
-           "statusMessage": "정상 조회 완료",
-           "result": [
-               {
-                   "id": 2,
-                   "userEmail": "do@naver.com",
-                   "userId": 2,
-                   "orderStatus": "CANCELED",
-                   "productId": 2,
-                   "productName": "일타강사 류현진의 기초 Git 강의!   (수정본)",
-                   "orderDate": "2025-05-15",
-                   "category": "Git",
-                   "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
-                   "active": true
-               },
-               ...
-           ]
-       }
+         {
+             "statusCode": 200,
+             "statusMessage": "정상 조회 완료",
+             "result": [
+                 {
+                     "id": 2,
+                     "userEmail": "do@naver.com",
+                     "userId": 2,
+                     "orderStatus": "CANCELED",
+                     "productId": 2,
+                     "productName": "일타강사 류현진의 기초 Git 강의!   (수정본)",
+                     "orderDate": "2025-05-15",
+                     "category": "Git",
+                     "filePath": "https://www.youtube.com/watch?v=Fley6IFhlC8&t=5s",
+                     "active": true
+                 },
+                 ...
+             ]
+         }
        ```
 
  4. **강의 구매 조회 (강사용)**
@@ -513,59 +512,59 @@ Response (성공 - 200 OK):
  5. **카카오페이 결제 요청**   
   - URL: `POST /api/order/pay/ready
   - Request Body:
-   ```json
-    {
-       "email": "pa@naver.com",
-       "dtoList": [
-           {
-               "productId": 3
-           },
-            {
-               "productId": 4
-           }
-       ]
-   }
-   ```
-  - Response:
-   ```json
+    ```json
      {
-       "tid": "T846c8034b8e100c2b77",
-       "next_redirect_pc_url": "https://kauth.kakao.com/.../redirect",
-       "created_at": "2025-06-19T15:33:15"
-     }
-  ```
+        "email": "pa@naver.com",
+        "dtoList": [
+            {
+                "productId": 3
+            },
+             {
+                "productId": 4
+            }
+        ]
+    }
+    ```
+  - Response:
+    ```json
+      {
+        "tid": "T846c8034b8e100c2b77",
+        "next_redirect_pc_url": "https://kauth.kakao.com/.../redirect",
+        "created_at": "2025-06-19T15:33:15"
+      }
+   ```
 
 
 6. **카카오페이 결제 승인**  
 - URL: `POST /api/order/pay/completed?pg_token={pg_token}&orderId={partnerOrderId}
 - Response (성공 - 201 Created):
- ```json
- {
-   "aid": "A20250619000123456789",
-   "tid": "T846c8034b8e100c2b77",
-   "cid": "TC0ONETIME",
-   "partner_order_id": "98f735f4-331e-46b9-92f0-c28231706e3a",
-   "partner_user_id": "user123@naver.com",
-   "payment_method_type": "CARD",
-   "item_name": "Java 입문 강의",
-   "item_code": "16",
-   "quantity": 1,
-   "created_at": "2025-06-19T15:33:15",
-   "approved_at": "2025-06-19T15:35:45",
-   "payload": "{\"customField\":\"exampleValue\"}"
- }
- ```
+  ```json
+    {
+      "aid": "A20250619000123456789",
+      "tid": "T846c8034b8e100c2b77",
+      "cid": "TC0ONETIME",
+      "partner_order_id": "98f735f4-331e-46b9-92f0-c28231706e3a",
+      "partner_user_id": "user123@naver.com",
+      "payment_method_type": "CARD",
+      "item_name": "Java 입문 강의",
+      "item_code": "16",
+      "quantity": 1,
+      "created_at": "2025-06-19T15:33:15",
+      "approved_at": "2025-06-19T15:35:45",
+      "payload": "{\"customField\":\"exampleValue\"}"
+    }
+  ```
 
  7. **카카오페이 환불**
   - URL: `POST /api/order/refund?orderId=T846c8034b8e100c2b77
   - Response (성공 200):
-   ```json
-   {
-      "statusCode": 200,
-      "statusMessage": "주문 취소 완료",
-      "result": 10
-   }
-   ```
+    ```json
+      {
+         "statusCode": 200,
+         "statusMessage": "주문 취소 완료",
+         "result": 10
+      }
+    ```
 
 
 

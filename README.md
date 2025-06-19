@@ -35,6 +35,31 @@
 - **DB**: MySQL, Redis
 - **인프라**: AWS EC2, S3, RDS, CloudFront, EKS, Jenkins, Elasticache, ACM, Route 53, Helm, argocd, Docker
 
+### DevOps 도구 적용 계획
+
+- 사용할 DevOps 도구 선택 근거 (Docker, Jenkins/GitHub Actions, Kubernetes, helm, argocd)
+- Docker : 젠킨스를 도커 이미지를 통해 구동하기 위해 사용 및 ECR로의 push를 위해 사용함.
+- Jenkins : 백엔드 깃 저장소의 push 이벤트를 감지하여, 변경사항이 있는 서비스를 빌드하여 ECR로 push하기 위해 사용함.
+- GitHub Actions : 프론트 깃 저장소의 코드를 자동으로 s3로 push하여 도메인으로 정적 호스팅이 되어 있는 웹페이지로 변경사항을 적용시키기 위해 사용함.
+- Kubernetes : helm chart를 통해 각 서비스들을 일괄적으로 관리하기 위해 사용함. argocd를 통해 무중단 배포를 구현하기 위해 사용함.
+- argocd : helm 차트 정보가 있는 깃허브로부터 cluster 정보를 받아서 무중단, 자동 배포를 위해 사용함.
+
+### CI/CD 파이프라인 구성 계획
+
+1. 백엔드 깃허브에서 클론
+2. 젠킨스 시크릿에 있는 yml 설정 파일들을 각 config-service, order-service, user-service에 주입
+3. 현재 push된 커밋과 직전 커밋을 비교하여, 변동사항이 있는 서비스만 Docker image 빌드
+4. 빌드된 Docker image를 AWS의 ECR로 푸시
+5. helm chart 정보가 담긴 깃허브에 새로 push된 이미지의 태그 정보를 주입
+6. 해당 깃허브의 push 이벤트를 통해, argocd에서 이미지 태그가 변화된 서비스의 pod를 업데이트
+
+### EKS 클러스터 구성 계획
+
+- Eks의 Node는 4개로 구성하고, 각 service 당 2개의 pod로 구성하여 총 14개의 pod로 구성
+- Order-service나 User-service, Course-service와 같이 트래픽이 몰릴 가능성이 있는 서비스는 pod를 최대 4개까지 추가할 예정
+- 서비스에 업데이트 발생 시, 기존 pod를 그대로 유지 및 새로 생성한 pod가 Healthy하게 되면, 기존 pod를 백업
+- 업데이트 시 pod에 장애 발생 시, 기존에 백업한 pod가 그대로 유지
+
 ### 마이크로서비스 구조
 
 1. **Auth-Service**: 사용자 인증 및 권한 관리 (JWT 기반)
@@ -45,8 +70,10 @@
 6. **Notification-Service**: 결제 성공, 강의 승인 등 이벤트 알림
 7. **Gateway-Service**: API 게이트웨이 (라우팅, 인증 필터)
 8. **Config-Service**: 공통 설정 관리 (Spring Cloud Config)
-9. **Eval-Service**: 강의 평가 생성, 수정, 삭제 및 평점 조회회
+9. **Eval-Service**: 강의 평가 생성, 수정, 삭제 및 평점 조회
+10. **Email-Service**: 회원가입, 비밀번호 변경을 위한 인증번호 전송 및 검증
 ![제목 없는 다이어그램 drawio (2)](https://github.com/user-attachments/assets/d0e9b721-18c8-4484-942d-d547c937fea4)
+
 ## 2. 요구사항 정의서
 
 ### 2-1. 기능 요구사항

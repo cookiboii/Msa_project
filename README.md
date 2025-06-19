@@ -181,7 +181,7 @@
          }
        }
        ```
-       3. 이메일 인증 코드 요청 (회원가입용)
+ 3. 이메일 인증 코드 요청 (회원가입용)
 URL: `POST /api/v1/users/email-valid`
 
 Request Body:

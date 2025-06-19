@@ -341,6 +341,70 @@ Response (성공 - 200 OK):
        }
        ```
 
+### 🔸평가 서비스 API
+
+1. **강의 평가 생성**
+
+   - URL: `POST /api/eval/create`
+   - Request Body:
+     ```json
+     {
+       "productId": "30",
+       "rating": "5",
+       "content": "강의에 대한 평가 내용!"
+     }
+     ```
+   - Response (성공 - 201 Created):
+     ```json
+     {
+       "evalId": "101",
+       "userId": "12345",
+       "content": "강의에 대한 평가 내용!",
+       "rating": "5",
+       "productId": "30"
+     }
+     ```
+
+2. **강의 평가 수정**
+
+   - URL: `POST /api/eval/modify`
+   - Request Body:
+     ```json
+     {
+       "evalId": "30",
+       "rating": "5",
+       "content": "강의에 대한 평가 내용 수정!"
+     }
+     ```
+   - Response (성공 - 202 ACCEPTED):
+     ```json
+     {
+       "evalId": "30",
+       "userId": "12",
+       "content": "강의에 대한 평가 내용 수정!",
+       "rating": "5",
+       "productId": "30"
+     }
+     ```
+
+3. **강의 평가 삭제**
+
+   - URL: `DELETE /api/eval/delete/{id}`
+   - Response (성공 - 202 ACCEPTED):
+     ```json
+     {}
+     ```
+
+4. **강의 평점 조회**
+   - URL: `GET /api/eval/eval-rating/{id}`
+   - Response (성공 - 200 Ok):
+     ```json
+     {
+       "rating": "5"
+     }
+     ```
+
+
 
 ### 🔸결제 서비스 API
   1. **강의 구매**

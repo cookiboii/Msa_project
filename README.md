@@ -184,20 +184,18 @@
        }
        ```
  3. **이메일 인증 요청**
-URL: POST /api/v1/users/email-valid
+- URL: POST /api/v1/users/email-valid
 
-Request Body:
+- Request Body:
 
-json
-```
+```json
 {
   "email": "user@example.com"
 }
 ```
-Response (성공 - 200 OK):
+- Response (성공 - 200 OK):
 
-json
-```
+``` json
 {
   "status": "OK",
   "message": "검증 완료",
@@ -205,10 +203,10 @@ json
 }
 ```
 4. **비밀번호 재설정 - 새 비밀번호 등록**
-URL: POST /api/v1/users/update-password
+- URL: POST /api/v1/users/update-password
 
-Request Body:
-```
+- Request Body:
+``` json
 {
   "email": "user@example.com",
   "newPassword": "NewSecurePassword123!"
@@ -216,8 +214,7 @@ Request Body:
 ```
 Response (성공 - 200 OK):
 
- json
-```
+``` json
 {
   "status": "OK",
   "message": "비밀번호가 성공적으로 변경되었습니다",
@@ -409,7 +406,7 @@ Response (성공 - 200 OK):
   1. **강의 구매**
      - URL: `POST /api/order/create`
      - Request Body:
-       ```json
+        ```json
         {
            "email": "pa@naver.com",
            "dtoList": [
@@ -421,9 +418,10 @@ Response (성공 - 200 OK):
                }
            ]
         }
-     ```
-    - Response (성공 - 201 Created):
-        ```json
+        ```
+
+   - Response (성공 - 201 Created):
+       ```json
           {
              "statusCode": 201,
              "statusMessage": "정상 주문 완료",
@@ -446,7 +444,7 @@ Response (성공 - 200 OK):
                  }
              ]
           }
-        ```
+       ```
        
  2. **강의 구매 취소**
     - URL: `POST /api/order/cancel/4`
